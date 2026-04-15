@@ -1,6 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
 import ThemeSwitcher from "./ThemeSwitcher";
 
+const canonicalGuideLinks = {
+  excel: "/guides/excel-data-analysis-guide.html",
+  sql: "/guides/sql-data-analysis-guide.html",
+  python: "/guides/python-data-analysis-guide.html",
+  powerbi: "/guides/powerbi-data-analysis-guide.html",
+};
+
 export default function SiteLayout({ children, themeContext }) {
   const { pathname } = useLocation();
 
@@ -27,10 +34,10 @@ export default function SiteLayout({ children, themeContext }) {
             <Link className={pathname === "/guides" ? "active" : ""} to="/guides">
               All Guides
             </Link>
-            <Link to="/guides/excel">Excel</Link>
-            <Link to="/guides/sql">SQL</Link>
-            <Link to="/guides/python">Python</Link>
-            <Link to="/guides/powerbi">Power BI</Link>
+            <a href={canonicalGuideLinks.excel}>Excel</a>
+            <a href={canonicalGuideLinks.sql}>SQL</a>
+            <a href={canonicalGuideLinks.python}>Python</a>
+            <a href={canonicalGuideLinks.powerbi}>Power BI</a>
             <Link className={pathname === "/notebooks" ? "active" : ""} to="/notebooks">
               Notebooks
             </Link>

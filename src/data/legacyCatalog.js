@@ -1,8 +1,4 @@
 export const guideFiles = [
-  "01-excel-mastery.html",
-  "02-sql-mastery.html",
-  "03-python-mastery.html",
-  "04-powerbi-mastery.html",
   "data-analysis-projects.html",
   "data-analysis-quick-revision.html",
   "data-analyst-interview-preparation-guide.html",

@@ -2,28 +2,28 @@ import { Link } from "react-router-dom";
 
 const guideCards = [
   {
-    slug: "excel",
+    href: "/guides/excel-data-analysis-guide.html",
     icon: "Spreadsheet",
-    title: "Excel Mastery",
-    description: "Formulas, pivot tables, cleaning workflows, and fast analyst shortcuts.",
+    title: "Excel Data Analysis",
+    description: "Spreadsheet fundamentals, formulas, pivot workflows, and practical dataset walkthroughs.",
   },
   {
-    slug: "sql",
+    href: "/guides/sql-data-analysis-guide.html",
     icon: "Database",
-    title: "SQL Mastery",
-    description: "Joins, aggregation, window functions, and interview-style query drills.",
+    title: "SQL Data Analysis",
+    description: "Query fundamentals to advanced window functions, CTEs, and analytical patterns.",
   },
   {
-    slug: "python",
+    href: "/guides/python-data-analysis-guide.html",
     icon: "Python",
-    title: "Python Mastery",
-    description: "Pandas, NumPy, and practical scripts for day-to-day analytics.",
+    title: "Python Data Analysis",
+    description: "Pandas, NumPy, cleaning, grouping, visualization, and practical projects.",
   },
   {
-    slug: "powerbi",
+    href: "/guides/powerbi-data-analysis-guide.html",
     icon: "Dashboard",
-    title: "Power BI Mastery",
-    description: "DAX, model design, and storytelling dashboards for business impact.",
+    title: "Power BI",
+    description: "Power Query, data modeling, DAX, dashboard design, performance, and business projects.",
   },
 ];
 
@@ -41,9 +41,9 @@ export default function HomePage() {
           <a className="btn primary" href="#guides-grid">
             Explore Guides
           </a>
-          <Link className="btn" to="/guides/excel">
+          <a className="btn" href="/guides/excel-data-analysis-guide.html">
             Jump Into Excel Path
-          </Link>
+          </a>
         </div>
       </section>
 
@@ -55,13 +55,13 @@ export default function HomePage() {
 
         <div className="guide-grid">
           {guideCards.map((card) => (
-            <article key={card.slug} className="guide-card glass-panel">
+            <article key={card.href} className="guide-card glass-panel">
               <p className="guide-icon">{card.icon}</p>
               <h3>{card.title}</h3>
               <p>{card.description}</p>
-              <Link className="inline-link" to={`/guides/${card.slug}`}>
+              <a className="inline-link" href={card.href}>
                 Open Guide
-              </Link>
+              </a>
             </article>
           ))}
         </div>
