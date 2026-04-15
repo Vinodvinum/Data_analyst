@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Practice Lab - Excel SQL Python</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --panel: #ffffff;
+      --ink: #142133;
+      --muted: #556274;
+      --line: #d7e3ef;
+      --excel: #0f766e;
+      --sql: #1d4ed8;
+      --py: #b45309;
+      --code: #0b1220;
+      --shadow: 0 16px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(15, 118, 110, 0.12), transparent 28%),
+        radial-gradient(circle at 100% 0%, rgba(29, 78, 216, 0.12), transparent 30%),
+        var(--bg);
+    }
+
+    .wrap {
+      width: min(1280px, calc(100% - 24px));
+      margin: 0 auto;
+      padding: 22px 0 32px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0f766e, #1d4ed8 58%, #0f172a);
+      color: #fff;
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 { margin: 0 0 8px; font-size: clamp(1.7rem, 4vw, 2.8rem); }
+    .hero p { margin: 0; max-width: 92ch; opacity: 0.96; }
+
+    .top-links {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .top-links a {
+      color: #fff;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.12);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .tab {
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 10px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+      color: #1f2b3a;
+    }
+
+    .tab.active[data-tab="excel"] { border-color: var(--excel); color: var(--excel); }
+    .tab.active[data-tab="sql"] { border-color: var(--sql); color: var(--sql); }
+    .tab.active[data-tab="python"] { border-color: var(--py); color: var(--py); }
+
+    .panel {
+      display: none;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel.active { display: block; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: #fbfdff;
+    }
+
+    .card h3 { margin: 0 0 8px; }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px 12px;
+      background: #fff;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    button:hover { background: #f6f9ff; }
+
+    .table-wrap {
+      overflow: auto;
+      max-height: 430px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 740px;
+      font-size: 0.92rem;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 7px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th { background: #eef5ff; position: sticky; top: 0; z-index: 2; }
+
+    td.cell {
+      min-width: 84px;
+      background: #fff;
+    }
+
+    td.cell[contenteditable="true"]:focus {
+      outline: 2px solid #93c5fd;
+      background: #f0f7ff;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 220px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-family: "Cascadia Mono", Consolas, "Courier New", monospace;
+      padding: 10px;
+      background: #ffffff;
+    }
+
+    .output {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      padding: 10px;
+      overflow: auto;
+      max-height: 330px;
+    }
+
+    .console {
+      background: var(--code);
+      color: #e2e8f0;
+      border: 1px solid #1f2937;
+      border-radius: 10px;
+      padding: 10px;
+      white-space: pre-wrap;
+      min-height: 180px;
+      max-height: 340px;
+      overflow: auto;
+      font-family: "Cascadia Mono", Consolas, "Courier New", monospace;
+      font-size: 0.9rem;
+    }
+
+    .hint {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .status {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #eef5ff;
+      color: #1e40af;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 980px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <h1>Web Practice Lab</h1>
+      <p>Hands-on browser lab for spreadsheet-style practice, SQL querying, and Python scripting. This page is made for fast practice when you do not want to leave the browser.</p>
+      <div class="top-links">
+        <a href="index.html">Back to Master Hub</a>
+        <a href="excel-data-analysis-guide.html">Excel Guide</a>
+        <a href="sql-data-analysis-guide.html">SQL Guide</a>
+        <a href="python-data-analysis-guide.html">Python Guide</a>
+      </div>
+    </header>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="excel">Excel Environment</button>
+      <button class="tab" data-tab="sql">SQL Environment</button>
+      <button class="tab" data-tab="python">Python Environment</button>
+    </div>
+
+    <section id="excel" class="panel active">
+      <span class="pill">Excel-like Practice</span>
+      <p class="hint">Type values directly in cells. Formulas start with <strong>=</strong>. Supported formulas: <strong>=A1+B1</strong>, <strong>=SUM(A1:A5)</strong>, <strong>=AVERAGE(B1:B5)</strong>.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>Spreadsheet Grid</h3>
+          <div class="controls">
+            <button id="excel-load">Load Sales Sample</button>
+            <button id="excel-calc">Recalculate</button>
+            <button id="excel-clear">Clear Grid</button>
+          </div>
+          <div class="table-wrap">
+            <table id="excel-grid"></table>
+          </div>
+          <div id="excel-status" class="status"></div>
+        </div>
+        <div class="card">
+          <h3>Practice Tasks</h3>
+          <ol>
+            <li>Create a Revenue column using <code>=E2*F2*(1-G2)</code> pattern.</li>
+            <li>Calculate total revenue with <code>=SUM(H2:H11)</code>.</li>
+            <li>Calculate average units with <code>=AVERAGE(E2:E11)</code>.</li>
+            <li>Add one row and check if totals still work.</li>
+          </ol>
+          <p class="hint">This mirrors the same logic you use in Excel desktop: row-level calculations first, summary formulas second.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sql" class="panel">
+      <span class="pill">SQL Runner</span>
+      <p class="hint">Runs SQL directly in-browser using an in-memory SQLite database loaded with sample orders and users data.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>Query Editor</h3>
+          <div class="controls">
+            <button id="sql-init">Initialize SQL Engine</button>
+            <button id="sql-run">Run Query</button>
+            <button id="sql-reset">Reset Query</button>
+          </div>
+          <textarea id="sql-input">SELECT u.country,
+       COUNT(o.order_id) AS order_count,
+       ROUND(SUM(o.quantity * o.unit_price - o.discount_amount), 2) AS net_revenue
+FROM orders o
+JOIN users u ON o.user_id = u.user_id
+WHERE o.order_status = 'completed'
+GROUP BY u.country
+ORDER BY net_revenue DESC;</textarea>
+          <div id="sql-status" class="status">Click Initialize SQL Engine first.</div>
+        </div>
+        <div class="card">
+          <h3>SQL Result</h3>
+          <div id="sql-output" class="output">No result yet.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="python" class="panel">
+      <span class="pill">Python Runner</span>
+      <p class="hint">Runs Python in-browser using Pyodide. Use this for logic and data-analysis practice without opening a notebook.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>Python Script</h3>
+          <div class="controls">
+            <button id="py-init">Initialize Python</button>
+            <button id="py-run">Run Python</button>
+            <button id="py-reset">Reset Script</button>
+          </div>
+          <textarea id="py-input">sales = [
+    {"order_id": 1001, "country": "United States", "quantity": 2, "unit_price": 120.0, "discount": 10.0},
+    {"order_id": 1002, "country": "Canada", "quantity": 3, "unit_price": 49.0, "discount": 5.0},
+    {"order_id": 1003, "country": "United States", "quantity": 1, "unit_price": 299.0, "discount": 0.0},
+    {"order_id": 1004, "country": "India", "quantity": 4, "unit_price": 95.0, "discount": 7.0},
+]
+
+country_totals = {}
+for row in sales:
+    revenue = row["quantity"] * row["unit_price"] - row["discount"]
+    country = row["country"]
+    country_totals[country] = country_totals.get(country, 0) + revenue
+
+for country, total in sorted(country_totals.items(), key=lambda x: x[1], reverse=True):
+    print(country, round(total, 2))</textarea>
+          <div id="py-status" class="status">Click Initialize Python first (loads runtime from CDN).</div>
+        </div>
+        <div class="card">
+          <h3>Python Console Output</h3>
+          <div id="py-output" class="console">No output yet.</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const panels = document.querySelectorAll('.panel');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    const colNames = ['A','B','C','D','E','F','G','H'];
+    const ROWS = 20;
+    const COLS = 8;
+    const excelGrid = document.getElementById('excel-grid');
+    const excelStatus = document.getElementById('excel-status');
+
+    function createGrid() {
+      excelGrid.innerHTML = '';
+      const head = document.createElement('tr');
+      const blank = document.createElement('th');
+      blank.textContent = '';
+      head.appendChild(blank);
+      for (let c = 0; c < COLS; c++) {
+        const th = document.createElement('th');
+        th.textContent = colNames[c];
+        head.appendChild(th);
+      }
+      excelGrid.appendChild(head);
+
+      for (let r = 1; r <= ROWS; r++) {
+        const tr = document.createElement('tr');
+        const idx = document.createElement('th');
+        idx.textContent = String(r);
+        tr.appendChild(idx);
+        for (let c = 0; c < COLS; c++) {
+          const td = document.createElement('td');
+          td.className = 'cell';
+          td.contentEditable = 'true';
+          td.dataset.ref = `${colNames[c]}${r}`;
+          td.addEventListener('blur', () => {
+            const text = td.textContent.trim();
+            if (text.startsWith('=')) td.dataset.formula = text;
+            else td.dataset.formula = '';
+          });
+          tr.appendChild(td);
+        }
+        excelGrid.appendChild(tr);
+      }
+    }
+
+    function cellValue(ref) {
+      const cell = excelGrid.querySelector(`[data-ref="${ref}"]`);
+      if (!cell) return 0;
+      const raw = (cell.textContent || '').trim();
+      const num = Number(raw);
+      return Number.isFinite(num) ? num : 0;
+    }
+
+    function refsInRange(start, end) {
+      const colStart = start.match(/[A-Z]+/)[0];
+      const rowStart = Number(start.match(/[0-9]+/)[0]);
+      const colEnd = end.match(/[A-Z]+/)[0];
+      const rowEnd = Number(end.match(/[0-9]+/)[0]);
+      const c1 = colNames.indexOf(colStart);
+      const c2 = colNames.indexOf(colEnd);
+      const refs = [];
+      for (let r = Math.min(rowStart, rowEnd); r <= Math.max(rowStart, rowEnd); r++) {
+        for (let c = Math.min(c1, c2); c <= Math.max(c1, c2); c++) {
+          refs.push(`${colNames[c]}${r}`);
+        }
+      }
+      return refs;
+    }
+
+    function evalFormula(formula) {
+      let expr = formula.slice(1).toUpperCase();
+
+      expr = expr.replace(/SUM\(([A-Z][0-9]+):([A-Z][0-9]+)\)/g, (_, a, b) => {
+        const vals = refsInRange(a, b).map(cellValue);
+        return vals.reduce((s, v) => s + v, 0);
+      });
+
+      expr = expr.replace(/AVERAGE\(([A-Z][0-9]+):([A-Z][0-9]+)\)/g, (_, a, b) => {
+        const vals = refsInRange(a, b).map(cellValue);
+        if (!vals.length) return 0;
+        return vals.reduce((s, v) => s + v, 0) / vals.length;
+      });
+
+      expr = expr.replace(/([A-Z][0-9]+)/g, (ref) => String(cellValue(ref)));
+      try {
+        // eslint-disable-next-line no-new-func
+        const val = Function(`return (${expr})`)();
+        return Number.isFinite(val) ? val : '#ERR';
+      } catch {
+        return '#ERR';
+      }
+    }
+
+    function recalc() {
+      const cells = excelGrid.querySelectorAll('.cell');
+      let count = 0;
+      cells.forEach(cell => {
+        const f = cell.dataset.formula || '';
+        if (f.startsWith('=')) {
+          const v = evalFormula(f);
+          cell.textContent = typeof v === 'number' ? String(Math.round(v * 100) / 100) : v;
+          count++;
+        }
+      });
+      excelStatus.textContent = `Recalculated ${count} formula cells.`;
+    }
+
+    function loadSample() {
+      const sample = [
+        ['OrderID', 'Region', 'Product', 'Units', 'UnitPrice', 'Discount', 'Revenue', 'Target'],
+        ['2001', 'North', 'Keyboard', '8', '950', '0.03', '=D2*E2*(1-F2)', '8000'],
+        ['2002', 'South', 'Mouse', '11', '550', '0.04', '=D3*E3*(1-F3)', '7000'],
+        ['2003', 'East', 'Monitor', '14', '7800', '0.05', '=D4*E4*(1-F4)', '90000'],
+        ['2004', 'West', 'Dock', '6', '2400', '0.02', '=D5*E5*(1-F5)', '15000'],
+        ['2005', 'North', 'Webcam', '10', '1800', '0.06', '=D6*E6*(1-F6)', '16000'],
+        ['', '', '', '', '', '', '=SUM(G2:G6)', 'Total Revenue'],
+        ['', '', '', '', '', '', '=AVERAGE(D2:D6)', 'Avg Units'],
+      ];
+      sample.forEach((row, rIdx) => {
+        row.forEach((val, cIdx) => {
+          if (rIdx === 0 && cIdx < COLS) {
+            const headerCell = excelGrid.querySelector(`[data-ref="${colNames[cIdx]}1"]`);
+            if (headerCell) headerCell.textContent = val;
+            return;
+          }
+          const rr = rIdx + 1;
+          const ref = `${colNames[cIdx]}${rr}`;
+          const cell = excelGrid.querySelector(`[data-ref="${ref}"]`);
+          if (!cell) return;
+          cell.textContent = val;
+          cell.dataset.formula = val.startsWith('=') ? val : '';
+        });
+      });
+      excelStatus.textContent = 'Loaded sample worksheet. Click Recalculate to evaluate formulas.';
+    }
+
+    document.getElementById('excel-load').addEventListener('click', loadSample);
+    document.getElementById('excel-calc').addEventListener('click', recalc);
+    document.getElementById('excel-clear').addEventListener('click', () => {
+      createGrid();
+      excelStatus.textContent = 'Grid cleared.';
+    });
+
+    createGrid();
+
+    let sqlDb = null;
+    const sqlOutput = document.getElementById('sql-output');
+    const sqlStatus = document.getElementById('sql-status');
+
+    function renderSQLResult(result) {
+      if (!result || !result.length) {
+        sqlOutput.textContent = 'Query executed. No rows returned.';
+        return;
+      }
+      const rows = result[0];
+      const table = document.createElement('table');
+      const trh = document.createElement('tr');
+      rows.columns.forEach(c => {
+        const th = document.createElement('th');
+        th.textContent = c;
+        trh.appendChild(th);
+      });
+      table.appendChild(trh);
+      rows.values.forEach(vs => {
+        const tr = document.createElement('tr');
+        vs.forEach(v => {
+          const td = document.createElement('td');
+          td.textContent = v;
+          tr.appendChild(td);
+        });
+        table.appendChild(tr);
+      });
+      sqlOutput.innerHTML = '';
+      sqlOutput.appendChild(table);
+    }
+
+    async function initSQL() {
+      sqlStatus.textContent = 'Initializing SQL.js...';
+      const SQL = await initSqlJs({
+        locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/${file}`
+      });
+      sqlDb = new SQL.Database();
+
+      sqlDb.run(`CREATE TABLE users (user_id INTEGER, country TEXT, plan_type TEXT, is_active INTEGER);`);
+      sqlDb.run(`CREATE TABLE orders (order_id INTEGER, user_id INTEGER, order_date TEXT, quantity INTEGER, unit_price REAL, discount_amount REAL, order_status TEXT);`);
+
+      const users = [
+        [1, 'United States', 'Pro', 1],
+        [2, 'Canada', 'Free', 1],
+        [3, 'United Kingdom', 'Pro', 1],
+        [4, 'India', 'Free', 1],
+        [5, 'United States', 'Enterprise', 1],
+      ];
+      const orders = [
+        [1001, 1, '2024-06-01', 2, 120.00, 10.00, 'completed'],
+        [1002, 1, '2024-06-15', 1, 299.00, 0.00, 'completed'],
+        [1003, 2, '2024-06-20', 3, 49.00, 5.00, 'completed'],
+        [1004, 3, '2024-07-05', 1, 120.00, 0.00, 'completed'],
+        [1005, 4, '2024-07-08', 2, 95.00, 7.00, 'completed'],
+        [1006, 5, '2024-08-01', 2, 240.00, 6.00, 'completed']
+      ];
+
+      const insU = sqlDb.prepare('INSERT INTO users VALUES (?, ?, ?, ?)');
+      users.forEach(r => insU.run(r));
+      insU.free();
+
+      const insO = sqlDb.prepare('INSERT INTO orders VALUES (?, ?, ?, ?, ?, ?, ?)');
+      orders.forEach(r => insO.run(r));
+      insO.free();
+
+      sqlStatus.textContent = 'SQL engine ready. Sample tables loaded: users, orders.';
+    }
+
+    document.getElementById('sql-init').addEventListener('click', async () => {
+      try {
+        await initSQL();
+      } catch (e) {
+        sqlStatus.textContent = `SQL init error: ${e.message}`;
+      }
+    });
+
+    document.getElementById('sql-run').addEventListener('click', () => {
+      if (!sqlDb) {
+        sqlStatus.textContent = 'Initialize SQL Engine first.';
+        return;
+      }
+      const q = document.getElementById('sql-input').value;
+      try {
+        const res = sqlDb.exec(q);
+        renderSQLResult(res);
+        sqlStatus.textContent = 'Query executed.';
+      } catch (e) {
+        sqlOutput.textContent = `SQL error: ${e.message}`;
+        sqlStatus.textContent = 'Query failed.';
+      }
+    });
+
+    document.getElementById('sql-reset').addEventListener('click', () => {
+      document.getElementById('sql-input').value = `SELECT u.country,\n       COUNT(o.order_id) AS order_count,\n       ROUND(SUM(o.quantity * o.unit_price - o.discount_amount), 2) AS net_revenue\nFROM orders o\nJOIN users u ON o.user_id = u.user_id\nWHERE o.order_status = 'completed'\nGROUP BY u.country\nORDER BY net_revenue DESC;`;
+      sqlOutput.textContent = 'No result yet.';
+    });
+
+    let pyodide = null;
+    const pyOutput = document.getElementById('py-output');
+    const pyStatus = document.getElementById('py-status');
+
+    async function initPython() {
+      pyStatus.textContent = 'Loading Pyodide runtime...';
+      pyodide = await loadPyodide();
+      pyStatus.textContent = 'Python environment ready.';
+    }
+
+    document.getElementById('py-init').addEventListener('click', async () => {
+      try {
+        await initPython();
+      } catch (e) {
+        pyStatus.textContent = `Python init error: ${e.message}`;
+      }
+    });
+
+    document.getElementById('py-run').addEventListener('click', async () => {
+      if (!pyodide) {
+        pyStatus.textContent = 'Initialize Python first.';
+        return;
+      }
+      const userCode = document.getElementById('py-input').value;
+      const wrapped = `\nimport sys, io\n_buf = io.StringIO()\nsys.stdout = _buf\n${userCode}\nout_text = _buf.getvalue()\nsys.stdout = sys.__stdout__\nout_text`;
+      try {
+        const out = await pyodide.runPythonAsync(wrapped);
+        pyOutput.textContent = String(out || 'Executed. No output.');
+        pyStatus.textContent = 'Python script executed.';
+      } catch (e) {
+        pyOutput.textContent = `Python error:\n${e.message}`;
+        pyStatus.textContent = 'Python execution failed.';
+      }
+    });
+
+    document.getElementById('py-reset').addEventListener('click', () => {
+      document.getElementById('py-input').value = `sales = [\n    {"order_id": 1001, "country": "United States", "quantity": 2, "unit_price": 120.0, "discount": 10.0},\n    {"order_id": 1002, "country": "Canada", "quantity": 3, "unit_price": 49.0, "discount": 5.0},\n    {"order_id": 1003, "country": "United States", "quantity": 1, "unit_price": 299.0, "discount": 0.0},\n    {"order_id": 1004, "country": "India", "quantity": 4, "unit_price": 95.0, "discount": 7.0},\n]\n\ncountry_totals = {}\nfor row in sales:\n    revenue = row["quantity"] * row["unit_price"] - row["discount"]\n    country = row["country"]\n    country_totals[country] = country_totals.get(country, 0) + revenue\n\nfor country, total in sorted(country_totals.items(), key=lambda x: x[1], reverse=True):\n    print(country, round(total, 2))`;
+      pyOutput.textContent = 'No output yet.';
+    });
+  </script>
+</body>
+</html>
