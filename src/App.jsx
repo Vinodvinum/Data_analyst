@@ -6,6 +6,7 @@ import GuidePage from "./pages/GuidePage";
 import GuidesHubPage from "./pages/GuidesHubPage";
 import NotebooksPage from "./pages/NotebooksPage";
 import ToolsPage from "./pages/ToolsPage";
+import LegacyHubPage from "./pages/LegacyHubPage";
 
 const THEMES = ["modern", "cyberpunk", "minimal", "sunset"];
 
@@ -28,7 +29,8 @@ export default function App() {
   return (
     <SiteLayout themeContext={contextValue}>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<LegacyHubPage />} />
+        <Route path="/react-home" element={<HomePage />} />
         <Route path="/guides" element={<GuidesHubPage />} />
         <Route path="/guides/:slug" element={<GuidePage />} />
         <Route path="/notebooks" element={<NotebooksPage />} />

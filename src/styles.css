@@ -312,6 +312,7 @@ a {
   border: 1px solid var(--line);
   border-radius: 10px;
   padding: 0.6rem 0.7rem;
+  flex-wrap: wrap;
 }
 
 .asset-list a {
@@ -319,6 +320,10 @@ a {
   text-decoration: none;
   font-weight: 700;
   white-space: nowrap;
+}
+
+.asset-list strong {
+  color: var(--text);
 }
 
 .inline-link {
@@ -439,6 +444,10 @@ code {
   border: 1px solid var(--line);
   border-radius: 14px;
   background: white;
+}
+
+.single-panel h3 {
+  margin-top: 0;
 }
 
 @media (max-width: 860px) {

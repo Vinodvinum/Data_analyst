@@ -19,7 +19,10 @@ export default function SiteLayout({ children, themeContext }) {
 
           <nav className="nav-links" aria-label="Primary">
             <Link className={pathname === "/" ? "active" : ""} to="/">
-              Home
+              Full Hub
+            </Link>
+            <Link className={pathname === "/react-home" ? "active" : ""} to="/react-home">
+              React Home
             </Link>
             <Link className={pathname === "/guides" ? "active" : ""} to="/guides">
               All Guides
