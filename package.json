@@ -1,0 +1,23 @@
+{
+  "name": "da",
+  "version": "1.0.0",
+  "description": "A practical, job-ready training bundle for Data Analyst roles. This repository includes linked guides, datasets, notebooks, and output files covering Excel, SQL, Python, Power BI, and interview preparation.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "react-router-dom": "^7.14.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "vite": "^8.0.8"
+  }
+}
