@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>30 Data Analyst Practice Problems</title>
+  <style>
+    body { margin: 0; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; background: #f4f7fb; color: #132033; line-height: 1.6; }
+    .wrap { max-width: 1150px; margin: 0 auto; padding: 20px; }
+    .hero, section { background: #fff; border: 1px solid #d8e3ef; border-radius: 16px; padding: 16px; margin-bottom: 14px; box-shadow: 0 12px 26px rgba(15,23,42,.06); }
+    .hero { background: linear-gradient(135deg, #1d4ed8, #0f766e); color: #fff; }
+    h1, h2, h3 { margin-top: 0; line-height: 1.2; }
+    .small { color: #5a6677; }
+    .badge { display: inline-block; padding: 3px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; margin-right: 6px; }
+    .easy { background: #e8f3ff; color: #1d4ed8; }
+    .medium { background: #eafbf3; color: #0f766e; }
+    .hard { background: #fff3e8; color: #b45309; }
+    .q { border: 1px solid #d8e3ef; border-radius: 12px; background: #fbfdff; padding: 12px; margin-bottom: 10px; }
+    pre { background: #0b1220; color: #e2e8f0; padding: 12px; border-radius: 12px; overflow: auto; }
+    a { color: #0b57d0; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>30 Practice Problems for Data Analyst Interviews</h1>
+      <p>10 Excel + 10 SQL + 10 Python problems with real-world scenarios, increasing difficulty, answers, and simple explanations.</p>
+      <p><a href="../index.html" style="color:#fff;text-decoration:underline;">Back to Hub</a></p>
+    </section>
+
+    <section>
+      <h2>Excel (10 Problems)</h2>
+      <p class="small">Focus: data cleaning, aggregation, and business insights.</p>
+
+      <div class="q"><span class="badge easy">Easy</span><strong>1)</strong> You have extra spaces in customer names. How do you clean them?<br><strong>Answer:</strong> Use TRIM.<br><strong>Explanation:</strong> TRIM removes leading/trailing and repeated spaces.</div>
+      <div class="q"><span class="badge easy">Easy</span><strong>2)</strong> Count completed orders in Status column.<br><strong>Answer:</strong> =COUNTIF(StatusRange,"Completed")<br><strong>Explanation:</strong> COUNTIF counts rows that match condition.</div>
+      <div class="q"><span class="badge easy">Easy</span><strong>3)</strong> Sum sales only for West region.<br><strong>Answer:</strong> =SUMIF(RegionRange,"West",SalesRange)<br><strong>Explanation:</strong> SUMIF adds values where one condition is true.</div>
+
+      <div class="q"><span class="badge medium">Medium</span><strong>4)</strong> Get CustomerName using CustomerID from another table.<br><strong>Answer:</strong> =XLOOKUP(A2,CustomerIDs,CustomerNames,"Not found")<br><strong>Explanation:</strong> XLOOKUP maps key to target value.</div>
+      <div class="q"><span class="badge medium">Medium</span><strong>5)</strong> Classify order value: High if sales > 1000 else Normal.<br><strong>Answer:</strong> =IF(SalesCell&gt;1000,"High","Normal")<br><strong>Explanation:</strong> IF applies simple business rule.</div>
+      <div class="q"><span class="badge medium">Medium</span><strong>6)</strong> Build a monthly sales summary by region quickly.<br><strong>Answer:</strong> Pivot Table with Month in Columns, Region in Rows, Sum of Sales in Values.<br><strong>Explanation:</strong> Pivot is fastest summary tool in Excel.</div>
+
+      <div class="q"><span class="badge hard">Hard</span><strong>7)</strong> Find duplicate emails in a list.<br><strong>Answer:</strong> Use =COUNTIF(EmailRange,EmailCell)&gt;1 in helper column, then filter TRUE.<br><strong>Explanation:</strong> Duplicates are values with count > 1.</div>
+      <div class="q"><span class="badge hard">Hard</span><strong>8)</strong> Calculate month-over-month growth %. <br><strong>Answer:</strong> =(CurrentMonth-PreviousMonth)/PreviousMonth<br><strong>Explanation:</strong> Measures change rate, not just absolute change.</div>
+      <div class="q"><span class="badge hard">Hard</span><strong>9)</strong> In one sheet you need lookup to left side (VLOOKUP cannot).<br><strong>Answer:</strong> Use XLOOKUP or INDEX-MATCH.<br><strong>Explanation:</strong> They support flexible lookup directions.</div>
+      <div class="q"><span class="badge hard">Hard</span><strong>10)</strong> Business asks: "Why revenue dropped in one region?" What Excel flow?<br><strong>Answer:</strong> Pivot by month/region/product, compare periods, add contribution % table.<br><strong>Explanation:</strong> Break drop into drivers: volume, price, mix.</div>
+    </section>
+
+    <section>
+      <h2>SQL (10 Problems)</h2>
+      <p class="small">Focus: data cleaning checks, aggregation, and business insights.</p>
+
+      <div class="q"><span class="badge easy">Easy</span><strong>1)</strong> Show all rows from orders table.<br><strong>Answer:</strong><pre>SELECT * FROM orders;</pre><strong>Explanation:</strong> Basic table read.</div>
+      <div class="q"><span class="badge easy">Easy</span><strong>2)</strong> Get completed orders only.<br><strong>Answer:</strong><pre>SELECT * FROM orders WHERE order_status = 'completed';</pre><strong>Explanation:</strong> WHERE filters rows before any grouping.</div>
+      <div class="q"><span class="badge easy">Easy</span><strong>3)</strong> Count orders by region.<br><strong>Answer:</strong><pre>SELECT region, COUNT(*) AS order_count
+FROM orders
+GROUP BY region;</pre><strong>Explanation:</strong> GROUP BY builds category totals.</div>
+
+      <div class="q"><span class="badge medium">Medium</span><strong>4)</strong> Total revenue by country, highest first.<br><strong>Answer:</strong><pre>SELECT country, SUM(amount) AS revenue
+FROM orders
+GROUP BY country
+ORDER BY revenue DESC;</pre><strong>Explanation:</strong> Aggregate then sort for ranking.</div>
+      <div class="q"><span class="badge medium">Medium</span><strong>5)</strong> List customers with no orders.<br><strong>Answer:</strong><pre>SELECT c.customer_id, c.customer_name
+FROM customers c
+LEFT JOIN orders o ON c.customer_id = o.customer_id
+WHERE o.customer_id IS NULL;</pre><strong>Explanation:</strong> LEFT JOIN keeps all customers, null match means no order.</div>
+      <div class="q"><span class="badge medium">Medium</span><strong>6)</strong> Filter grouped results where revenue > 10000.<br><strong>Answer:</strong><pre>SELECT region, SUM(amount) AS revenue
+FROM orders
+GROUP BY region
+HAVING SUM(amount) > 10000;</pre><strong>Explanation:</strong> HAVING filters after aggregation.</div>
+
+      <div class="q"><span class="badge hard">Hard</span><strong>7)</strong> Find duplicate emails.<br><strong>Answer:</strong><pre>SELECT email, COUNT(*) AS c
+FROM customers
+GROUP BY email
+HAVING COUNT(*) > 1;</pre><strong>Explanation:</strong> Data quality check.</div>
+      <div class="q"><span class="badge hard">Hard</span><strong>8)</strong> Top 3 customers by revenue per region.<br><strong>Answer:</strong><pre>WITH rev AS (
+  SELECT region, customer_id, SUM(amount) AS revenue
+  FROM orders
+  GROUP BY region, customer_id
+)
+SELECT *
+FROM (
+  SELECT rev.*, ROW_NUMBER() OVER(PARTITION BY region ORDER BY revenue DESC) rn
+  FROM rev
+) x
+WHERE rn <= 3;</pre><strong>Explanation:</strong> Aggregate first, rank inside region, keep top-N.</div>
+      <div class="q"><span class="badge hard">Hard</span><strong>9)</strong> Running monthly revenue trend.<br><strong>Answer:</strong><pre>WITH monthly AS (
+  SELECT DATE_TRUNC('month', order_date) m, SUM(amount) revenue
+  FROM orders
+  GROUP BY 1
+)
+SELECT m, revenue,
+       SUM(revenue) OVER (ORDER BY m) AS running_revenue
+FROM monthly;</pre><strong>Explanation:</strong> Window SUM creates cumulative KPI.</div>
+      <div class="q"><span class="badge hard">Hard</span><strong>10)</strong> Business asks: "Which channel caused revenue drop?"<br><strong>Answer:</strong> Compare channel revenue for current vs previous period with grouped query and % change.<br><strong>Explanation:</strong> Insight comes from period comparison by segment.</div>
+    </section>
+
+    <section>
+      <h2>Python (10 Problems)</h2>
+      <p class="small">Focus: data cleaning, aggregation, and business insights using pandas.</p>
+
+      <div class="q"><span class="badge easy">Easy</span><strong>1)</strong> Load CSV file.<br><strong>Answer:</strong><pre>import pandas as pd
+df = pd.read_csv("sales.csv")</pre><strong>Explanation:</strong> First step in pandas workflow.</div>
+      <div class="q"><span class="badge easy">Easy</span><strong>2)</strong> Remove duplicate rows.<br><strong>Answer:</strong><pre>df = df.drop_duplicates()</pre><strong>Explanation:</strong> Avoid double counting.</div>
+      <div class="q"><span class="badge easy">Easy</span><strong>3)</strong> Check missing values in each column.<br><strong>Answer:</strong><pre>df.isna().sum()</pre><strong>Explanation:</strong> Quick data quality summary.</div>
+
+      <div class="q"><span class="badge medium">Medium</span><strong>4)</strong> Convert order_date to datetime safely.<br><strong>Answer:</strong><pre>df["order_date"] = pd.to_datetime(df["order_date"], errors="coerce")</pre><strong>Explanation:</strong> Invalid dates become null for cleanup.</div>
+      <div class="q"><span class="badge medium">Medium</span><strong>5)</strong> Filter only West region records.<br><strong>Answer:</strong><pre>west = df[df["region"] == "West"]</pre><strong>Explanation:</strong> Boolean filter by condition.</div>
+      <div class="q"><span class="badge medium">Medium</span><strong>6)</strong> Revenue by region summary.<br><strong>Answer:</strong><pre>summary = df.groupby("region", as_index=False)["sales"].sum()</pre><strong>Explanation:</strong> groupby + sum for KPI table.</div>
+
+      <div class="q"><span class="badge hard">Hard</span><strong>7)</strong> Merge orders with customers by customer_id.<br><strong>Answer:</strong><pre>merged = orders.merge(customers, on="customer_id", how="left")</pre><strong>Explanation:</strong> Same concept as SQL LEFT JOIN.</div>
+      <div class="q"><span class="badge hard">Hard</span><strong>8)</strong> Create monthly revenue trend and plot.<br><strong>Answer:</strong><pre>df["month"] = df["order_date"].dt.to_period("M").astype(str)
+m = df.groupby("month", as_index=False)["sales"].sum()
+m.plot(x="month", y="sales", kind="line")</pre><strong>Explanation:</strong> Convert date -> month, then aggregate and visualize.</div>
+      <div class="q"><span class="badge hard">Hard</span><strong>9)</strong> Find top 5 customers by revenue.<br><strong>Answer:</strong><pre>top5 = (df.groupby("customer_id", as_index=False)["sales"].sum()
+          .sort_values("sales", ascending=False)
+          .head(5))</pre><strong>Explanation:</strong> Aggregate, sort, then slice.</div>
+      <div class="q"><span class="badge hard">Hard</span><strong>10)</strong> Business asks: "Why did retention fall?" What Python flow?<br><strong>Answer:</strong> Define cohort month, compute active users by month offset, compare retained vs churned behavior.<br><strong>Explanation:</strong> Product insight needs cohort and trend analysis, not one raw count.</div>
+    </section>
+  </div>
+</body>
+</html>

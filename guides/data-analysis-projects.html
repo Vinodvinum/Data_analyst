@@ -22,47 +22,50 @@
   <div class="wrap">
     <section class="hero">
       <h1>Portfolio-Ready Data Analysis Projects</h1>
-      <p>Three real-world style projects with Excel, SQL, Python, and Power BI solution paths.</p>
+      <p>Three real-world projects with clear problem statement, dataset description, step-by-step solution, final insights, and recommendations.</p>
       <p><a href="../index.html" style="color:#fff;text-decoration:underline;">Back to Hub</a></p>
     </section>
 
     <section>
       <h2>Project 1: Sales Performance Drop</h2>
-      <p><strong>Problem:</strong> Revenue fell 18% last month in one region.</p>
-      <p><strong>Dataset:</strong> Orders, customers, regions, and products.</p>
+      <p><strong>Problem statement:</strong> Revenue fell 18% last month in one region. Leadership wants root causes and action plan.</p>
+      <p><strong>Dataset description:</strong> Orders (date, region, product, quantity, price, discount), customers (segment), products (category, margin).</p>
       <div class="grid">
-        <div class="card"><strong>Excel</strong><p class="small">Use pivot tables and conditional formulas to compare month-over-month performance by region and product.</p></div>
-        <div class="card"><strong>SQL</strong><p class="small">Write queries for revenue trend, top products, and region-wise drop analysis.</p></div>
-        <div class="card"><strong>Python</strong><p class="small">Clean the data, compute revenue by month, and identify the biggest decline drivers.</p></div>
-        <div class="card"><strong>Power BI</strong><p class="small">Build a dashboard with KPI cards, trend lines, and region slicers.</p></div>
+        <div class="card"><strong>Excel steps</strong><p class="small">1) Clean blanks and duplicates. 2) Pivot by month/region/product. 3) Add MoM % formula. 4) Highlight biggest declines.</p></div>
+        <div class="card"><strong>SQL steps</strong><p class="small">1) Aggregate revenue by month and region. 2) Compare current vs previous month. 3) Drill into product and segment drivers.</p></div>
+        <div class="card"><strong>Python steps</strong><p class="small">1) Load and type-fix data. 2) Feature engineering for margin and discount rate. 3) Groupby trend and driver contribution.</p></div>
+        <div class="card"><strong>Power BI steps</strong><p class="small">1) Star schema model. 2) DAX for Sales, Margin, MoM %. 3) Dashboard with KPI cards, trend, and product waterfall.</p></div>
       </div>
-      <p><strong>Recommendation:</strong> launch a targeted campaign, check pricing, and inspect stock / conversion issues.</p>
+      <p><strong>Final insights:</strong> Drop was concentrated in two products and one channel; discounting increased while volume stayed flat.</p>
+      <p><strong>Business recommendation:</strong> adjust discount policy, run targeted campaign for high-margin products, and monitor weekly recovery KPI.</p>
     </section>
 
     <section>
       <h2>Project 2: Customer Churn Analysis</h2>
-      <p><strong>Problem:</strong> Many users stop using the product after signup.</p>
-      <p><strong>Dataset:</strong> Users, activity events, subscriptions, and support tickets.</p>
+      <p><strong>Problem statement:</strong> Many users stop using the product after signup. Product team needs churn causes by segment.</p>
+      <p><strong>Dataset description:</strong> Users (signup date, segment), activity events (login, feature usage), subscriptions, support tickets.</p>
       <div class="grid">
-        <div class="card"><strong>Excel</strong><p class="small">Track cohorts and retention using pivots and formulas.</p></div>
-        <div class="card"><strong>SQL</strong><p class="small">Build cohort and retention queries using dates and window functions.</p></div>
-        <div class="card"><strong>Python</strong><p class="small">Create churn flag, retention table, and segment analysis.</p></div>
-        <div class="card"><strong>Power BI</strong><p class="small">Show retention curve, churn buckets, and user segment summary.</p></div>
+        <div class="card"><strong>Excel steps</strong><p class="small">1) Build cohort month. 2) Pivot active users by month offset. 3) Compute retention % and churn %.</p></div>
+        <div class="card"><strong>SQL steps</strong><p class="small">1) First activity per user. 2) Cohort + activity month table. 3) Retention matrix by cohort and month.</p></div>
+        <div class="card"><strong>Python steps</strong><p class="small">1) Create churn label. 2) Segment retained vs churned behavior. 3) Identify early warning indicators.</p></div>
+        <div class="card"><strong>Power BI steps</strong><p class="small">1) Build retention dashboard. 2) DAX for retention and churn rate. 3) Segment slicers for root-cause view.</p></div>
       </div>
-      <p><strong>Recommendation:</strong> improve onboarding, activation nudges, and lifecycle communication.</p>
+      <p><strong>Final insights:</strong> Churn peaked in first 14 days for one segment with low feature adoption.</p>
+      <p><strong>Business recommendation:</strong> redesign onboarding, trigger activation nudges, and launch support outreach for at-risk users.</p>
     </section>
 
     <section>
       <h2>Project 3: Finance Collections Dashboard</h2>
-      <p><strong>Problem:</strong> Collections are behind budget and overdue invoices are rising.</p>
-      <p><strong>Dataset:</strong> Invoices, payments, customers, monthly budget.</p>
+      <p><strong>Problem statement:</strong> Collections are behind budget and overdue invoices are rising. Finance wants account-level action priorities.</p>
+      <p><strong>Dataset description:</strong> Invoices (issue date, due date, amount), payments (payment date, amount), customers (risk tier), monthly budget.</p>
       <div class="grid">
-        <div class="card"><strong>Excel</strong><p class="small">Build aging summaries and budget variance tables.</p></div>
-        <div class="card"><strong>SQL</strong><p class="small">Join invoices, payments, and customers to calculate collections and overdue totals.</p></div>
-        <div class="card"><strong>Python</strong><p class="small">Analyze payment delays, overdue patterns, and customer segments.</p></div>
-        <div class="card"><strong>Power BI</strong><p class="small">Create finance dashboard with targets, variance, overdue aging, and manager filters.</p></div>
+        <div class="card"><strong>Excel steps</strong><p class="small">1) Create aging buckets (0-30, 31-60, 61+). 2) Pivot overdue by customer tier. 3) Variance vs budget table.</p></div>
+        <div class="card"><strong>SQL steps</strong><p class="small">1) Join invoices and payments. 2) Compute outstanding and delay days. 3) Rank high-value overdue accounts.</p></div>
+        <div class="card"><strong>Python steps</strong><p class="small">1) Build payment-delay features. 2) Segment by risk and amount. 3) Weekly trend of recovery rate.</p></div>
+        <div class="card"><strong>Power BI steps</strong><p class="small">1) Collections KPI model. 2) DAX for overdue %, recovery %. 3) Dashboard with aging, budget variance, and account priority.</p></div>
       </div>
-      <p><strong>Recommendation:</strong> prioritize high-value overdue accounts and track weekly recovery progress.</p>
+      <p><strong>Final insights:</strong> A small set of high-value accounts drove most overdue balance; delay pattern repeated in one risk tier.</p>
+      <p><strong>Business recommendation:</strong> prioritize top overdue accounts, enforce escalation rules by tier, and monitor weekly recovery dashboard.</p>
     </section>
   </div>
 </body>

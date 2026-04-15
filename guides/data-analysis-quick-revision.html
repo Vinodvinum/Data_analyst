@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data Analysis Quick Revision</title>
+  <title>Data Analysis Quick Revision (1-Page)</title>
   <style>
     body { margin: 0; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; background: #f4f7fb; color: #142233; }
     .wrap { max-width: 980px; margin: 0 auto; padding: 20px; }
@@ -21,8 +21,8 @@
 <body>
   <div class="wrap">
     <section class="hero">
-      <h1>Data Analysis Quick Revision Sheet</h1>
-      <p>One-page memory sheet for Excel, SQL, Python, Power BI, and interview definitions.</p>
+      <h1>Data Analysis Quick Revision Sheet (1-Page)</h1>
+      <p>Extremely short, memory-focused sheet for one-day revision.</p>
       <p><a href="../index.html" style="color:#fff;text-decoration:underline;">Back to Hub</a></p>
     </section>
 
@@ -31,7 +31,9 @@
       <ul>
         <li><strong>SUM:</strong> add values.</li>
         <li><strong>IF:</strong> choose between two outcomes.</li>
+        <li><strong>COUNT / COUNTA:</strong> count numeric/non-empty cells.</li>
         <li><strong>XLOOKUP:</strong> find matching data by key.</li>
+        <li><strong>INDEX-MATCH:</strong> flexible lookup for older files.</li>
         <li><strong>SUMIF / COUNTIF:</strong> total or count by condition.</li>
         <li><strong>Pivot table:</strong> fast summary of large tables.</li>
       </ul>
@@ -48,6 +50,7 @@ ORDER BY COUNT(*) DESC;</pre>
         <li><strong>JOIN:</strong> combine tables.</li>
         <li><strong>GROUP BY:</strong> summarize rows.</li>
         <li><strong>HAVING:</strong> filter grouped results.</li>
+        <li><strong>ORDER BY:</strong> sort result for ranking/reporting.</li>
         <li><strong>ROW_NUMBER / RANK:</strong> top-N and ranking tasks.</li>
       </ul>
     </section>
@@ -63,6 +66,7 @@ summary = df.groupby("region", as_index=False)["sales"].sum()</pre>
       <ul>
         <li><strong>read_csv:</strong> load data.</li>
         <li><strong>dropna / fillna:</strong> handle missing data.</li>
+        <li><strong>to_datetime:</strong> convert date text to real datetime.</li>
         <li><strong>groupby:</strong> summarize by category.</li>
         <li><strong>merge:</strong> join datasets.</li>
       </ul>
@@ -76,6 +80,18 @@ summary = df.groupby("region", as_index=False)["sales"].sum()</pre>
         <li><strong>Model:</strong> build relationships and star schema.</li>
         <li><strong>Visualize:</strong> create dashboard and filters.</li>
         <li><strong>DAX:</strong> write dynamic measures like Sales, YTD, YoY, Rank.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>One-Day Revision Plan</h2>
+      <ul>
+        <li><strong>Hour 1:</strong> Data lifecycle + KPI definitions.</li>
+        <li><strong>Hour 2:</strong> Excel formulas + one pivot table.</li>
+        <li><strong>Hour 3:</strong> SQL SELECT/WHERE/GROUP BY/JOIN practice.</li>
+        <li><strong>Hour 4:</strong> Python pandas load-clean-group.</li>
+        <li><strong>Hour 5:</strong> Power BI flow + basic DAX.</li>
+        <li><strong>Hour 6:</strong> 20 key definitions + 10 interview Q&A recap.</li>
       </ul>
     </section>
 
