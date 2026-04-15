@@ -1,105 +1,115 @@
 import { Link } from "react-router-dom";
-
-const guideCards = [
-  {
-    href: "/guides/excel-data-analysis-guide.html",
-    icon: "Spreadsheet",
-    title: "Excel Data Analysis",
-    description: "Spreadsheet fundamentals, formulas, pivot workflows, and practical dataset walkthroughs.",
-  },
-  {
-    href: "/guides/sql-data-analysis-guide.html",
-    icon: "Database",
-    title: "SQL Data Analysis",
-    description: "Query fundamentals to advanced window functions, CTEs, and analytical patterns.",
-  },
-  {
-    href: "/guides/python-data-analysis-guide.html",
-    icon: "Python",
-    title: "Python Data Analysis",
-    description: "Pandas, NumPy, cleaning, grouping, visualization, and practical projects.",
-  },
-  {
-    href: "/guides/powerbi-data-analysis-guide.html",
-    icon: "Dashboard",
-    title: "Power BI",
-    description: "Power Query, data modeling, DAX, dashboard design, performance, and business projects.",
-  },
-];
+import { coreTracks, featuredResources, quickStartSteps } from "../data/siteContent";
 
 export default function HomePage() {
   return (
     <>
-      <section className="hero glass-panel">
-        <p className="kicker">Production Ready</p>
-        <h1>Data Analyst Hub</h1>
-        <p className="hero-copy">
-          This is now a real React application: reusable components, router-based pages,
-          theme engine, and clean Vite tooling. No partial setup.
+      <section className="intro-section">
+        <div className="eyebrow">Start Here</div>
+        <h1>Go from beginner to confident data analyst without guessing what to learn next.</h1>
+        <p className="lead">
+          This hub is organized as a clear path. Start with one foundation track,
+          practice on the included files, then move into projects, dashboards, and interview prep.
         </p>
-        <div className="hero-actions">
-          <a className="btn primary" href="#guides-grid">
-            Explore Guides
-          </a>
-          <a className="btn" href="/guides/excel-data-analysis-guide.html">
-            Jump Into Excel Path
-          </a>
-        </div>
-      </section>
 
-      <section id="guides-grid" className="section">
-        <div className="section-head">
-          <h2>Guides</h2>
-          <p>Four focused paths with concise references and practical examples.</p>
+        <div className="action-row">
+          <Link className="button button-primary" to="/guides/excel">
+            Begin with Excel
+          </Link>
+          <Link className="button" to="/guides/sql">
+            Start with SQL
+          </Link>
+          <Link className="button" to="/guides">
+            View all guides
+          </Link>
         </div>
 
-        <div className="guide-grid">
-          {guideCards.map((card) => (
-            <article key={card.href} className="guide-card glass-panel">
-              <p className="guide-icon">{card.icon}</p>
-              <h3>{card.title}</h3>
-              <p>{card.description}</p>
-              <a className="inline-link" href={card.href}>
-                Open Guide
-              </a>
-            </article>
-          ))}
+        <div className="stat-row" aria-label="Roadmap summary">
+          <div className="stat-pill">
+            <strong>4</strong>
+            <span>core tracks</span>
+          </div>
+          <div className="stat-pill">
+            <strong>2</strong>
+            <span>guided notebooks</span>
+          </div>
+          <div className="stat-pill">
+            <strong>16+</strong>
+            <span>practice files</span>
+          </div>
         </div>
       </section>
 
       <section className="section">
         <div className="section-head">
-          <h2>Legacy Assets</h2>
-          <p>
-            Access your complete existing library including guide files, notebooks,
-            outputs, notebook viewer, and web practice lab.
-          </p>
+          <div className="eyebrow">Roadmap</div>
+          <h2>Follow the learning order</h2>
+          <p>Each stage builds on the previous one, so a complete beginner can move forward without overload.</p>
         </div>
 
-        <div className="guide-grid">
-          <article className="guide-card glass-panel">
-            <h3>All Guide Files</h3>
-            <p>Browse every guide currently under the guides folder.</p>
-            <Link className="inline-link" to="/guides">
-              Open Guide Hub
-            </Link>
-          </article>
+        <div className="card-grid card-grid-large">
+          {coreTracks.map((track) => (
+            <article key={track.slug} className="card track-card">
+              <img className="card-image" src={track.image} alt={track.title} />
+              <div className="card-body">
+                <div className="card-meta">
+                  <span>{track.stage}</span>
+                  <span>{track.level}</span>
+                  <span>{track.duration}</span>
+                </div>
+                <h3>{track.title}</h3>
+                <p>{track.summary}</p>
+                <ul className="bullet-list">
+                  {track.skills.map((skill) => (
+                    <li key={skill}>{skill}</li>
+                  ))}
+                </ul>
+                <div className="action-row compact">
+                  <Link className="button button-primary" to={`/guides/${track.slug}`}>
+                    Open track
+                  </Link>
+                  <a className="text-link" href={`/guides/${track.guideFile}`} target="_blank" rel="noreferrer">
+                    Open guide file
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
 
-          <article className="guide-card glass-panel">
-            <h3>Notebooks & Outputs</h3>
-            <p>Open notebook files, rendered outputs, and launch notebook viewer.</p>
-            <Link className="inline-link" to="/notebooks">
-              Open Notebook Hub
-            </Link>
-          </article>
+      <section className="section section-split">
+        <div>
+          <div className="section-head">
+            <div className="eyebrow">Simple Rules</div>
+            <h2>Keep the path easy</h2>
+          </div>
+          <div className="checklist">
+            {quickStartSteps.map((step) => (
+              <article key={step.title} className="list-card">
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
 
-          <article className="guide-card glass-panel">
-            <h3>Web Practice Lab</h3>
-            <p>Launch the standalone web-practice-lab and additional tools.</p>
-            <Link className="inline-link" to="/tools">
-              Open Tools Hub
-            </Link>
-          </article>
+        <div>
+          <div className="section-head">
+            <div className="eyebrow">Next Stops</div>
+            <h2>Practice when you are ready</h2>
+          </div>
+          <div className="mini-grid">
+            {featuredResources.map((item) => (
+              <article key={item.title} className="list-card">
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+                <Link className="text-link" to={item.href}>
+                  Open
+                </Link>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
     </>

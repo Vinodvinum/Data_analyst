@@ -1,40 +1,26 @@
 export default function LegacyHubPage() {
   return (
-    <section className="section">
+    <section className="section-stack">
       <div className="section-head">
-        <p className="kicker">Parity Hub</p>
-        <h1>Complete Hub Content (74b286c Style)</h1>
-        <p>
-          This view preserves the full long-form hub content and links from your
-          original index structure while still running under the React app.
-        </p>
+        <div className="eyebrow">Legacy Access</div>
+        <h1>The older hub is still here when you need it.</h1>
+        <p>Use this page for backward compatibility, but the new roadmap is the easier place to start.</p>
       </div>
 
-      <article className="glass-panel content-panel">
-        <div className="hero-actions">
-          <a className="btn primary" href="/hub-74b286c.html" target="_blank" rel="noreferrer">
-            Open Full Hub In New Tab
-          </a>
-          <a className="btn" href="/guides" >
-            Open React Guides Hub
-          </a>
-          <a className="btn" href="/notebooks" >
-            Open React Notebook Hub
-          </a>
-        </div>
-        <p className="muted" style={{ marginTop: "0.8rem" }}>
-          Embedded below: exact full-content hub page with all sections such as
-          guides, learning path, master cheat sheets, notebooks, outputs, datasets,
-          practice lab, and health check.
-        </p>
-      </article>
+      <div className="action-row">
+        <a className="button button-primary" href="/hub-74b286c.html" target="_blank" rel="noreferrer">
+          Open legacy hub
+        </a>
+        <a className="button" href="/">
+          Back to the new roadmap
+        </a>
+      </div>
 
-      <section className="section single-panel glass-panel">
+      <section className="preview-panel">
         <iframe
-          title="74b286c Hub Content"
+          title="Legacy hub preview"
           src="/hub-74b286c.html"
-          className="tool-frame"
-          style={{ minHeight: "1300px" }}
+          className="tool-frame tool-frame-tall"
         />
       </section>
     </section>

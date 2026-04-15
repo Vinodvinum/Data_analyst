@@ -1,48 +1,112 @@
-import { guideFiles } from "../data/legacyCatalog";
 import { useMemo, useState } from "react";
-
-function toLabel(file) {
-  return file
-    .replace(/\.html$/i, "")
-    .replace(/[-_]+/g, " ")
-    .replace(/\b\w/g, (c) => c.toUpperCase());
-}
+import { Link } from "react-router-dom";
+import { coreTracks, guideLibrary, supportGuides } from "../data/siteContent";
 
 export default function GuidesHubPage() {
-  const [selectedGuide, setSelectedGuide] = useState(guideFiles[0]);
+  const [selectedGuide, setSelectedGuide] = useState(coreTracks[0].guideFile);
   const previewUrl = useMemo(() => `/guides/${selectedGuide}`, [selectedGuide]);
 
   return (
-    <section className="section">
+    <section className="section-stack">
       <div className="section-head">
-        <p className="kicker">Legacy Library</p>
-        <h1>All Guides</h1>
-        <p>These are your original guide files, now integrated and accessible from React.</p>
+        <div className="eyebrow">Guide Library</div>
+        <h1>Choose the next guide without hunting through folders.</h1>
+        <p>Start with the four main tracks, then use the supporting guides when you need revision, projects, or interview prep.</p>
       </div>
 
-      <div className="guide-grid">
-        {guideFiles.map((file) => (
-          <article key={file} className="guide-card glass-panel">
-            <h3>{toLabel(file)}</h3>
-            <p className="muted">{file}</p>
-            <button
-              type="button"
-              className="btn"
-              onClick={() => setSelectedGuide(file)}
-            >
-              Preview In App
-            </button>
-            <a className="inline-link" href={`/guides/${file}`} target="_blank" rel="noreferrer">
-              Open Guide File
-            </a>
-          </article>
-        ))}
-      </div>
+      <section className="section">
+        <div className="section-head">
+          <h2>Main learning tracks</h2>
+        </div>
 
-      <section className="section single-panel glass-panel">
-        <h3>Guide Preview: {toLabel(selectedGuide)}</h3>
-        <p className="muted">Live preview inside the app for faster navigation.</p>
-        <iframe title="Guide Preview" src={previewUrl} className="tool-frame" />
+        <div className="card-grid card-grid-large">
+          {coreTracks.map((track) => (
+            <article key={track.slug} className="card track-card">
+              <img className="card-image" src={track.image} alt={track.title} />
+              <div className="card-body">
+                <div className="card-meta">
+                  <span>{track.stage}</span>
+                  <span>{track.level}</span>
+                  <span>{track.duration}</span>
+                </div>
+                <h3>{track.title}</h3>
+                <p>{track.summary}</p>
+                <div className="action-row compact">
+                  <Link className="button button-primary" to={`/guides/${track.slug}`}>
+                    Open path
+                  </Link>
+                  <button
+                    type="button"
+                    className="button"
+                    onClick={() => setSelectedGuide(track.guideFile)}
+                  >
+                    Preview here
+                  </button>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="section-head">
+          <h2>Support guides</h2>
+        </div>
+
+        <div className="card-grid">
+          {supportGuides.map((guide) => (
+            <article key={guide.slug} className="card">
+              <img className="card-image" src={guide.image} alt={guide.title} />
+              <div className="card-body">
+                <h3>{guide.title}</h3>
+                <p>{guide.summary}</p>
+                <div className="action-row compact">
+                  <Link className="button button-primary" to={`/guides/${guide.slug}`}>
+                    Open guide
+                  </Link>
+                  <button
+                    type="button"
+                    className="button"
+                    onClick={() => setSelectedGuide(guide.guideFile)}
+                  >
+                    Preview here
+                  </button>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section section-split">
+        <div>
+          <div className="section-head">
+            <h2>Everything in the library</h2>
+            <p>Every original guide file is still available.</p>
+          </div>
+          <div className="file-list">
+            {guideLibrary.map((guide) => (
+              <button
+                key={guide.guideFile}
+                type="button"
+                className={selectedGuide === guide.guideFile ? "file-button active" : "file-button"}
+                onClick={() => setSelectedGuide(guide.guideFile)}
+              >
+                <span>{guide.title}</span>
+                <small>{guide.guideFile}</small>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <article className="preview-panel">
+          <div className="section-head">
+            <h2>Preview</h2>
+            <p>Use the preview for quick scanning, or open the full guide on its own page.</p>
+          </div>
+          <iframe title="Guide preview" src={previewUrl} className="tool-frame" />
+        </article>
       </section>
     </section>
   );

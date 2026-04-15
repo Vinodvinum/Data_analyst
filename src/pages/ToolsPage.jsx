@@ -1,54 +1,76 @@
+import { useMemo, useState } from "react";
+import { datasetGroups, toolCatalog } from "../data/siteContent";
+
 export default function ToolsPage() {
-  const toolCards = [
-    {
-      title: "Notebook Viewer",
-      description:
-        "Loads notebooks and rendered notebook output from your public asset library.",
-      href: "/notebook-viewer.html",
-    },
-    {
-      title: "Web Practice Lab",
-      description:
-        "Open the interactive web practice environment from inside the React app context.",
-      href: "/web-practice-lab.html",
-    },
-    {
-      title: "CSV Viewer",
-      description: "Inspect csv outputs quickly in-browser.",
-      href: "/csv-viewer.html",
-    },
-  ];
+  const [selectedTool, setSelectedTool] = useState(toolCatalog[0].title);
+
+  const activeTool = useMemo(
+    () => toolCatalog.find((tool) => tool.title === selectedTool) ?? toolCatalog[0],
+    [selectedTool]
+  );
 
   return (
-    <section className="section">
+    <section className="section-stack">
       <div className="section-head">
-        <p className="kicker">Tools</p>
-        <h1>Viewers And Labs</h1>
-        <p>Everything you listed is now reachable from dedicated routes and cards.</p>
+        <div className="eyebrow">Practice Tools</div>
+        <h1>Open the viewers and lab you need without searching around the project.</h1>
+        <p>These tools help beginners inspect files quickly and keep practicing while they learn.</p>
       </div>
 
-      <div className="guide-grid">
-        {toolCards.map((tool) => (
-          <article key={tool.title} className="guide-card glass-panel">
-            <h3>{tool.title}</h3>
-            <p>{tool.description}</p>
-            <a className="inline-link" href={tool.href} target="_blank" rel="noreferrer">
-              Open Tool
-            </a>
-          </article>
-        ))}
-      </div>
+      <section className="section">
+        <div className="card-grid">
+          {toolCatalog.map((tool) => (
+            <article key={tool.title} className="card">
+              <img className="card-image" src={tool.image} alt={tool.title} />
+              <div className="card-body">
+                <h3>{tool.title}</h3>
+                <p>{tool.description}</p>
+                <div className="action-row compact">
+                  <a className="button button-primary" href={tool.href} target="_blank" rel="noreferrer">
+                    Open tool
+                  </a>
+                  <button
+                    type="button"
+                    className="button"
+                    onClick={() => setSelectedTool(tool.title)}
+                  >
+                    Preview here
+                  </button>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
 
-      <section className="single-panel glass-panel section">
-        <h3>Embedded Web Practice Lab</h3>
-        <p className="muted">
-          Inline preview is available below. Use open tool for full-screen experience.
-        </p>
-        <iframe
-          title="Web Practice Lab"
-          src="/web-practice-lab.html"
-          className="tool-frame"
-        />
+      <section className="section section-split">
+        <article className="preview-panel">
+          <div className="section-head">
+            <h2>{activeTool.title}</h2>
+            <p>{activeTool.description}</p>
+          </div>
+          <iframe title={activeTool.title} src={activeTool.previewSrc} className="tool-frame" />
+        </article>
+
+        <article className="detail-card">
+          <h2>Practice files by topic</h2>
+          <div className="stack-list">
+            {datasetGroups.map((group) => (
+              <section key={group.title} className="nested-list-block">
+                <h3>{group.title}</h3>
+                <ul className="link-list">
+                  {group.files.map((file) => (
+                    <li key={file}>
+                      <a href={`/datasets/${file}`} target="_blank" rel="noreferrer">
+                        {file}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+          </div>
+        </article>
       </section>
     </section>
   );

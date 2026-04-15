@@ -1,60 +1,47 @@
-import { Link, useLocation } from "react-router-dom";
-import ThemeSwitcher from "./ThemeSwitcher";
+import { NavLink } from "react-router-dom";
 
-const canonicalGuideLinks = {
-  excel: "/guides/excel-data-analysis-guide.html",
-  sql: "/guides/sql-data-analysis-guide.html",
-  python: "/guides/python-data-analysis-guide.html",
-  powerbi: "/guides/powerbi-data-analysis-guide.html",
-};
+const navItems = [
+  { to: "/", label: "Start Here", end: true },
+  { to: "/guides", label: "Guides" },
+  { to: "/notebooks", label: "Notebooks" },
+  { to: "/tools", label: "Practice Tools" },
+  { to: "/legacy", label: "Legacy Hub" },
+];
 
-export default function SiteLayout({ children, themeContext }) {
-  const { pathname } = useLocation();
-
+export default function SiteLayout({ children }) {
   return (
     <div className="app-shell">
-      <div className="bg-orb bg-orb-a" />
-      <div className="bg-orb bg-orb-b" />
-      <div className="bg-orb bg-orb-c" />
-
-      <header className="topbar glass-panel">
+      <header className="topbar">
         <div className="container topbar-inner">
-          <Link to="/" className="brand">
-            <span className="brand-mark">DataHub</span>
-            <span className="brand-sub">React Edition</span>
-          </Link>
+          <NavLink to="/" end className="brand">
+            <span className="brand-mark">Data Analyst Roadmap</span>
+            <span className="brand-sub">Simple steps from beginner to job-ready</span>
+          </NavLink>
 
           <nav className="nav-links" aria-label="Primary">
-            <Link className={pathname === "/" ? "active" : ""} to="/">
-              Full Hub
-            </Link>
-            <Link className={pathname === "/react-home" ? "active" : ""} to="/react-home">
-              React Home
-            </Link>
-            <Link className={pathname === "/guides" ? "active" : ""} to="/guides">
-              All Guides
-            </Link>
-            <a href={canonicalGuideLinks.excel}>Excel</a>
-            <a href={canonicalGuideLinks.sql}>SQL</a>
-            <a href={canonicalGuideLinks.python}>Python</a>
-            <a href={canonicalGuideLinks.powerbi}>Power BI</a>
-            <Link className={pathname === "/notebooks" ? "active" : ""} to="/notebooks">
-              Notebooks
-            </Link>
-            <Link className={pathname === "/tools" ? "active" : ""} to="/tools">
-              Tools
-            </Link>
+            {navItems.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                end={item.end}
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
           </nav>
         </div>
       </header>
 
       <main className="container main-content">{children}</main>
 
-      <footer className="container footer">
-        <p>Built as a proper Vite + React application with reusable components and routing.</p>
+      <footer className="site-footer">
+        <div className="container footer-inner">
+          <p>Start with the first track, practice on the datasets, then move into projects and interview prep.</p>
+        </div>
       </footer>
-
-      <ThemeSwitcher themeContext={themeContext} />
     </div>
   );
 }
