@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Analysis Quick Revision</title>
+  <style>
+    body { margin: 0; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; background: #f4f7fb; color: #142233; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 20px; }
+    .hero, section { background: #fff; border: 1px solid #d9e4ef; border-radius: 16px; padding: 16px; margin-bottom: 14px; box-shadow: 0 12px 26px rgba(15,23,42,.06); }
+    .hero { background: linear-gradient(135deg, #0f766e, #1d4ed8); color: #fff; }
+    h1, h2 { margin-top: 0; }
+    a { color: #0b57d0; text-decoration: none; } a:hover { text-decoration: underline; }
+    pre { background: #0b1220; color: #e2e8f0; padding: 12px; border-radius: 12px; overflow: auto; }
+    .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .card { border: 1px solid #d9e4ef; border-radius: 12px; padding: 12px; background: #fbfdff; }
+    ul { margin: 0; padding-left: 18px; }
+    .small { color: #556477; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>Data Analysis Quick Revision Sheet</h1>
+      <p>One-page memory sheet for Excel, SQL, Python, Power BI, and interview definitions.</p>
+      <p><a href="../index.html" style="color:#fff;text-decoration:underline;">Back to Hub</a></p>
+    </section>
+
+    <section>
+      <h2>Excel</h2>
+      <ul>
+        <li><strong>SUM:</strong> add values.</li>
+        <li><strong>IF:</strong> choose between two outcomes.</li>
+        <li><strong>XLOOKUP:</strong> find matching data by key.</li>
+        <li><strong>SUMIF / COUNTIF:</strong> total or count by condition.</li>
+        <li><strong>Pivot table:</strong> fast summary of large tables.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>SQL</h2>
+      <pre>SELECT col1, COUNT(*)
+FROM table
+WHERE condition
+GROUP BY col1
+ORDER BY COUNT(*) DESC;</pre>
+      <ul>
+        <li><strong>JOIN:</strong> combine tables.</li>
+        <li><strong>GROUP BY:</strong> summarize rows.</li>
+        <li><strong>HAVING:</strong> filter grouped results.</li>
+        <li><strong>ROW_NUMBER / RANK:</strong> top-N and ranking tasks.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Python</h2>
+      <pre>import pandas as pd
+
+df = pd.read_csv("sales.csv")
+df = df.drop_duplicates()
+df["date"] = pd.to_datetime(df["date"], errors="coerce")
+summary = df.groupby("region", as_index=False)["sales"].sum()</pre>
+      <ul>
+        <li><strong>read_csv:</strong> load data.</li>
+        <li><strong>dropna / fillna:</strong> handle missing data.</li>
+        <li><strong>groupby:</strong> summarize by category.</li>
+        <li><strong>merge:</strong> join datasets.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Power BI</h2>
+      <ul>
+        <li><strong>Load:</strong> connect data sources.</li>
+        <li><strong>Transform:</strong> clean in Power Query.</li>
+        <li><strong>Model:</strong> build relationships and star schema.</li>
+        <li><strong>Visualize:</strong> create dashboard and filters.</li>
+        <li><strong>DAX:</strong> write dynamic measures like Sales, YTD, YoY, Rank.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Interview Definitions</h2>
+      <div class="grid">
+        <div class="card"><strong>NULL</strong><p class="small">Missing or unknown value.</p></div>
+        <div class="card"><strong>JOIN</strong><p class="small">Combine rows from tables using keys.</p></div>
+        <div class="card"><strong>KPI</strong><p class="small">Key performance indicator used to track business health.</p></div>
+        <div class="card"><strong>Data Cleaning</strong><p class="small">Fix missing values, duplicates, types, and text issues.</p></div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
