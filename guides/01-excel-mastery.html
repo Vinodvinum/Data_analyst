@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excel Data Analysis Mastery - Complete Guide</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+
+    :root {
+      --primary: #06B6D4;
+      --primary-dark: #0891B2;
+      --secondary: #7C3AED;
+      --accent: #F97316;
+    }
+
+    [data-theme="modern"] {
+      --bg-primary: #0F172A;
+      --bg-secondary: #1E293B;
+      --bg-tertiary: #334155;
+      --text-primary: #F1F5F9;
+      --text-secondary: #CBD5E1;
+      --accent-glow: rgba(6, 182, 212, 0.2);
+    }
+
+    [data-theme="cyberpunk"] {
+      --bg-primary: #0A0E27;
+      --bg-secondary: #1A1A3E;
+      --bg-tertiary: #2D1B4E;
+      --text-primary: #00FF88;
+      --text-secondary: #00CC6A;
+      --accent-glow: rgba(0, 255, 136, 0.2);
+    }
+
+    [data-theme="minimal"] {
+      --bg-primary: #FAFAFA;
+      --bg-secondary: #F5F5F5;
+      --bg-tertiary: #EFEFEF;
+      --text-primary: #1F2937;
+      --text-secondary: #6B7280;
+      --accent-glow: rgba(6, 182, 212, 0.1);
+    }
+
+    [data-theme="sunset"] {
+      --bg-primary: #1F1410;
+      --bg-secondary: #3B2F24;
+      --bg-tertiary: #5A4A3A;
+      --text-primary: #FFE4CC;
+      --text-secondary: #FFD4A3;
+      --accent-glow: rgba(249, 115, 22, 0.2);
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      transition: all 0.4s ease;
+    }
+
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    .animated-bg::before {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 50%;
+      top: -100px;
+      right: -100px;
+      animation: float 8s ease-in-out infinite;
+      filter: blur(60px);
+      opacity: 0.3;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(50px, -50px); }
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .glass:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 60px var(--accent-glow);
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+    }
+
+    .card:hover::before {
+      opacity: 0.05;
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .heading-lg {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 16px;
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid var(--primary);
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .btn-animated {
+      position: relative;
+      overflow: hidden;
+      font-weight: 600;
+      border-radius: 12px;
+      padding: 12px 28px;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+    }
+
+    .btn-animated:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.4);
+    }
+
+    .section-content {
+      max-width: 4xl;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.8;
+    }
+
+    .formula-card {
+      background: var(--bg-secondary);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 12px 0;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      transition: all 0.3s ease;
+    }
+
+    .formula-card:hover {
+      background: var(--bg-tertiary);
+      border-color: var(--primary);
+    }
+
+    .formula-card code {
+      color: var(--primary);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    th {
+      background: rgba(6, 182, 212, 0.1);
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    tr:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    @media (max-width: 768px) {
+      .heading-lg {
+        font-size: 1.75rem;
+      }
+      .section-content {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="animated-bg"></div>
+
+  <div class="relative z-10">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-40 bg-black/30 backdrop-blur border-b border-white/10">
+      <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="index.html" class="text-2xl font-bold gradient-text">📊 DataHub</a>
+        <a href="index.html" class="text-cyan-400 hover:text-cyan-300 transition">← Back to Hub</a>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="py-16 px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="badge mb-4">📊 Complete Guide</div>
+        <h1 class="heading-lg mb-4 gradient-text">Excel Data Analysis Mastery</h1>
+        <p class="text-lg opacity-80 mb-8">From beginner to expert: formulas, pivot tables, visualization, and professional data analysis techniques</p>
+      </div>
+    </section>
+
+    <!-- TOC -->
+    <section class="py-12 px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="glass card rounded-16 p-8">
+          <div class="card-content">
+            <h3 class="font-bold text-lg mb-6">📑 Quick Navigation</h3>
+            <div class="grid grid-cols-2 gap-4">
+              <a href="#formulas" class="text-cyan-400 hover:text-cyan-300 transition">→ Essential Formulas</a>
+              <a href="#pivot" class="text-cyan-400 hover:text-cyan-300 transition">→ Pivot Tables</a>
+              <a href="#cleaning" class="text-cyan-400 hover:text-cyan-300 transition">→ Data Cleaning</a>
+              <a href="#charts" class="text-cyan-400 hover:text-cyan-300 transition">→ Visualizations</a>
+              <a href="#tips" class="text-cyan-400 hover:text-cyan-300 transition">→ Pro Tips</a>
+              <a href="#practice" class="text-cyan-400 hover:text-cyan-300 transition">→ Practice</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content Section -->
+    <section id="formulas" class="py-12 px-6">
+      <div class="section-content">
+        <h2 class="heading-lg mb-8 gradient-text">Essential Formulas</h2>
+
+        <div class="mb-12">
+          <h3 class="text-xl font-bold mb-4 text-cyan-400">Basic Aggregation</h3>
+          <div class="glass card rounded-12 p-6 mb-4">
+            <div class="card-content">
+              <div class="formula-card"><code>=SUM(A1:A100)</code> - Sum all values in range</div>
+              <div class="formula-card"><code>=AVERAGE(B1:B50)</code> - Calculate mean</div>
+              <div class="formula-card"><code>=COUNT(C1:C100)</code> - Count numeric values</div>
+              <div class="formula-card"><code>=MAX(D1:D50)</code> - Find maximum value</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-12">
+          <h3 class="text-xl font-bold mb-4 text-orange-400">Text Functions</h3>
+          <div class="glass card rounded-12 p-6 mb-4">
+            <div class="card-content">
+              <div class="formula-card"><code>=CONCATENATE(A1, " ", B1)</code> - Join text</div>
+              <div class="formula-card"><code>=LEFT(A1, 5)</code> - Extract first 5 characters</div>
+              <div class="formula-card"><code>=FIND("x", A1)</code> - Find position of text</div>
+              <div class="formula-card"><code>=UPPER(A1)</code> - Convert to uppercase</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-12">
+          <h3 class="text-xl font-bold mb-4 text-purple-400">Lookup Functions</h3>
+          <div class="glass card rounded-12 p-6 mb-4">
+            <div class="card-content">
+              <div class="formula-card"><code>=VLOOKUP(A1, B:D, 3, FALSE)</code> - Vertical lookup</div>
+              <div class="formula-card"><code>=INDEX(A1:A100, MATCH(B1, B1:B100, 0))</code> - Powerful lookup combo</div>
+              <div class="formula-card"><code>=XLOOKUP(A1, B:B, C:C)</code> - Modern lookup (Excel 365)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pivot Tables -->
+    <section id="pivot" class="py-12 px-6">
+      <div class="section-content">
+        <h2 class="heading-lg mb-8 gradient-text">Pivot Tables & Summaries</h2>
+        <div class="glass card rounded-16 p-8">
+          <div class="card-content">
+            <p class="mb-6 text-lg">Pivot tables are the fastest way to summarize large datasets. Here's the workflow:</p>
+            <ol class="space-y-4 ml-6">
+              <li class="flex gap-4">
+                <span class="text-cyan-400 font-bold min-w-fit">1. Select Data</span>
+                <span>Choose your entire dataset including headers</span>
+              </li>
+              <li class="flex gap-4">
+                <span class="text-cyan-400 font-bold min-w-fit">2. Insert Pivot Table</span>
+                <span>Data menu → Pivot Table → Choose location</span>
+              </li>
+              <li class="flex gap-4">
+                <span class="text-cyan-400 font-bold min-w-fit">3. Configure Fields</span>
+                <span>Drag fields to Rows, Columns, Values areas</span>
+              </li>
+              <li class="flex gap-4">
+                <span class="text-cyan-400 font-bold min-w-fit">4. Apply Filters</span>
+                <span>Use Report Filter area for dynamic summaries</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Practice -->
+    <section id="practice" class="py-12 px-6 mb-20">
+      <div class="section-content">
+        <h2 class="heading-lg mb-8 gradient-text">Practice Problems</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="glass card rounded-16 p-6">
+            <div class="card-content">
+              <div class="text-3xl font-bold text-cyan-400 mb-2">Beginner</div>
+              <p class="opacity-80 mb-4">Basic formulas and data entry</p>
+              <button class="btn-animated">Try Problem →</button>
+            </div>
+          </div>
+          <div class="glass card rounded-16 p-6">
+            <div class="card-content">
+              <div class="text-3xl font-bold text-orange-400 mb-2">Intermediate</div>
+              <p class="opacity-80 mb-4">Pivot tables and complex formulas</p>
+              <button class="btn-animated">Try Problem →</button>
+            </div>
+          </div>
+          <div class="glass card rounded-16 p-6">
+            <div class="card-content">
+              <div class="text-3xl font-bold text-purple-400 mb-2">Advanced</div>
+              <p class="opacity-80 mb-4">Dashboards and automation</p>
+              <button class="btn-animated">Try Problem →</button>
+            </div>
+          </div>
+          <div class="glass card rounded-16 p-6">
+            <div class="card-content">
+              <div class="text-3xl font-bold text-green-400 mb-2">Expert</div>
+              <p class="opacity-80 mb-4">Real-world projects</p>
+              <button class="btn-animated">Try Problem →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-white/10">
+      <div class="max-w-4xl mx-auto text-center opacity-70 text-sm">
+        <p>© 2024 Data Analyst Hub. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Theme Switcher -->
+  <div class="fixed bottom-8 right-8 z-50">
+    <button id="themeToggle" class="w-16 h-16 rounded-full bg-gradient-to-br from-cyan-400 to-orange-400 text-white text-2xl hover:scale-110 transition">🎨</button>
+    <div id="themeMenu" class="hidden absolute bottom-20 right-0 bg-black/80 backdrop-blur border border-white/10 rounded-12 p-4 flex flex-col gap-2 w-max">
+      <button class="theme-item px-4 py-2 text-sm border border-transparent hover:border-cyan-400 rounded hover:bg-white/10 transition" data-theme="modern">Modern</button>
+      <button class="theme-item px-4 py-2 text-sm border border-transparent hover:border-cyan-400 rounded hover:bg-white/10 transition" data-theme="cyberpunk">Cyberpunk</button>
+      <button class="theme-item px-4 py-2 text-sm border border-transparent hover:border-cyan-400 rounded hover:bg-white/10 transition" data-theme="minimal">Minimal</button>
+      <button class="theme-item px-4 py-2 text-sm border border-transparent hover:border-cyan-400 rounded hover:bg-white/10 transition" data-theme="sunset">Sunset</button>
+    </div>
+  </div>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const themeMenu = document.getElementById('themeMenu');
+    const themeItems = document.querySelectorAll('.theme-item');
+    const html = document.documentElement;
+
+    const savedTheme = localStorage.getItem('data-theme') || 'modern';
+    html.setAttribute('data-theme', savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      themeMenu.classList.toggle('hidden');
+    });
+
+    themeItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const theme = item.getAttribute('data-theme');
+        html.setAttribute('data-theme', theme);
+        localStorage.setItem('data-theme', theme);
+        themeMenu.classList.add('hidden');
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!themeToggle.contains(e.target) && !themeMenu.contains(e.target)) {
+        themeMenu.classList.add('hidden');
+      }
+    });
+  </script>
+</body>
+</html>

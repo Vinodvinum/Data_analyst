@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Power BI for Data Analysis - Complete Guide</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    [data-theme="modern"] { --bg-primary: #0F172A; --bg-secondary: #1E293B; --bg-tertiary: #334155; --text-primary: #F1F5F9; --text-secondary: #CBD5E1; --accent-glow: rgba(6, 182, 212, 0.2); }
+    [data-theme="cyberpunk"] { --bg-primary: #0A0E27; --bg-secondary: #1A1A3E; --bg-tertiary: #2D1B4E; --text-primary: #00FF88; --text-secondary: #00CC6A; --accent-glow: rgba(0, 255, 136, 0.2); }
+    [data-theme="minimal"] { --bg-primary: #FAFAFA; --bg-secondary: #F5F5F5; --bg-tertiary: #EFEFEF; --text-primary: #1F2937; --text-secondary: #6B7280; --accent-glow: rgba(6, 182, 212, 0.1); }
+    [data-theme="sunset"] { --bg-primary: #1F1410; --bg-secondary: #3B2F24; --bg-tertiary: #5A4A3A; --text-primary: #FFE4CC; --text-secondary: #FFD4A3; --accent-glow: rgba(249, 115, 22, 0.2); }
+    body { background-color: var(--bg-primary); color: var(--text-primary); transition: all 0.4s ease; }
+    .animated-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.4; }
+    .animated-bg::before { content: ''; position: absolute; width: 400px; height: 400px; background: linear-gradient(135deg, #06B6D4, #7C3AED); border-radius: 50%; top: -100px; right: -100px; animation: float 8s ease-in-out infinite; filter: blur(60px); opacity: 0.3; }
+    @keyframes float { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(50px, -50px); } }
+    .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease; }
+    .glass:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.2); box-shadow: 0 20px 60px var(--accent-glow); }
+    .card { position: relative; overflow: hidden; border-radius: 16px; }
+    .card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, #06B6D4, #7C3AED); opacity: 0; transition: opacity 0.3s ease; z-index: 1; }
+    .card:hover::before { opacity: 0.05; }
+    .card-content { position: relative; z-index: 2; }
+    .gradient-text { background: linear-gradient(135deg, #06B6D4, #F97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .heading-lg { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; letter-spacing: -0.01em; }
+    .badge { padding: 8px 16px; background: rgba(6, 182, 212, 0.1); border: 1px solid #06B6D4; border-radius: 999px; font-size: 0.875rem; font-weight: 600; color: #06B6D4; text-transform: uppercase; letter-spacing: 0.05em; }
+    .btn-animated { position: relative; overflow: hidden; font-weight: 600; border-radius: 12px; padding: 12px 28px; transition: all 0.3s ease; border: none; cursor: pointer; background: linear-gradient(135deg, #06B6D4, #0891B2); color: white; box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3); }
+    .btn-animated:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(6, 182, 212, 0.4); }
+    .section-content { max-width: 4xl; margin: 0 auto; padding: 2rem; line-height: 1.8; }
+  </style>
+</head>
+<body>
+  <div class="animated-bg"></div>
+  <div class="relative z-10">
+    <nav class="sticky top-0 z-40 bg-black/30 backdrop-blur border-b border-white/10">
+      <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="index.html" class="text-2xl font-bold gradient-text">📈 DataHub</a>
+        <a href="index.html" class="text-cyan-400 hover:text-cyan-300 transition">← Back to Hub</a>
+      </div>
+    </nav>
+    <section class="py-16 px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="badge mb-4">📈 Complete Guide</div>
+        <h1 class="heading-lg mb-4 gradient-text">Power BI for Data Analysis</h1>
+        <p class="text-lg opacity-80 mb-8">Master DAX functions, create stunning dashboards, and visualize data like a pro</p>
+      </div>
+    </section>
+    <section class="py-12 px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="glass card rounded-16 p-8">
+          <div class="card-content">
+            <h3 class="font-bold text-lg mb-6">📑 Topics</h3>
+            <div class="grid grid-cols-2 gap-4">
+              <a href="#basics" class="text-cyan-400 hover:text-cyan-300">→ PB Basics</a>
+              <a href="#dax" class="text-cyan-400 hover:text-cyan-300">→ DAX Functions</a>
+              <a href="#viz" class="text-cyan-400 hover:text-cyan-300">→ Visualizations</a>
+              <a href="#dashboard" class="text-cyan-400 hover:text-cyan-300">→ Dashboards</a>
+              <a href="#advanced" class="text-cyan-400 hover:text-cyan-300">→ Advanced</a>
+              <a href="#practice" class="text-cyan-400 hover:text-cyan-300">→ Practice</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="dax" class="py-12 px-6">
+      <div class="section-content">
+        <h2 class="heading-lg mb-8 gradient-text">DAX Essentials</h2>
+        <div class="glass card rounded-12 p-6 mb-6">
+          <div class="card-content">
+            <h3 class="text-xl font-bold mb-4 text-cyan-400">Common DAX Functions</h3>
+            <ul class="space-y-3 text-sm">
+              <li><span class="text-orange-400 font-bold">SUM():</span> Aggregates values)</li>
+              <li><span class="text-orange-400 font-bold">CALCULATE():</span> Changes filter context</li>
+              <li><span class="text-orange-400 font-bold">ALL():</span> Removes filters</li>
+              <li><span class="text-orange-400 font-bold">RANKX():</span> Ranks values</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="practice" class="py-12 px-6 mb-20">
+      <div class="section-content">
+        <h2 class="heading-lg mb-8 gradient-text">Practice Projects</h2>
+        <div class="grid grid-cols-2 gap-6">
+          <div class="glass card rounded-16 p-6">
+            <div class="card-content">
+              <div class="text-3xl font-bold text-cyan-400 mb-2">Beginner</div>
+              <button class="btn-animated">Try →</button>
+            </div>
+          </div>
+          <div class="glass card rounded-16 p-6">
+            <div class="card-content">
+              <div class="text-3xl font-bold text-orange-400 mb-2">Intermediate</div>
+              <button class="btn-animated">Try →</button>
+            </div>
+          </div>
+          <div class="glass card rounded-16 p-6">
+            <div class="card-content">
+              <div class="text-3xl font-bold text-purple-400 mb-2">Advanced</div>
+              <button class="btn-animated">Try →</button>
+            </div>
+          </div>
+          <div class="glass card rounded-16 p-6">
+            <div class="card-content">
+              <div class="text-3xl font-bold text-green-400 mb-2">Expert</div>
+              <button class="btn-animated">Try →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="py-12 px-6 border-t border-white/10">
+      <div class="max-w-4xl mx-auto text-center opacity-70 text-sm">© 2024 Data Analyst Hub. All rights reserved.</div>
+    </footer>
+  </div>
+  <div class="fixed bottom-8 right-8 z-50">
+    <button id="themeToggle" class="w-16 h-16 rounded-full bg-gradient-to-br from-cyan-400 to-orange-400 text-white text-2xl hover:scale-110 transition">🎨</button>
+    <div id="themeMenu" class="hidden absolute bottom-20 right-0 bg-black/80 backdrop-blur border border-white/10 rounded-12 p-4 flex flex-col gap-2 w-max">
+      <button class="theme-item px-4 py-2 text-sm" data-theme="modern">Modern</button>
+      <button class="theme-item px-4 py-2 text-sm" data-theme="cyberpunk">Cyberpunk</button>
+      <button class="theme-item px-4 py-2 text-sm" data-theme="minimal">Minimal</button>
+      <button class="theme-item px-4 py-2 text-sm" data-theme="sunset">Sunset</button>
+    </div>
+  </div>
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const themeMenu = document.getElementById('themeMenu');
+    const themeItems = document.querySelectorAll('.theme-item');
+    const html = document.documentElement;
+    const savedTheme = localStorage.getItem('data-theme') || 'modern';
+    html.setAttribute('data-theme', savedTheme);
+    themeToggle.addEventListener('click', () => themeMenu.classList.toggle('hidden'));
+    themeItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const theme = item.getAttribute('data-theme');
+        html.setAttribute('data-theme', theme);
+        localStorage.setItem('data-theme', theme);
+        themeMenu.classList.add('hidden');
+      });
+    });
+    document.addEventListener('click', (e) => {
+      if (!themeToggle.contains(e.target) && !themeMenu.contains(e.target)) themeMenu.classList.add('hidden');
+    });
+  </script>
+</body>
+</html>
