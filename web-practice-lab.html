@@ -347,14 +347,22 @@ for country, total in sorted(country_totals.items(), key=lambda x: x[1], reverse
   <script>
     const tabs = document.querySelectorAll('.tab');
     const panels = document.querySelectorAll('.panel');
+    function activateTab(name) {
+      const tab = document.querySelector(`.tab[data-tab="${name}"]`);
+      const panel = document.getElementById(name);
+      if (!tab || !panel) return;
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      panel.classList.add('active');
+    }
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        panels.forEach(p => p.classList.remove('active'));
-        tab.classList.add('active');
-        document.getElementById(tab.dataset.tab).classList.add('active');
+        activateTab(tab.dataset.tab);
       });
     });
+    const tabParam = new URLSearchParams(location.search).get('tab');
+    if (tabParam) activateTab(tabParam.toLowerCase());
 
     const colNames = ['A','B','C','D','E','F','G','H'];
     const ROWS = 20;

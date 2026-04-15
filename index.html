@@ -181,18 +181,6 @@
 
     .muted { color: var(--muted); }
 
-    .folder {
-      font-family: "Cascadia Mono", Consolas, "Courier New", monospace;
-      background: #0b1220;
-      color: #e2e8f0;
-      border-radius: 12px;
-      padding: 12px;
-      overflow-x: auto;
-      border: 1px solid #1f2937;
-      font-size: 0.9rem;
-      white-space: pre;
-    }
-
     .callout {
       border-left: 5px solid var(--accent);
       background: #fff7ed;
@@ -234,7 +222,6 @@
       <h2>Quick Navigation</h2>
       <div class="grid-3">
         <a href="#guides">Guides</a>
-        <a href="#structure">Workspace Structure</a>
         <a href="#notebooks">Notebook Access</a>
         <a href="#resources">Datasets and Outputs</a>
         <a href="#practice">Practice Environments</a>
@@ -279,27 +266,6 @@
       </div>
     </section>
 
-    <section id="structure">
-      <span class="chip">Structure</span>
-      <h2>Workspace Structure (Reorganized Access Layer)</h2>
-      <p class="muted">Files remain compatible with existing links, and structured access is now provided through grouped sections and dedicated output folder.</p>
-      <div class="folder">E:\vin\da
-|-- index.html
-|-- web-practice-lab.html
-|-- excel-data-analysis-guide.html
-|-- sql-data-analysis-guide.html
-|-- python-data-analysis-guide.html
-|-- powerbi-data-analysis-guide.html
-|-- data-analyst-interview-preparation-guide.html
-|-- sql-interview-cheat-sheet.html
-|-- notebook-outputs/
-|   |-- python-data-analysis-guide-output.html
-|   `-- sql-data-analysis-guide-output.html
-|-- *.csv datasets
-|-- *.ipynb notebooks
-`-- README.md</div>
-    </section>
-
     <section id="notebooks">
       <span class="chip">Notebooks</span>
       <h2>Notebook Access with Output Support</h2>
@@ -316,13 +282,13 @@
           <tbody>
             <tr>
               <td>Python Analysis Notebook</td>
-              <td><a href="python-data-analysis-guide.ipynb">python-data-analysis-guide.ipynb</a></td>
+              <td><a href="notebook-viewer.html?file=python-data-analysis-guide.ipynb&amp;output=notebook-outputs/python-data-analysis-guide-output.html">view python notebook</a></td>
               <td><a href="notebook-outputs/python-data-analysis-guide-output.html">python-data-analysis-guide-output.html</a></td>
               <td>Open `.ipynb` in VS Code; use output HTML when notebook rendering is not supported in browser.</td>
             </tr>
             <tr>
               <td>SQL Analysis Notebook</td>
-              <td><a href="sql-data-analysis-guide.ipynb">sql-data-analysis-guide.ipynb</a></td>
+              <td><a href="notebook-viewer.html?file=sql-data-analysis-guide.ipynb&amp;output=notebook-outputs/sql-data-analysis-guide-output.html">view sql notebook</a></td>
               <td><a href="notebook-outputs/sql-data-analysis-guide-output.html">sql-data-analysis-guide-output.html</a></td>
               <td>Practice SQL notebook flow in VS Code and inspect saved output directly in browser.</td>
             </tr>
@@ -341,23 +307,23 @@
         <div class="card">
           <h3>Excel datasets</h3>
           <ul>
-            <li><a href="excel-project-sales-raw.csv">excel-project-sales-raw.csv</a></li>
-            <li><a href="excel-project-region-targets.csv">excel-project-region-targets.csv</a></li>
-            <li><a href="excel-project-sales-large.csv">excel-project-sales-large.csv</a></li>
+            <li><a href="csv-viewer.html?file=excel-project-sales-raw.csv">view excel-project-sales-raw.csv</a></li>
+            <li><a href="csv-viewer.html?file=excel-project-region-targets.csv">view excel-project-region-targets.csv</a></li>
+            <li><a href="csv-viewer.html?file=excel-project-sales-large.csv">view excel-project-sales-large.csv</a></li>
           </ul>
         </div>
         <div class="card">
           <h3>SQL datasets</h3>
           <ul>
-            <li><a href="sql-practice-users.csv">sql-practice-users.csv</a></li>
-            <li><a href="sql-practice-orders.csv">sql-practice-orders.csv</a></li>
-            <li><a href="sql-practice-products.csv">sql-practice-products.csv</a></li>
-            <li><a href="sql-practice-events.csv">sql-practice-events.csv</a></li>
-            <li><a href="sql-practice-subscriptions.csv">sql-practice-subscriptions.csv</a></li>
-            <li><a href="sql-finance-customers.csv">sql-finance-customers.csv</a></li>
-            <li><a href="sql-finance-invoices.csv">sql-finance-invoices.csv</a></li>
-            <li><a href="sql-finance-payments.csv">sql-finance-payments.csv</a></li>
-            <li><a href="sql-finance-monthly-budget.csv">sql-finance-monthly-budget.csv</a></li>
+            <li><a href="csv-viewer.html?file=sql-practice-users.csv">view sql-practice-users.csv</a></li>
+            <li><a href="csv-viewer.html?file=sql-practice-orders.csv">view sql-practice-orders.csv</a></li>
+            <li><a href="csv-viewer.html?file=sql-practice-products.csv">view sql-practice-products.csv</a></li>
+            <li><a href="csv-viewer.html?file=sql-practice-events.csv">view sql-practice-events.csv</a></li>
+            <li><a href="csv-viewer.html?file=sql-practice-subscriptions.csv">view sql-practice-subscriptions.csv</a></li>
+            <li><a href="csv-viewer.html?file=sql-finance-customers.csv">view sql-finance-customers.csv</a></li>
+            <li><a href="csv-viewer.html?file=sql-finance-invoices.csv">view sql-finance-invoices.csv</a></li>
+            <li><a href="csv-viewer.html?file=sql-finance-payments.csv">view sql-finance-payments.csv</a></li>
+            <li><a href="csv-viewer.html?file=sql-finance-monthly-budget.csv">view sql-finance-monthly-budget.csv</a></li>
           </ul>
         </div>
       </div>
@@ -365,16 +331,16 @@
         <div class="card">
           <h3>Python datasets</h3>
           <ul>
-            <li><a href="python-sales.csv">python-sales.csv</a></li>
-            <li><a href="python-users.csv">python-users.csv</a></li>
-            <li><a href="python-transactions.csv">python-transactions.csv</a></li>
-            <li><a href="python-products.csv">python-products.csv</a></li>
+            <li><a href="csv-viewer.html?file=python-sales.csv">view python-sales.csv</a></li>
+            <li><a href="csv-viewer.html?file=python-users.csv">view python-users.csv</a></li>
+            <li><a href="csv-viewer.html?file=python-transactions.csv">view python-transactions.csv</a></li>
+            <li><a href="csv-viewer.html?file=python-products.csv">view python-products.csv</a></li>
           </ul>
         </div>
         <div class="card">
           <h3>Generated outputs</h3>
           <ul>
-            <li><a href="sales_project_summary.csv">sales_project_summary.csv</a></li>
+            <li><a href="csv-viewer.html?file=sales_project_summary.csv">view sales_project_summary.csv</a></li>
             <li><a href="notebook-outputs/python-data-analysis-guide-output.html">python notebook output html</a></li>
             <li><a href="notebook-outputs/sql-data-analysis-guide-output.html">sql notebook output html</a></li>
           </ul>
