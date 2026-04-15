@@ -1,9 +1,0 @@
-payment_id,invoice_id,payment_date,payment_amount,payment_method,payment_status
-PAY5001,INV1001,2024-06-18,27500,Bank Transfer,Settled
-PAY5002,INV1002,2024-06-20,7920,Card,Settled
-PAY5003,INV1004,2024-06-29,34100,Bank Transfer,Settled
-PAY5004,INV1006,2024-07-01,10780,Card,Settled
-PAY5005,INV1008,2024-07-25,46200,Bank Transfer,Settled
-PAY5006,INV1009,2024-07-29,13200,Card,Settled
-PAY5007,INV1011,2024-08-02,29700,Bank Transfer,Settled
-PAY5008,INV1012,2024-08-04,8360,Card,Settled

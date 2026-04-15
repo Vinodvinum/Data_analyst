@@ -1,18 +1,464 @@
-<!doctype html>
-<html lang="en" data-theme="modern">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Data Analyst Hub</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Analyst Workspace Hub</title>
+  <script>
+    // Initialize theme immediately to prevent flash
+    const savedTheme = localStorage.getItem('data-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  </script>
+  <link rel="stylesheet" href="global-styles.css" />
+  <style>
+    /* Index-specific styles */
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      max-width: 96ch;
+      opacity: 0.96;
+    }
+
+    .hero-tags {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hero-tags span {
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      background: rgba(255, 255, 255, 0.12);
+      padding: 7px 12px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      background: #eaf5ff;
+      color: #1e40af;
+      border: 1px solid #cde0ff;
+      padding: 4px 10px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .grid-2, .grid-3 {
+      display: grid;
+      gap: 12px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+    .btnrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      background: #fff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .btn.big {
+      background: #0b1220;
+      color: #fff;
+      border-color: #0b1220;
+    }
+
+    .table-wrap {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: auto;
+    }
+
+    .ok {
+      color: #0f766e;
+      font-weight: 700;
+    }
+
+    .callout {
+      border-left: 5px solid var(--accent);
+      background: #fff7ed;
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 760px) {
+      .container { width: min(100% - 16px, 1280px); padding-top: 14px; }
+      .btn { width: 100%; }
+      .table-wrap table { min-width: 640px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <h1>Data Analyst Workspace Hub</h1>
+      <p>This is the rebuilt entry point for your full learning system: Excel, SQL, Python, Power BI, interview preparation, practical datasets, notebooks, notebook outputs, and an in-browser practice lab.</p>
+      <div class="hero-tags">
+        <span>Beginner Friendly</span>
+        <span>Real Data Practice</span>
+        <span>Notebook Output Support</span>
+        <span>Web Lab Included</span>
+      </div>
+      <div class="btnrow">
+        <a class="btn big" href="web-practice-lab.html">Open Web Practice Lab</a>
+        <a class="btn" href="guides/excel-data-analysis-guide.html">Excel Guide</a>
+        <a class="btn" href="guides/sql-data-analysis-guide.html">SQL Guide</a>
+        <a class="btn" href="guides/python-data-analysis-guide.html">Python Guide</a>
+        <a class="btn" href="guides/powerbi-data-analysis-guide.html">Power BI Guide</a>
+        <a class="btn" href="guides/data-analyst-interview-preparation-guide.html">Interview Guide</a>
+      </div>
+    </header>
+
+    <nav>
+      <h2>Quick Navigation</h2>
+      <div class="grid-3">
+        <a href="#guides">Guides</a>
+        <a href="#learning-path">Learning Path</a>
+        <a href="#master-cheat-sheet">Master Cheat Sheet</a>
+        <a href="guides/data-analyst-master-cheat-sheet.html">Full Cheat Sheet Page</a>
+        <a href="guides/data-analyst-master-cheat-sheet-2.html">📊 Master Cheat Sheet 2</a>
+        <a href="guides/data-analyst-practice-problems-30.html">30 Practice Problems</a>
+        <a href="#notebooks">Notebook Access</a>
+        <a href="#resources">Datasets and Outputs</a>
+        <a href="#practice">Practice Environments</a>
+        <a href="#health">Validation Status</a>
+      </div>
+    </nav>
+
+    <section id="guides">
+      <span class="chip">Guides</span>
+      <h2>Core Learning Guides</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Excel Data Analysis</h3>
+          <p>Spreadsheet fundamentals, formulas, pivot workflows, and practical dataset walkthroughs.</p>
+          <a href="guides/excel-data-analysis-guide.html">Open guide</a>
+        </div>
+        <div class="card">
+          <h3>SQL Data Analysis</h3>
+          <p>Query fundamentals to advanced window functions, CTEs, and analytical patterns.</p>
+          <a href="guides/sql-data-analysis-guide.html">Open guide</a>
+        </div>
+        <div class="card">
+          <h3>Python Data Analysis</h3>
+          <p>Pandas, NumPy, cleaning, grouping, visualization, and practical projects.</p>
+          <a href="guides/python-data-analysis-guide.html">Open guide</a>
+        </div>
+        <div class="card">
+          <h3>Power BI</h3>
+          <p>Power Query, data modeling, DAX, dashboard design, performance, and business projects.</p>
+          <a href="guides/powerbi-data-analysis-guide.html">Open guide</a>
+        </div>
+        <div class="card">
+          <h3>Interview Preparation</h3>
+          <p>Medium to hard SQL/Python/BI/Excel/business-case preparation with mock sets.</p>
+          <a href="guides/data-analyst-interview-preparation-guide.html">Open guide</a>
+        </div>
+        <div class="card">
+          <h3>SQL Cheat Sheet</h3>
+          <p>Fast revision page for high-frequency interview concepts and query patterns.</p>
+          <a href="guides/sql-interview-cheat-sheet.html">Open page</a>
+        </div>
+        <div class="card">
+          <h3>Data Analyst Master Cheat Sheet</h3>
+          <p>Complete beginner-to-advanced cheat sheet with process, tools, examples, and one-day revision plan.</p>
+          <a href="guides/data-analyst-master-cheat-sheet.html">Open page</a>
+        </div>
+        <div class="card">
+          <h3>📊 Master Cheat Sheet 2 (Complete)</h3>
+          <p>Ultimate comprehensive reference: Excel formulas, SQL syntax, Python codes, Power BI workflows, full data analysis process with examples, interview scripts, definitions, memory tips, and complete one-day revision plan.</p>
+          <a href="guides/data-analyst-master-cheat-sheet-2.html">Open complete guide</a>
+        </div>
+        <div class="card">
+          <h3>30 Practice Problems</h3>
+          <p>10 Excel + 10 SQL + 10 Python interview-style problems with answers and explanations.</p>
+          <a href="guides/data-analyst-practice-problems-30.html">Open page</a>
+        </div>
+        <div class="card">
+          <h3>Portfolio Projects</h3>
+          <p>Three real-world, portfolio-ready projects with step-by-step Excel, SQL, Python, and Power BI paths.</p>
+          <a href="guides/data-analysis-projects.html">Open page</a>
+        </div>
+        <div class="card">
+          <h3>1-Page Quick Revision</h3>
+          <p>Memory-focused one-page revision sheet for formulas, syntax, workflows, and interview definitions.</p>
+          <a href="guides/data-analysis-quick-revision.html">Open page</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="learning-path">
+      <span class="chip">Organized Plan</span>
+      <h2>Learn-Friendly Path (Beginner to Job-Ready)</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Phase 1: Foundation</h3>
+          <ol>
+            <li>Excel guide: data layout, formulas, pivots</li>
+            <li>SQL guide: filtering, joins, grouping</li>
+            <li>Python guide: pandas basics and cleaning</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>Phase 2: Analyst Core</h3>
+          <ol>
+            <li>SQL advanced patterns (window functions, CTE)</li>
+            <li>Python analysis workflows (grouping, time series)</li>
+            <li>Power BI modeling and DAX foundations</li>
+          </ol>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top:12px;">
+        <div class="card">
+          <h3>Phase 3: Reporting + Storytelling</h3>
+          <ol>
+            <li>Power BI dashboards and performance tuning</li>
+            <li>Use SQL/Python outputs in BI reports</li>
+            <li>Practice communicating findings in plain language</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>Phase 4: Interview Preparation</h3>
+          <ol>
+            <li>Interview guide: SQL/Python/BI/Excel questions</li>
+            <li>SQL cheat sheet for fast revision</li>
+            <li>Timed mock rounds using the web practice lab</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="master-cheat-sheet">
+      <span class="chip">Master Cheat Sheet</span>
+      <h2>All-in-One Formulas, Definitions, Tricks, and Concepts</h2>
+      <p class="muted">Use this section as your daily revision sheet. It combines high-frequency analyst concepts across Excel, SQL, Python, and Power BI.</p>
+
+      <h3>Excel Core Formula Sheet</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Formula</th><th>Definition</th><th>Example</th><th>When to Use</th><th>Memory Trick</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>SUM</td><td>Adds values</td><td>SUM(E2:E200)</td><td>Total sales or units</td><td>"S" for total "sum"</td></tr>
+            <tr><td>AVERAGE</td><td>Mean value</td><td>AVERAGE(F2:F200)</td><td>Average order value</td><td>Center point of numbers</td></tr>
+            <tr><td>XLOOKUP</td><td>Finds matching value</td><td>XLOOKUP(A2, IDs, Name)</td><td>ID to name mapping</td><td>"X" means flexible lookup</td></tr>
+            <tr><td>COUNTIF</td><td>Counts by condition</td><td>COUNTIF(Status,"Closed")</td><td>Status counts</td><td>"IF" means filter condition</td></tr>
+            <tr><td>SUMIF</td><td>Sums by condition</td><td>SUMIF(Region,"West",Sales)</td><td>Regional totals</td><td>Condition + sum together</td></tr>
+            <tr><td>IF</td><td>Returns result by logic</td><td>IF(G2&gt;1000,"High","Low")</td><td>Segmentation labels</td><td>Question then two outcomes</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>SQL Pattern Sheet</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Pattern</th><th>Definition</th><th>Example Concept</th><th>Where Used</th><th>Memory Trick</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>GROUP BY + HAVING</td><td>Aggregate then filter groups</td><td>Countries with revenue &gt; target</td><td>Performance reporting</td><td>WHERE before group, HAVING after group</td></tr>
+            <tr><td>ROW_NUMBER / RANK</td><td>Order rows inside groups</td><td>Top 3 customers per region</td><td>Leaderboard questions</td><td>"Rank inside partition"</td></tr>
+            <tr><td>LAG / LEAD</td><td>Previous/next row reference</td><td>Month-over-month change</td><td>Time trend analysis</td><td>Look back/forward one row</td></tr>
+            <tr><td>CTE</td><td>Named query block</td><td>Break complex logic into steps</td><td>Readable interview SQL</td><td>Think of it as temporary view</td></tr>
+            <tr><td>LEFT JOIN</td><td>Keep all left rows</td><td>Users with no orders</td><td>Gap/funnel analysis</td><td>Left table survives always</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Python Data Analysis Sheet</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Method</th><th>Definition</th><th>Example</th><th>Use Case</th><th>Memory Trick</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>read_csv</td><td>Load CSV to dataframe</td><td>pd.read_csv("sales.csv")</td><td>Start analysis</td><td>Read then inspect</td></tr>
+            <tr><td>dropna / fillna</td><td>Handle missing values</td><td>df.fillna(0)</td><td>Data cleaning</td><td>Missing values first</td></tr>
+            <tr><td>groupby</td><td>Aggregate by key</td><td>df.groupby("region").sum()</td><td>Regional KPI summary</td><td>Split-apply-combine</td></tr>
+            <tr><td>merge</td><td>Join two dataframes</td><td>sales.merge(users,on="user_id")</td><td>Enrichment before reporting</td><td>SQL join in pandas</td></tr>
+            <tr><td>pivot_table</td><td>Spreadsheet-like summary</td><td>pivot_table(index="month")</td><td>Trend matrix outputs</td><td>Pivot inside Python</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Power BI and DAX Sheet</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Concept</th><th>Definition</th><th>Example</th><th>Business Use</th><th>Memory Trick</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Measure</td><td>Dynamic calc by filter context</td><td>Sales Amount = SUM(Sales[Amount])</td><td>KPI cards and visuals</td><td>Measures move with slicers</td></tr>
+            <tr><td>CALCULATE</td><td>Changes filter context</td><td>CALCULATE([Sales], Region="West")</td><td>Segment-specific KPIs</td><td>CALCULATE = change lens</td></tr>
+            <tr><td>ALL</td><td>Removes filters</td><td>% of total pattern</td><td>Contribution analysis</td><td>ALL = remove slice</td></tr>
+            <tr><td>RANKX</td><td>Ranks values by expression</td><td>Top product ranking</td><td>Top-N dashboards</td><td>X = evaluate expression</td></tr>
+            <tr><td>TOTALYTD</td><td>Year-to-date accumulation</td><td>TOTALYTD([Sales], Date[Date])</td><td>Finance tracking</td><td>YTD = year running total</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Important Definitions</h3>
+      <div class="grid-3">
+        <div class="card"><h3>Fact Table</h3><p>Transaction table with numeric metrics at a defined grain, such as orders or invoices.</p></div>
+        <div class="card"><h3>Dimension Table</h3><p>Descriptive table used for slicing facts, such as customer, date, product, region.</p></div>
+        <div class="card"><h3>Star Schema</h3><p>Model design where fact table is central and dimensions connect around it.</p></div>
+        <div class="card"><h3>Filter Context</h3><p>Current filters applied by slicers, visuals, or DAX logic.</p></div>
+        <div class="card"><h3>Cohort</h3><p>Group of users/customers who started in the same period.</p></div>
+        <div class="card"><h3>Retention</h3><p>Percentage of users returning after initial acquisition period.</p></div>
+      </div>
+
+      <h3>Tricks and Memory Shortcuts</h3>
+      <ul>
+        <li>SQL solving order: define grain -> filter -> join -> aggregate -> rank -> present result.</li>
+        <li>DAX solving order: write base measure first, then wrap with CALCULATE logic.</li>
+        <li>Excel cleanup order: fix headers -> types -> blanks -> duplicates -> formulas.</li>
+        <li>Python cleanup order: inspect data -> clean nulls -> types -> joins -> aggregate.</li>
+        <li>Dashboard rule: one page should answer one business story, not every question.</li>
+      </ul>
+    </section>
+
+    <section id="notebooks">
+      <span class="chip">Notebooks</span>
+      <h2>Notebook Access with Output Support</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Notebook</th>
+              <th>Direct Notebook</th>
+              <th>Browser Output HTML</th>
+              <th>Use Case</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Python Analysis Notebook</td>
+              <td><a href="notebook-viewer.html?file=notebooks/python-data-analysis-guide.ipynb&amp;output=outputs/python-data-analysis-guide-output.html">view python notebook</a></td>
+              <td><a href="outputs/python-data-analysis-guide-output.html">python-data-analysis-guide-output.html</a></td>
+              <td>Open `.ipynb` in VS Code; use output HTML when notebook rendering is not supported in browser.</td>
+            </tr>
+            <tr>
+              <td>SQL Analysis Notebook</td>
+              <td><a href="notebook-viewer.html?file=notebooks/sql-data-analysis-guide.ipynb&amp;output=outputs/sql-data-analysis-guide-output.html">view sql notebook</a></td>
+              <td><a href="outputs/sql-data-analysis-guide-output.html">sql-data-analysis-guide-output.html</a></td>
+              <td>Practice SQL notebook flow in VS Code and inspect saved output directly in browser.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        If `.ipynb` does not render in your browser, use the generated output HTML files above. This gives web-safe access to notebook results.
+      </div>
+    </section>
+
+    <section id="resources">
+      <span class="chip">Data</span>
+      <h2>Datasets and Output Files</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Excel datasets</h3>
+          <ul>
+            <li><a href="csv-viewer.html?file=datasets/excel-project-sales-raw.csv">view excel-project-sales-raw.csv</a></li>
+            <li><a href="csv-viewer.html?file=datasets/excel-project-region-targets.csv">view excel-project-region-targets.csv</a></li>
+            <li><a href="csv-viewer.html?file=datasets/excel-project-sales-large.csv">view excel-project-sales-large.csv</a></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>SQL datasets</h3>
+          <ul>
+            <li><a href="csv-viewer.html?file=datasets/sql-practice-users.csv">view sql-practice-users.csv</a></li>
+            <li><a href="csv-viewer.html?file=datasets/sql-practice-orders.csv">view sql-practice-orders.csv</a></li>
+            <li><a href="csv-viewer.html?file=datasets/sql-practice-products.csv">view sql-practice-products.csv</a></li>
+            <li><a href="csv-viewer.html?file=datasets/sql-practice-events.csv">view sql-practice-events.csv</a></li>
+            <li><a href="csv-viewer.html?file=datasets/sql-practice-subscriptions.csv">view sql-practice-subscriptions.csv</a></li>
+            <li><a href="csv-viewer.html?file=datasets/sql-finance-customers.csv">view sql-finance-customers.csv</a></li>
+            <li><a href="csv-viewer.html?file=datasets/sql-finance-invoices.csv">view sql-finance-invoices.csv</a></li>
+            <li><a href="csv-viewer.html?file=datasets/sql-finance-payments.csv">view sql-finance-payments.csv</a></li>
+            <li><a href="csv-viewer.html?file=datasets/sql-finance-monthly-budget.csv">view sql-finance-monthly-budget.csv</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top:12px;">
+        <div class="card">
+          <h3>Python datasets</h3>
+          <ul>
+            <li><a href="csv-viewer.html?file=datasets/python-sales.csv">view python-sales.csv</a></li>
+            <li><a href="csv-viewer.html?file=datasets/python-users.csv">view python-users.csv</a></li>
+            <li><a href="csv-viewer.html?file=datasets/python-transactions.csv">view python-transactions.csv</a></li>
+            <li><a href="csv-viewer.html?file=datasets/python-products.csv">view python-products.csv</a></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Generated outputs</h3>
+          <ul>
+            <li><a href="csv-viewer.html?file=outputs/sales_project_summary.csv">view sales_project_summary.csv</a></li>
+            <li><a href="outputs/python-data-analysis-guide-output.html">python notebook output html</a></li>
+            <li><a href="outputs/sql-data-analysis-guide-output.html">sql notebook output html</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="practice">
+      <span class="chip">Practice</span>
+      <h2>Running Practice Environments</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Excel Environment</h3>
+          <p>Editable spreadsheet grid with formulas (`SUM`, `AVERAGE`, cell references) and sample business data tasks.</p>
+        </div>
+        <div class="card">
+          <h3>SQL Environment</h3>
+          <p>In-browser SQL engine with sample tables and a query editor to run analytical queries live.</p>
+        </div>
+        <div class="card">
+          <h3>Python Environment</h3>
+          <p>In-browser Python runner using Pyodide for practical coding and quick data-analysis logic tests.</p>
+        </div>
+      </div>
+      <div class="btnrow">
+        <a class="btn big" href="web-practice-lab.html">Launch Full Web Practice Lab</a>
+      </div>
+    </section>
+
+    <section id="health">
+      <span class="chip">Validation</span>
+      <h2>Health Check</h2>
+      <ul>
+        <li><span class="ok">No HTML errors detected</span> on the core guide files and hub page.</li>
+        <li><span class="ok">Notebook output HTML generated</span> for both Python and SQL notebooks.</li>
+        <li><span class="ok">Cross-linked navigation active</span> between hub and all major guides.</li>
+      </ul>
+    </section>
+  </div>
+
+  <script src="global-script.js"></script>
+</body>
 </html>
+

@@ -1,9 +1,0 @@
-customer_id,customer_name,segment,country,signup_date,account_manager
-C001,Acme Retail,Enterprise,United States,2023-01-12,Ana
-C002,Northstar Foods,SMB,Canada,2023-03-21,Dev
-C003,BlueOcean Health,Mid-Market,United Kingdom,2023-06-05,Lea
-C004,Zenline Logistics,Enterprise,Germany,2023-08-16,Raj
-C005,Sunrise Edu,SMB,India,2023-11-01,Ana
-C006,GreenField Labs,Mid-Market,Australia,2024-02-09,Lea
-C007,Metro Homes,SMB,Brazil,2024-03-12,Dev
-C008,Horizon Media,Enterprise,United States,2024-04-22,Raj
