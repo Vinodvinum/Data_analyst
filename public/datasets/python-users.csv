@@ -1,0 +1,9 @@
+user_id,signup_date,country,acquisition_channel,age,plan_type
+1,2024-01-05,United States,Organic,34,Pro
+2,2024-01-11,Canada,Paid,28,Free
+3,2024-02-02,United Kingdom,Organic,41,Pro
+4,2024-02-15,India,Referral,25,Free
+5,2024-03-01,United States,Paid,38,Enterprise
+6,2024-03-18,Australia,Organic,30,Pro
+7,2024-04-02,Germany,Referral,45,Free
+8,2024-04-10,United States,Paid,29,Pro

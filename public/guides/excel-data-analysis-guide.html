@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Excel Data Analysis Master Guide (Beginner to Expert)</title>
+  <script>
+    const savedTheme = localStorage.getItem('data-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  </script>
+  <link rel="stylesheet" href="../global-styles.css" />
+  <style>
+    /* Guide-specific overrides for Excel */
+    :root { --brand: #0b6e4f; --brand-2: #0ea5e9; }
+    body { background: radial-gradient(circle at 0% 0%, #e8fff5 0%, transparent 30%), radial-gradient(circle at 100% 0%, #e9f6ff 0%, transparent 32%), #f5f7fb; }
+    header { background: linear-gradient(120deg, #0b6e4f, #0ea5e9); }
+    .bar-fill { background: linear-gradient(90deg, #0b6e4f, #0ea5e9); }
+    @media (max-width: 640px) { header h1 { font-size: 1.6rem; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Excel Data Analysis Master Guide</h1>
+      <p>From first spreadsheet to advanced analytics and automation. This guide is sequenced as Beginner, Intermediate, Advanced, and Expert so you can build skill in a logical path.</p>
+      <p><a href="../index.html">Master Hub</a> | <a href="data-analyst-interview-preparation-guide.html">Interview Prep</a> | <a href="https://github.com/Vinodvinum/Data_analyst">GitHub Repo</a></p>
+    </header>
+
+    <nav id="toc">
+      <h2>Table of Contents</h2>
+      <ol class="toc-grid">
+        <li><a href="#how-to-use">How to Use This Guide</a></li>
+        <li><a href="#web-practice-lab">In-Browser Practice Lab</a></li>
+        <li><a href="#beginner">Beginner Level</a></li>
+        <li><a href="#basic-concepts">Basic Excel Concepts</a></li>
+        <li><a href="#essential-formulas">Essential Formulas and Functions</a></li>
+        <li><a href="#web-sheet-lab">Interactive Web Sheet Lab</a></li>
+        <li><a href="#practical-dataset">Hands-On Dataset (Spreadsheet Lab)</a></li>
+        <li><a href="#spreadsheet-walkthrough">Step-by-Step Data Transformation</a></li>
+        <li><a href="#advanced-dataset">Advanced Dataset (240 Rows)</a></li>
+        <li><a href="#visual-checkpoints">Spreadsheet Visual Checkpoints</a></li>
+        <li><a href="#intermediate">Intermediate Level</a></li>
+        <li><a href="#analysis-tools">Data Analysis Tools</a></li>
+        <li><a href="#visualization">Visualization in Excel</a></li>
+        <li><a href="#pivot-visualization-steps">Pivot Table Visualization Steps</a></li>
+        <li><a href="#advanced">Advanced Level</a></li>
+        <li><a href="#advanced-topics">Advanced Excel Topics</a></li>
+        <li><a href="#expert">Expert Level</a></li>
+        <li><a href="#memory-tips">Memory Tips and Tricks</a></li>
+        <li><a href="#shortcuts">Keyboard Shortcuts</a></li>
+        <li><a href="#use-cases">Real-World Use Cases</a></li>
+        <li><a href="#ai-integration">AI Integration in Excel</a></li>
+        <li><a href="#bonus">Bonus Tips and Hidden Features</a></li>
+        <li><a href="#capstone-project">Final Dataset Project (End-to-End)</a></li>
+        <li><a href="#practice-roadmap">30-Day Practice Roadmap</a></li>
+      </ol>
+    </nav>
+
+    <section id="training-hub">
+      <h2>Training Hub</h2>
+      <p class="tagline">Use this page together with the master hub so you can move across Excel, SQL, Python, Power BI, and interview prep without losing context.</p>
+      <div class="grid-2">
+        <div>
+          <h3>Cross-links</h3>
+          <ul class="checklist">
+            <li><a href="../index.html">Master landing page</a></li>
+            <li><a href="sql-data-analysis-guide.html">SQL guide</a></li>
+            <li><a href="python-data-analysis-guide.html">Python guide</a></li>
+            <li><a href="powerbi-data-analysis-guide.html">Power BI guide</a></li>
+            <li><a href="data-analyst-interview-preparation-guide.html">Interview guide</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Excel practice files</h3>
+          <ul class="checklist">
+            <li><a href="../csv-viewer.html?file=datasets/excel-project-sales-raw.csv">view excel-project-sales-raw.csv</a></li>
+            <li><a href="../csv-viewer.html?file=datasets/excel-project-region-targets.csv">view excel-project-region-targets.csv</a></li>
+            <li><a href="../csv-viewer.html?file=datasets/excel-project-sales-large.csv">view excel-project-sales-large.csv</a></li>
+            <li><a href="excel-workbook-template-layout.md">excel-workbook-template-layout.md</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="web-practice-lab">
+      <h2>In-Browser Practice Lab</h2>
+      <p class="tagline">Practice spreadsheet logic directly in browser with an Excel-like grid, then switch to SQL and Python tabs as needed.</p>
+      <p><a href="../web-practice-lab.html?tab=excel">Open full lab in Excel mode</a></p>
+      <iframe src="../web-practice-lab.html?tab=excel" title="Excel Practice Lab" style="width:100%;height:720px;border:1px solid #dbe3ee;border-radius:12px;"></iframe>
+    </section>
+
+    <section id="how-to-use">
+      <h2>How to Use This Guide</h2>
+      <p class="tagline">Read section by section and practice every example inside Excel.</p>
+      <ul class="checklist">
+        <li>Each function includes syntax, explanation, practical example, and when to use.</li>
+        <li>Use small sample tables first, then apply to your real data.</li>
+        <li>Keep one workbook as your personal formula lab.</li>
+        <li>After each level, build one mini project to lock in your skills.</li>
+      </ul>
+    </section>
+
+    <section id="beginner">
+      <span class="level">Beginner</span>
+      <h2>Beginner Level Foundations</h2>
+      <p>At this level, you should be able to enter data cleanly, format sheets for readability, and perform basic calculations with confidence.</p>
+    </section>
+
+    <section id="basic-concepts">
+      <h2>Basic Excel Concepts</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Interface Overview</h3>
+          <ul>
+            <li><strong>Rows:</strong> Horizontal lines labeled 1, 2, 3...</li>
+            <li><strong>Columns:</strong> Vertical lines labeled A, B, C...</li>
+            <li><strong>Cell:</strong> Intersection of row and column (example: B5).</li>
+            <li><strong>Range:</strong> Group of cells (example: A1:D20).</li>
+            <li><strong>Worksheet:</strong> One tab/page inside workbook.</li>
+            <li><strong>Workbook:</strong> The whole Excel file containing sheets.</li>
+            <li><strong>Formula Bar:</strong> View or edit formulas and cell values.</li>
+            <li><strong>Ribbon:</strong> Top menu with tools (Home, Insert, Data, etc.).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Data Entry and Formatting Basics</h3>
+          <ul>
+            <li>Use headers in the first row with clear field names.</li>
+            <li>Use one row per record and one column per attribute.</li>
+            <li>Avoid merged cells in data tables.</li>
+            <li>Use consistent formats for dates and currencies.</li>
+            <li>Use <strong>Format as Table</strong> for structured references and easy filtering.</li>
+          </ul>
+          <div class="tip"><strong>Tip:</strong> Press Ctrl + T on raw data to turn it into a table immediately.</div>
+        </div>
+      </div>
+
+      <h3>Basic Operations</h3>
+      <ol class="steps">
+        <li>Select data range and apply bold header style.</li>
+        <li>Adjust column widths with double-click on column border.</li>
+        <li>Use AutoFill by dragging the fill handle.</li>
+        <li>Use absolute references with $ (example: $A$1) when constants must not move.</li>
+      </ol>
+      <pre><code>Relative reference: =B2*C2
+Absolute reference: =B2*$F$1</code></pre>
+    </section>
+
+    <section id="essential-formulas">
+      <h2>Essential Formulas and Functions</h2>
+      <p class="muted">Master these first. They cover most day-to-day analysis work.</p>
+
+      <h3>1) Logical Functions</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Function</th>
+            <th>Syntax</th>
+            <th>Explanation</th>
+            <th>Practical Example</th>
+            <th>When to Use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>IF</td>
+            <td>IF(logical_test, value_if_true, value_if_false)</td>
+            <td>Returns one value if condition is true, another if false.</td>
+            <td><code>=IF(C2&gt;=70,"Pass","Fail")</code></td>
+            <td>Pass/fail rules, status labels, threshold checks.</td>
+          </tr>
+          <tr>
+            <td>IFS</td>
+            <td>IFS(test1,result1, test2,result2, ...)</td>
+            <td>Evaluates multiple conditions in sequence.</td>
+            <td><code>=IFS(C2&gt;=90,"A",C2&gt;=80,"B",C2&gt;=70,"C",TRUE,"D")</code></td>
+            <td>Grading bands, tiered pricing, multi-criteria categories.</td>
+          </tr>
+          <tr>
+            <td>AND</td>
+            <td>AND(logical1, logical2, ...)</td>
+            <td>TRUE only if all conditions are TRUE.</td>
+            <td><code>=IF(AND(B2="North",C2&gt;5000),"Bonus","No")</code></td>
+            <td>Rules with strict all-condition requirements.</td>
+          </tr>
+          <tr>
+            <td>OR</td>
+            <td>OR(logical1, logical2, ...)</td>
+            <td>TRUE if at least one condition is TRUE.</td>
+            <td><code>=IF(OR(D2="Late",E2="High"),"Review","OK")</code></td>
+            <td>Alert flags where any trigger is enough.</td>
+          </tr>
+          <tr>
+            <td>NOT</td>
+            <td>NOT(logical)</td>
+            <td>Reverses TRUE/FALSE result.</td>
+            <td><code>=IF(NOT(F2="Closed"),"Open Item","Done")</code></td>
+            <td>Negation logic, exclusion rules.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2) Lookup and Reference Functions</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Function</th>
+            <th>Syntax</th>
+            <th>Explanation</th>
+            <th>Practical Example</th>
+            <th>When to Use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>VLOOKUP</td>
+            <td>VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])</td>
+            <td>Finds a value in first column and returns value from another column.</td>
+            <td><code>=VLOOKUP(A2,$H$2:$K$200,3,FALSE)</code></td>
+            <td>Legacy workbooks and simple vertical lookups.</td>
+          </tr>
+          <tr>
+            <td>HLOOKUP</td>
+            <td>HLOOKUP(lookup_value, table_array, row_index_num, [range_lookup])</td>
+            <td>Horizontal version of VLOOKUP.</td>
+            <td><code>=HLOOKUP("Q2",$B$1:$F$5,4,FALSE)</code></td>
+            <td>Data organized across rows instead of columns.</td>
+          </tr>
+          <tr>
+            <td>XLOOKUP</td>
+            <td>XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode], [search_mode])</td>
+            <td>Modern lookup with exact match default and flexible direction.</td>
+            <td><code>=XLOOKUP(A2,Products[SKU],Products[Price],"Not Found")</code></td>
+            <td>Preferred lookup for new models and robust outputs.</td>
+          </tr>
+          <tr>
+            <td>INDEX + MATCH</td>
+            <td>INDEX(return_range, MATCH(lookup_value, lookup_range, 0))</td>
+            <td>Powerful alternative to VLOOKUP. Can look left and right.</td>
+            <td><code>=INDEX($C$2:$C$100, MATCH(A2,$A$2:$A$100,0))</code></td>
+            <td>Flexible lookup, especially in older Excel without XLOOKUP.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>3) Math and Statistical Functions</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Function</th>
+            <th>Syntax</th>
+            <th>Explanation</th>
+            <th>Practical Example</th>
+            <th>When to Use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>SUM</td>
+            <td>SUM(number1, [number2], ...)</td>
+            <td>Adds numbers.</td>
+            <td><code>=SUM(D2:D100)</code></td>
+            <td>Total sales, total cost, overall quantities.</td>
+          </tr>
+          <tr>
+            <td>AVERAGE</td>
+            <td>AVERAGE(number1, [number2], ...)</td>
+            <td>Returns arithmetic mean.</td>
+            <td><code>=AVERAGE(E2:E100)</code></td>
+            <td>Average order value, mean performance.</td>
+          </tr>
+          <tr>
+            <td>MIN</td>
+            <td>MIN(number1, ...)</td>
+            <td>Smallest value in range.</td>
+            <td><code>=MIN(F2:F100)</code></td>
+            <td>Identify lowest sales day, minimum stock.</td>
+          </tr>
+          <tr>
+            <td>MAX</td>
+            <td>MAX(number1, ...)</td>
+            <td>Largest value in range.</td>
+            <td><code>=MAX(F2:F100)</code></td>
+            <td>Peak demand, best-performing period.</td>
+          </tr>
+          <tr>
+            <td>SUMIF</td>
+            <td>SUMIF(range, criteria, [sum_range])</td>
+            <td>Sums values matching one condition.</td>
+            <td><code>=SUMIF(B2:B100,"North",D2:D100)</code></td>
+            <td>Single-condition totals (region, product, month).</td>
+          </tr>
+          <tr>
+            <td>SUMIFS</td>
+            <td>SUMIFS(sum_range, criteria_range1, criteria1, ...)</td>
+            <td>Sums using multiple conditions.</td>
+            <td><code>=SUMIFS(D2:D100,B2:B100,"North",C2:C100,"Q1")</code></td>
+            <td>Multi-filter business reporting.</td>
+          </tr>
+          <tr>
+            <td>COUNT</td>
+            <td>COUNT(value1, [value2], ...)</td>
+            <td>Counts numeric cells only.</td>
+            <td><code>=COUNT(G2:G200)</code></td>
+            <td>Count numeric transactions.</td>
+          </tr>
+          <tr>
+            <td>COUNTA</td>
+            <td>COUNTA(value1, [value2], ...)</td>
+            <td>Counts non-empty cells.</td>
+            <td><code>=COUNTA(A2:A200)</code></td>
+            <td>Count records with IDs or names.</td>
+          </tr>
+          <tr>
+            <td>COUNTIF</td>
+            <td>COUNTIF(range, criteria)</td>
+            <td>Counts cells meeting one condition.</td>
+            <td><code>=COUNTIF(H2:H200,"Completed")</code></td>
+            <td>Status tracking and category frequencies.</td>
+          </tr>
+          <tr>
+            <td>COUNTIFS</td>
+            <td>COUNTIFS(criteria_range1, criteria1, ...)</td>
+            <td>Counts cells meeting multiple conditions.</td>
+            <td><code>=COUNTIFS(B2:B200,"North",H2:H200,"Completed")</code></td>
+            <td>Segmented counts in analysis dashboards.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>4) Text Functions</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Function</th>
+            <th>Syntax</th>
+            <th>Explanation</th>
+            <th>Practical Example</th>
+            <th>When to Use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>LEFT</td>
+            <td>LEFT(text, [num_chars])</td>
+            <td>Returns leftmost characters.</td>
+            <td><code>=LEFT(A2,3)</code></td>
+            <td>Extract prefixes or codes.</td>
+          </tr>
+          <tr>
+            <td>RIGHT</td>
+            <td>RIGHT(text, [num_chars])</td>
+            <td>Returns rightmost characters.</td>
+            <td><code>=RIGHT(A2,4)</code></td>
+            <td>Extract last digits or suffixes.</td>
+          </tr>
+          <tr>
+            <td>MID</td>
+            <td>MID(text, start_num, num_chars)</td>
+            <td>Returns characters from the middle.</td>
+            <td><code>=MID(A2,5,2)</code></td>
+            <td>Parse encoded strings.</td>
+          </tr>
+          <tr>
+            <td>LEN</td>
+            <td>LEN(text)</td>
+            <td>Counts characters in text.</td>
+            <td><code>=LEN(B2)</code></td>
+            <td>Validate fixed-length IDs.</td>
+          </tr>
+          <tr>
+            <td>CONCAT</td>
+            <td>CONCAT(text1, [text2], ...)</td>
+            <td>Joins text values together.</td>
+            <td><code>=CONCAT(A2,"-",B2)</code></td>
+            <td>Create keys, labels, full names.</td>
+          </tr>
+          <tr>
+            <td>TEXTJOIN</td>
+            <td>TEXTJOIN(delimiter, ignore_empty, text1, ...)</td>
+            <td>Joins multiple values with delimiter.</td>
+            <td><code>=TEXTJOIN(", ",TRUE,A2:C2)</code></td>
+            <td>Build readable lists from fields.</td>
+          </tr>
+          <tr>
+            <td>TRIM</td>
+            <td>TRIM(text)</td>
+            <td>Removes extra spaces.</td>
+            <td><code>=TRIM(D2)</code></td>
+            <td>Data cleaning before matching/lookup.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>5) Date and Time Functions</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Function</th>
+            <th>Syntax</th>
+            <th>Explanation</th>
+            <th>Practical Example</th>
+            <th>When to Use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>TODAY</td>
+            <td>TODAY()</td>
+            <td>Returns current date (no time).</td>
+            <td><code>=TODAY()-A2</code></td>
+            <td>Aging analysis and due date tracking.</td>
+          </tr>
+          <tr>
+            <td>NOW</td>
+            <td>NOW()</td>
+            <td>Returns current date and time.</td>
+            <td><code>=NOW()</code></td>
+            <td>Timestamps and time-sensitive models.</td>
+          </tr>
+          <tr>
+            <td>DATE</td>
+            <td>DATE(year, month, day)</td>
+            <td>Builds a valid date from parts.</td>
+            <td><code>=DATE(2026,4,15)</code></td>
+            <td>Create dates from separated fields.</td>
+          </tr>
+          <tr>
+            <td>DATEDIF</td>
+            <td>DATEDIF(start_date, end_date, unit)</td>
+            <td>Returns difference between dates in days, months, years.</td>
+            <td><code>=DATEDIF(A2,B2,"m")</code></td>
+            <td>Tenure, age, project duration calculations.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning"><strong>Common Formula Errors:</strong> #N/A often means lookup miss, #VALUE! means wrong data type, #REF! means broken reference, and #DIV/0! means division by zero.</div>
+    </section>
+
+    <section id="web-sheet-lab">
+      <h2>Interactive Web Sheet Lab</h2>
+      <p class="tagline">This section loads your CSV files directly on the webpage and shows each transformation step.</p>
+
+      <div class="lab-controls">
+        <div>
+          <label for="datasetSelect">Dataset</label>
+          <select id="datasetSelect">
+            <option value="starter">Starter (20 rows)</option>
+            <option value="large">Advanced (240 rows)</option>
+          </select>
+        </div>
+        <div>
+          <label for="rowLimit">Rows shown in grid</label>
+          <input id="rowLimit" type="number" min="5" max="250" value="20" />
+        </div>
+      </div>
+
+      <div class="step-buttons" id="stepButtons">
+        <button class="step-btn active" data-step="raw">1 Raw Import</button>
+        <button class="step-btn" data-step="clean">2 Text and Date Clean</button>
+        <button class="step-btn" data-step="enriched">3 Revenue and Lookup</button>
+        <button class="step-btn" data-step="summary">4 Region Summary</button>
+      </div>
+
+      <div id="labExplain" class="tip">Loading dataset and preparing spreadsheet views.</div>
+
+      <div class="kpi-grid" id="labKpi"></div>
+
+      <div class="sheet-wrap">
+        <table id="labTable"></table>
+      </div>
+
+      <div class="bars" id="labBars"></div>
+      <p class="status-line" id="labStatus"></p>
+      <div class="warning">If direct CSV loading is blocked by browser security on local file mode, open this HTML using a local server preview in VS Code. The section will still run normally in served mode.</div>
+    </section>
+
+    <section id="practical-dataset">
+      <h2>Hands-On Dataset (Spreadsheet Lab)</h2>
+      <p class="tagline">Use these files in this folder to practice in a real workbook:</p>
+      <ul>
+        <li><strong>Raw sales data:</strong> <code>excel-project-sales-raw.csv</code></li>
+        <li><strong>Advanced sales data:</strong> <code>excel-project-sales-large.csv</code> (240 rows for realistic analysis)</li>
+        <li><strong>Lookup table:</strong> <code>excel-project-region-targets.csv</code></li>
+        <li><strong>Workbook blueprint:</strong> <code>excel-workbook-template-layout.md</code></li>
+      </ul>
+
+      <h3>Workbook Setup (Sheet Structure)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Sheet Name</th>
+            <th>Purpose</th>
+            <th>What Happens to Data</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Raw_Data</td>
+            <td>Paste imported CSV exactly as-is.</td>
+            <td>No edits. This is your source-of-truth snapshot.</td>
+          </tr>
+          <tr>
+            <td>Clean_Data</td>
+            <td>Standardize dates, text, spacing, and validation checks.</td>
+            <td>Data quality improves, bad records become visible.</td>
+          </tr>
+          <tr>
+            <td>Lookup</td>
+            <td>Region targets and manager mapping.</td>
+            <td>Enrichment values are joined to sales rows.</td>
+          </tr>
+          <tr>
+            <td>Analysis</td>
+            <td>Calculated columns, KPIs, and helper metrics.</td>
+            <td>Raw rows become business metrics.</td>
+          </tr>
+          <tr>
+            <td>Pivot_Report</td>
+            <td>Pivot table and pivot chart outputs.</td>
+            <td>Rows are aggregated into summarized insights.</td>
+          </tr>
+          <tr>
+            <td>Dashboard</td>
+            <td>Final visuals and decision view.</td>
+            <td>Insights are presented for non-technical users.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Raw Dataset Preview (as seen in spreadsheet)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>OrderID</th>
+            <th>OrderDate</th>
+            <th>Region</th>
+            <th>SalesRep</th>
+            <th>Product</th>
+            <th>Units</th>
+            <th>UnitPrice</th>
+            <th>Discount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1002</td><td>01/02/2026</td><td>South</td><td>&nbsp;&nbsp;Neha</td><td>Mouse</td><td>25</td><td>550</td><td>0.10</td><td>Closed</td></tr>
+          <tr><td>1004</td><td>01-04-2026</td><td>EAST</td><td>Imran</td><td>Laptop Stand</td><td>15</td><td>1200</td><td>0.08</td><td>Closed</td></tr>
+          <tr><td>1006</td><td>2026/01/05</td><td>South</td><td>Karan</td><td>Keyboard</td><td>18</td><td>950</td><td>0.15</td><td>Returned</td></tr>
+          <tr><td>1012</td><td>11/01/2026</td><td>North</td><td>Ravi</td><td>Mouse</td><td>30</td><td>550</td><td>0.20</td><td>Returned</td></tr>
+        </tbody>
+      </table>
+      <div class="warning"><strong>Notice:</strong> The same date appears in multiple formats, region casing is inconsistent, and one rep has leading spaces. This is exactly what real business data looks like.</div>
+    </section>
+
+    <section id="advanced-dataset">
+      <h2>Advanced Dataset (240 Rows)</h2>
+      <p>After you finish the small sample, switch to <code>excel-project-sales-large.csv</code> to simulate real analysis pressure.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Feature in Large Dataset</th>
+            <th>Why It Matters</th>
+            <th>What You Should Practice</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>240 transaction rows across multiple months</td>
+            <td>Closer to operational reporting scale</td>
+            <td>Pivot refresh speed, slicers, and robust formulas</td>
+          </tr>
+          <tr>
+            <td>Mixed date formats</td>
+            <td>Common import issue</td>
+            <td>Power Query type conversion and validation</td>
+          </tr>
+          <tr>
+            <td>Inconsistent casing and extra spaces</td>
+            <td>Breaks grouping and lookups</td>
+            <td>TRIM, PROPER, and standardization columns</td>
+          </tr>
+          <tr>
+            <td>Some invalid emails</td>
+            <td>Quality control requirement</td>
+            <td>Error flags and exception reporting</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="tip"><strong>Recommended flow:</strong> Use the 20-row file first for formula understanding, then repeat the same steps on the 240-row file to test whether your process scales cleanly.</div>
+    </section>
+
+    <section id="spreadsheet-walkthrough">
+      <h2>Step-by-Step Data Transformation (What Happens to Data)</h2>
+      <p>This walkthrough shows what to do in Excel and what changes at each step.</p>
+
+      <h3>Step 1: Import and Convert to Table</h3>
+      <ol class="steps">
+        <li>Import <code>excel-project-sales-raw.csv</code> into <strong>Raw_Data</strong>.</li>
+        <li>Select any cell and press Ctrl + T.</li>
+        <li>Name the table <code>tblSalesRaw</code>.</li>
+      </ol>
+      <table>
+        <thead>
+          <tr><th>Before</th><th>After</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Plain range, formulas break when rows increase.</td>
+            <td>Structured table, formulas auto-fill to new rows.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Step 2: Clean Text Fields</h3>
+      <p>In <strong>Clean_Data</strong>, create cleaned columns:</p>
+      <pre><code>Region_Clean: =PROPER(TRIM([@Region]))
+SalesRep_Clean: =PROPER(TRIM([@SalesRep]))
+Email_Valid: =IF(ISNUMBER(SEARCH("@",[@Email])),"Valid","Invalid")</code></pre>
+      <table>
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>Before</th>
+            <th>After</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Region</td><td>EAST</td><td>East</td></tr>
+          <tr><td>SalesRep</td><td>&nbsp;&nbsp;Neha</td><td>Neha</td></tr>
+          <tr><td>Email</td><td>imran@example</td><td>Invalid (flagged)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Step 3: Standardize Date and Create Month</h3>
+      <p>Convert mixed date formats using Power Query (recommended), then add formula columns:</p>
+      <pre><code>OrderDate_Clean: [converted by Power Query to Date type]
+Month: =TEXT([@OrderDate_Clean],"mmm-yyyy")
+Quarter: ="Q"&ROUNDUP(MONTH([@OrderDate_Clean])/3,0)</code></pre>
+      <table>
+        <thead>
+          <tr><th>Before (OrderDate)</th><th>After (OrderDate_Clean)</th><th>Month</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>01-01-2026</td><td>01-Jan-2026</td><td>Jan-2026</td></tr>
+          <tr><td>2026/01/05</td><td>05-Jan-2026</td><td>Jan-2026</td></tr>
+          <tr><td>13 Jan 2026</td><td>13-Jan-2026</td><td>Jan-2026</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Step 4: Add Revenue and Net Revenue</h3>
+      <pre><code>GrossRevenue: =[@Units]*[@UnitPrice]
+DiscountAmount: =[@GrossRevenue]*[@Discount]
+NetRevenue: =[@GrossRevenue]-[@DiscountAmount]</code></pre>
+      <table>
+        <thead>
+          <tr>
+            <th>OrderID</th>
+            <th>Units</th>
+            <th>UnitPrice</th>
+            <th>Discount</th>
+            <th>GrossRevenue</th>
+            <th>NetRevenue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1001</td><td>12</td><td>950</td><td>0.05</td><td>11,400</td><td>10,830</td></tr>
+          <tr><td>1008</td><td>6</td><td>7800</td><td>0.12</td><td>46,800</td><td>41,184</td></tr>
+          <tr><td>1012</td><td>30</td><td>550</td><td>0.20</td><td>16,500</td><td>13,200</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Step 5: Join Region Targets (Lookup)</h3>
+      <p>Import <code>excel-project-region-targets.csv</code> into <strong>Lookup</strong> and use XLOOKUP:</p>
+      <pre><code>RegionTarget: =XLOOKUP([@Region_Clean],Lookup!$A:$A,Lookup!$B:$B,"Not Found")
+Manager: =XLOOKUP([@Region_Clean],Lookup!$A:$A,Lookup!$C:$C,"Not Found")</code></pre>
+      <table>
+        <thead>
+          <tr><th>Region_Clean</th><th>RegionTarget</th><th>Manager</th><th>What Changed</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>North</td><td>180,000</td><td>Aditi</td><td>Each row now has business target context.</td></tr>
+          <tr><td>West</td><td>170,000</td><td>Vikram</td><td>Data is enriched for performance comparison.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Step 6: Build Pivot Summary</h3>
+      <ol class="steps">
+        <li>Insert PivotTable from <strong>Clean_Data</strong>.</li>
+        <li>Rows: Region_Clean.</li>
+        <li>Columns: Month.</li>
+        <li>Values: Sum of NetRevenue, Count of OrderID.</li>
+      </ol>
+      <table>
+        <thead>
+          <tr>
+            <th>Region</th>
+            <th>NetRevenue (Jan-2026)</th>
+            <th>Orders</th>
+            <th>Insight</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>North</td><td>...</td><td>...</td><td>Check if target reached.</td></tr>
+          <tr><td>South</td><td>...</td><td>...</td><td>Monitor return-heavy patterns.</td></tr>
+          <tr><td>East</td><td>...</td><td>...</td><td>Validate rep performance.</td></tr>
+          <tr><td>West</td><td>...</td><td>...</td><td>Highest monitor mix may increase revenue.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Step 7: Dashboard Visualization</h3>
+      <ul>
+        <li>Chart 1: Clustered column for NetRevenue by Region.</li>
+        <li>Chart 2: Line chart for daily sales trend.</li>
+        <li>Chart 3: Donut chart for Product Mix.</li>
+        <li>KPI Cards: Total NetRevenue, Return %, Average Order Value.</li>
+      </ul>
+      <div class="tip"><strong>What happens to data here:</strong> Row-level transaction data is converted into executive-level signals for decisions.</div>
+    </section>
+
+    <section id="visual-checkpoints">
+      <h2>Spreadsheet Visual Checkpoints (What You Should See)</h2>
+      <p class="tagline">Use this as a visual QA checklist after each step.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Step</th>
+            <th>Sheet</th>
+            <th>Expected Visual State</th>
+            <th>If Not, Fix This</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Import</td>
+            <td>Raw_Data</td>
+            <td>Blue table style, filter icons on every header, row numbers continue when adding rows.</td>
+            <td>Recreate table with Ctrl + T and ensure "My table has headers" checked.</td>
+          </tr>
+          <tr>
+            <td>Text cleaning</td>
+            <td>Clean_Data</td>
+            <td>Region values appear as North/South/East/West only, no leading spaces in SalesRep.</td>
+            <td>Confirm TRIM + PROPER formulas copied for all rows.</td>
+          </tr>
+          <tr>
+            <td>Date standardization</td>
+            <td>Clean_Data</td>
+            <td>All dates right-aligned and formatted as dd-mmm-yyyy.</td>
+            <td>Convert to date type in Power Query or Data Text to Columns.</td>
+          </tr>
+          <tr>
+            <td>Revenue logic</td>
+            <td>Analysis/Clean_Data</td>
+            <td>GrossRevenue and NetRevenue columns show numeric currency values, no #VALUE! errors.</td>
+            <td>Check Units and UnitPrice are numeric, not text.</td>
+          </tr>
+          <tr>
+            <td>Lookup enrichment</td>
+            <td>Clean_Data</td>
+            <td>RegionTarget and Manager columns filled for all rows without "Not Found".</td>
+            <td>Standardize region labels before XLOOKUP.</td>
+          </tr>
+          <tr>
+            <td>Pivot summary</td>
+            <td>Pivot_Report</td>
+            <td>Regional summary visible with totals by month and order counts.</td>
+            <td>Refresh pivot and verify source range points to cleaned table.</td>
+          </tr>
+          <tr>
+            <td>Dashboard</td>
+            <td>Dashboard</td>
+            <td>3 charts + KPI cards + slicers aligned in one screen view.</td>
+            <td>Use Align tools and connect slicers to all pivot charts.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="intermediate">
+      <span class="level">Intermediate</span>
+      <h2>Intermediate Level: From Spreadsheet to Analysis</h2>
+      <p>Now move from storing data to extracting insights. Focus on structured filtering, summarization, and visual storytelling.</p>
+    </section>
+
+    <section id="analysis-tools">
+      <h2>Data Analysis Tools</h2>
+
+      <h3>Sorting and Filtering</h3>
+      <ul>
+        <li>Single-column sort: sort by sales descending.</li>
+        <li>Multi-level sort: region, then product, then revenue.</li>
+        <li>Custom filter: show values greater than target, dates this month, text contains keyword.</li>
+      </ul>
+      <pre><code>Best practice: convert to table (Ctrl + T) so filters remain dynamic as data grows.</code></pre>
+
+      <h3>Conditional Formatting</h3>
+      <ul>
+        <li>Highlight cells greater than average.</li>
+        <li>Use color scales for heatmap effect on performance.</li>
+        <li>Use icon sets for KPI status (up, flat, down).</li>
+        <li>Formula-based rule example: <code>=C2&lt;TODAY()</code> to flag overdue items.</li>
+      </ul>
+
+      <h3>Data Validation</h3>
+      <ul>
+        <li>Create dropdown lists for consistent categories.</li>
+        <li>Restrict date ranges and number boundaries.</li>
+        <li>Use custom validation formulas to enforce patterns.</li>
+      </ul>
+      <pre><code>Custom validation (allow only 5-digit ID):
+=AND(ISNUMBER(A2),LEN(A2)=5)</code></pre>
+
+      <h3>Pivot Tables and Pivot Charts</h3>
+      <ol class="steps">
+        <li>Select table and insert PivotTable.</li>
+        <li>Place dimensions in Rows and Columns (example: Region, Month).</li>
+        <li>Place metrics in Values (example: Sum of Revenue).</li>
+        <li>Add filters or slicers for interaction.</li>
+        <li>Insert PivotChart for instant visualization.</li>
+      </ol>
+      <div class="tip"><strong>Tip:</strong> Refresh pivot after source data updates (Right click pivot > Refresh).</div>
+
+      <h3>Dashboard Creation</h3>
+      <ul>
+        <li>Use one dashboard sheet and one hidden raw data sheet.</li>
+        <li>Create KPI cards (Total Sales, Profit Margin, Conversion Rate).</li>
+        <li>Add slicers and timelines for interactivity.</li>
+        <li>Keep color logic consistent: green good, red risk, amber caution.</li>
+      </ul>
+    </section>
+
+    <section id="visualization">
+      <h2>Visualization in Excel</h2>
+      <p class="tagline">Choose chart type based on question, not preference.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Question You Want to Answer</th>
+            <th>Best Chart Type</th>
+            <th>Example</th>
+            <th>Common Mistake to Avoid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>How does value change over time?</td>
+            <td>Line Chart</td>
+            <td>Monthly sales trend</td>
+            <td>Too many lines with similar color</td>
+          </tr>
+          <tr>
+            <td>Which categories are highest/lowest?</td>
+            <td>Bar/Column Chart</td>
+            <td>Revenue by product</td>
+            <td>Unsorted bars reduce readability</td>
+          </tr>
+          <tr>
+            <td>What share does each part contribute?</td>
+            <td>Stacked Bar or Donut (few categories)</td>
+            <td>Expense composition</td>
+            <td>Pie with too many slices</td>
+          </tr>
+          <tr>
+            <td>Is there a relationship between two variables?</td>
+            <td>Scatter Plot</td>
+            <td>Ad spend vs sales</td>
+            <td>Missing trendline and axis labels</td>
+          </tr>
+          <tr>
+            <td>What is the distribution/spread?</td>
+            <td>Histogram or Box Plot</td>
+            <td>Delivery time spread</td>
+            <td>Wrong bin size hides pattern</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Visualization Design Checklist</h3>
+      <ul class="checklist">
+        <li>Use clear title with insight intent (example: "Q1 Sales Drop Driven by Region West").</li>
+        <li>Label axes and units clearly.</li>
+        <li>Remove chart junk (heavy gridlines, 3D effects).</li>
+        <li>Use one accent color to emphasize key series.</li>
+        <li>Annotate outliers or sudden changes.</li>
+      </ul>
+    </section>
+
+    <section id="pivot-visualization-steps">
+      <h2>Pivot Table Visualization Steps (Exact Workflow)</h2>
+      <p class="tagline">Use this checklist exactly in Excel to build a professional pivot report and chart dashboard.</p>
+
+      <h3>Step 1: Prepare Source Data</h3>
+      <ol class="steps">
+        <li>Open <strong>Clean_Data</strong> sheet.</li>
+        <li>Make sure your range is a table (Ctrl + T).</li>
+        <li>Required columns for this tutorial: <code>Region_Clean</code>, <code>Month</code>, <code>Product</code>, <code>NetRevenue</code>, <code>Status</code>, <code>OrderID</code>.</li>
+      </ol>
+      <div class="warning"><strong>Important:</strong> If dates or revenue are text, pivot values will be wrong. Convert to proper types first.</div>
+
+      <h3>Step 2: Create Pivot Table</h3>
+      <ol class="steps">
+        <li>Click any cell inside the cleaned table.</li>
+        <li>Go to <strong>Insert -> PivotTable</strong>.</li>
+        <li>Choose <strong>New Worksheet</strong> and name it <strong>Pivot_Report</strong>.</li>
+      </ol>
+
+      <h3>Step 3: Place Fields in Correct Areas</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Pivot Area</th>
+            <th>Field to Drop</th>
+            <th>Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Rows</td>
+            <td>Region_Clean</td>
+            <td>Compares performance by region.</td>
+          </tr>
+          <tr>
+            <td>Columns</td>
+            <td>Month</td>
+            <td>Shows time-wise trend.</td>
+          </tr>
+          <tr>
+            <td>Values</td>
+            <td>NetRevenue</td>
+            <td>Main KPI (set to Sum).</td>
+          </tr>
+          <tr>
+            <td>Values</td>
+            <td>OrderID</td>
+            <td>Order count (set to Count).</td>
+          </tr>
+          <tr>
+            <td>Filters</td>
+            <td>Status</td>
+            <td>Quickly include/exclude Returned or Open orders.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Step 4: Fix Value Settings</h3>
+      <ol class="steps">
+        <li>Click any value in <strong>Sum of NetRevenue</strong> -> <strong>Value Field Settings</strong> -> choose <strong>Sum</strong>.</li>
+        <li>Number Format -> Currency (or Accounting) with zero or two decimals.</li>
+        <li>Click <strong>Count of OrderID</strong> -> ensure it is <strong>Count</strong>, not Sum.</li>
+      </ol>
+
+      <h3>Step 5: Build Pivot Chart</h3>
+      <ol class="steps">
+        <li>Select any cell inside pivot table.</li>
+        <li>Go to <strong>Insert -> PivotChart</strong>.</li>
+        <li>Choose <strong>Clustered Column</strong> for region comparison.</li>
+        <li>Add title: <strong>Net Revenue by Region and Month</strong>.</li>
+      </ol>
+
+      <h3>Step 6: Add Interactivity (Slicers and Timeline)</h3>
+      <ol class="steps">
+        <li>Select pivot table -> <strong>PivotTable Analyze -> Insert Slicer</strong>.</li>
+        <li>Add slicers for <strong>Region_Clean</strong>, <strong>Product</strong>, <strong>Status</strong>.</li>
+        <li>If you have a true date column, add <strong>Insert Timeline</strong> for OrderDate_Clean.</li>
+        <li>Use <strong>Report Connections</strong> to connect slicers to all pivot charts.</li>
+      </ol>
+
+      <h3>Step 7: Layout for Dashboard</h3>
+      <ol class="steps">
+        <li>Create a sheet named <strong>Dashboard</strong>.</li>
+        <li>Move pivot chart and slicers there.</li>
+        <li>Add KPI cards linked to pivot totals: Total NetRevenue, Total Orders, Return %.</li>
+        <li>Keep one row for slicers at top and charts below for clean layout.</li>
+      </ol>
+
+      <h3>Step 8: Read the Visual Correctly</h3>
+      <ul>
+        <li>If one region has higher bars but low order count, average order value may be high.</li>
+        <li>If revenue drops while orders stay stable, discount rate may be increasing.</li>
+        <li>Filter <strong>Status = Returned</strong> to detect risky product or region patterns.</li>
+      </ul>
+
+      <h3>Common Pivot Visualization Mistakes and Fixes</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Mistake</th>
+            <th>What You See</th>
+            <th>Fix</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Values show Count instead of Sum</td>
+            <td>Very small numbers in revenue chart</td>
+            <td>Change Value Field Settings to Sum.</td>
+          </tr>
+          <tr>
+            <td>Month order is incorrect</td>
+            <td>Apr, Aug, Dec, Feb sequence</td>
+            <td>Use real date field and group by month/year.</td>
+          </tr>
+          <tr>
+            <td>Slicer affects one chart only</td>
+            <td>Charts show inconsistent totals</td>
+            <td>Use Report Connections and tick all pivots/charts.</td>
+          </tr>
+          <tr>
+            <td>New rows not visible</td>
+            <td>Pivot misses latest data</td>
+            <td>Refresh pivot and confirm source is table, not static range.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="tip"><strong>Web Lab Mapping:</strong> In this page's Interactive Web Sheet Lab, step <strong>4 Region Summary</strong> mirrors the same logic as PivotTable aggregation, so you can cross-check your Excel pivot output quickly.</div>
+    </section>
+
+    <section id="advanced">
+      <span class="level">Advanced</span>
+      <h2>Advanced Level: Scalable Analysis and Modeling</h2>
+      <p>At this stage, you should handle larger datasets, automate repetitive prep work, and create reusable data models.</p>
+    </section>
+
+    <section id="advanced-topics">
+      <h2>Advanced Excel Topics</h2>
+
+      <h3>Power Query (Data Cleaning and Transformation)</h3>
+      <ul>
+        <li>Import from CSV, Excel, web, databases, and folders.</li>
+        <li>Clean data: remove nulls, trim spaces, split columns, change types.</li>
+        <li>Append monthly files automatically.</li>
+        <li>Refresh once and apply transformation steps repeatedly.</li>
+      </ul>
+      <pre><code>Typical Power Query flow:
+Get Data -> Transform -> Close & Load -> Refresh for new periods</code></pre>
+
+      <h3>Power Pivot (Data Modeling)</h3>
+      <ul>
+        <li>Create relationships across multiple tables (fact + dimensions).</li>
+        <li>Build DAX measures for dynamic metrics.</li>
+        <li>Use Calendar table for time intelligence.</li>
+      </ul>
+      <pre><code>Simple DAX measure example:
+Total Sales := SUM(Sales[Amount])</code></pre>
+
+      <h3>What-If Analysis</h3>
+      <div class="grid-2">
+        <div class="card">
+          <h4>Goal Seek</h4>
+          <p>Find input value needed to hit output target.</p>
+          <p>Use case: What price gives 30% gross margin?</p>
+        </div>
+        <div class="card">
+          <h4>Scenario Manager</h4>
+          <p>Store and compare multiple assumptions.</p>
+          <p>Use case: Best case, expected case, worst case planning.</p>
+        </div>
+      </div>
+
+      <h3>Macros and Basic VBA</h3>
+      <ul>
+        <li>Record repetitive tasks as macros.</li>
+        <li>Edit generated VBA for small improvements.</li>
+        <li>Use macros for report formatting and export workflow.</li>
+      </ul>
+      <pre><code>Basic VBA example:
+Sub HighlightTopSales()
+    Range("D2:D100").FormatConditions.AddTop10
+    Range("D2:D100").FormatConditions(1).SetFirstPriority
+    Range("D2:D100").FormatConditions(1).TopBottom = xlTop10Top
+    Range("D2:D100").FormatConditions(1).Rank = 10
+End Sub</code></pre>
+      <div class="warning"><strong>Security Note:</strong> Enable macros only from trusted files and signed sources.</div>
+    </section>
+
+    <section id="expert">
+      <span class="level">Expert</span>
+      <h2>Expert Level: Enterprise-Grade Excel Thinking</h2>
+      <ul>
+        <li>Design modular workbooks with clear input, processing, and output sheets.</li>
+        <li>Create reusable formula blocks and documented named ranges.</li>
+        <li>Use data model approach instead of flat-sheet formulas for large data.</li>
+        <li>Version-control critical templates and define governance rules.</li>
+      </ul>
+    </section>
+
+    <section id="memory-tips">
+      <h2>Memory Tips and Tricks</h2>
+      <h3>Formula Memory Patterns</h3>
+      <ul>
+        <li><strong>IF family:</strong> "Ask a question, return two paths."</li>
+        <li><strong>SUMIFS/COUNTIFS:</strong> "Result range first, then filter pairs."</li>
+        <li><strong>INDEX + MATCH:</strong> "MATCH finds row, INDEX returns value."</li>
+        <li><strong>Date logic:</strong> "TODAY for rolling date, DATE for fixed construction."</li>
+      </ul>
+
+      <h3>Common Mistakes and Prevention</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Mistake</th>
+            <th>Why It Happens</th>
+            <th>How to Avoid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Wrong lookup match</td>
+            <td>Approximate match used accidentally</td>
+            <td>Use FALSE in VLOOKUP or use XLOOKUP exact match default</td>
+          </tr>
+          <tr>
+            <td>Broken references after copy</td>
+            <td>Using relative refs where fixed needed</td>
+            <td>Use $ for constants (example: $F$1)</td>
+          </tr>
+          <tr>
+            <td>Text-number mismatch</td>
+            <td>Imported values look numeric but are text</td>
+            <td>Use VALUE, TRIM, and data type checks</td>
+          </tr>
+          <tr>
+            <td>Messy formulas</td>
+            <td>Single giant formula with no structure</td>
+            <td>Break into helper columns or use LET in modern Excel</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="shortcuts">
+      <h2>Keyboard Shortcuts (Organized by Category)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Shortcut</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Navigation</td><td>Ctrl + Arrow</td><td>Jump to edge of data region</td></tr>
+          <tr><td>Navigation</td><td>Ctrl + Home / Ctrl + End</td><td>Go to first / last used cell</td></tr>
+          <tr><td>Selection</td><td>Ctrl + Shift + Arrow</td><td>Select continuous range</td></tr>
+          <tr><td>Editing</td><td>F2</td><td>Edit active cell</td></tr>
+          <tr><td>Editing</td><td>Ctrl + D / Ctrl + R</td><td>Fill down / fill right</td></tr>
+          <tr><td>Formulas</td><td>Alt + =</td><td>AutoSum</td></tr>
+          <tr><td>Formulas</td><td>Ctrl + `</td><td>Show/hide formulas</td></tr>
+          <tr><td>Formulas</td><td>F4</td><td>Cycle reference type (A1 to $A$1 etc.)</td></tr>
+          <tr><td>Formatting</td><td>Ctrl + 1</td><td>Open Format Cells dialog</td></tr>
+          <tr><td>Formatting</td><td>Ctrl + Shift + L</td><td>Toggle filters</td></tr>
+          <tr><td>Data</td><td>Ctrl + T</td><td>Create table</td></tr>
+          <tr><td>Data</td><td>Alt + N + V</td><td>Insert PivotTable</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="use-cases">
+      <h2>Real-World Use Cases</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Sales Analysis</h3>
+          <ul>
+            <li>Track monthly revenue by region and product.</li>
+            <li>Use PivotTable for segment performance.</li>
+            <li>Use conditional formatting to flag underperforming territories.</li>
+            <li>Use line chart to visualize trend and seasonality.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Financial Tracking</h3>
+          <ul>
+            <li>Create budget vs actual model.</li>
+            <li>Use SUMIFS for category and month rollups.</li>
+            <li>Use Scenario Manager for planning outcomes.</li>
+            <li>Build dashboard KPI cards for cash flow and burn rate.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Data Cleaning Workflow</h3>
+          <ul>
+            <li>Import raw files with Power Query.</li>
+            <li>Trim spaces, normalize case, split combined columns.</li>
+            <li>Validate key fields with data validation.</li>
+            <li>Create exception report for invalid records.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Operational Reporting</h3>
+          <ul>
+            <li>Track tickets closed, SLA breaches, and response times.</li>
+            <li>Use COUNTIFS for KPI counts.</li>
+            <li>Use DATEDIF for turnaround-time measurement.</li>
+            <li>Publish weekly snapshot dashboard.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="ai-integration">
+      <h2>AI Integration in Excel</h2>
+      <p>AI can speed up formula writing, summarization, data cleanup logic, and explanation of anomalies.</p>
+
+      <h3>Using ChatGPT and Excel Copilot</h3>
+      <ul>
+        <li>Ask for formula suggestions with clear column names and goal.</li>
+        <li>Request data quality checks and anomaly detection ideas.</li>
+        <li>Generate narrative summaries from pivot outputs.</li>
+        <li>Draft VBA macros for repetitive formatting tasks.</li>
+      </ul>
+
+      <h3>Prompt Examples</h3>
+      <pre><code>Prompt 1 (Formula):
+"I have columns Date, Region, Product, Revenue. Write a SUMIFS formula to total Revenue for Region='West' in Q1 2026."
+
+Prompt 2 (Cleanup):
+"Suggest Excel formulas and Power Query steps to clean customer names, phone numbers, and duplicate emails."
+
+Prompt 3 (Analysis):
+"Given monthly sales data, identify trend, seasonality, and top 3 anomalies with possible reasons."
+
+Prompt 4 (Automation):
+"Write a VBA macro that formats a report sheet, applies currency format to sales columns, and exports to PDF."</code></pre>
+
+      <div class="tip"><strong>AI Best Practice:</strong> Always validate AI-generated formulas on a small test sample before using in production reports.</div>
+    </section>
+
+    <section id="bonus">
+      <h2>Bonus Tips and Hidden Excel Features</h2>
+      <ul>
+        <li><strong>Flash Fill (Ctrl + E):</strong> Automatically extract patterns from examples.</li>
+        <li><strong>Quick Analysis (Ctrl + Q):</strong> Fast access to totals, charts, tables, and conditional formats.</li>
+        <li><strong>Watch Window:</strong> Monitor critical cells while scrolling elsewhere.</li>
+        <li><strong>Named Ranges:</strong> Make formulas readable and easier to maintain.</li>
+        <li><strong>Camera Tool:</strong> Live snapshot of key metrics for dashboard cards.</li>
+        <li><strong>Custom Number Formats:</strong> Display large values as K/M for cleaner dashboards.</li>
+      </ul>
+
+      <h3>Productivity Hacks</h3>
+      <ol class="steps">
+        <li>Use template workbooks for recurring reports.</li>
+        <li>Color only input cells to prevent accidental edits.</li>
+        <li>Use helper columns to simplify large formulas.</li>
+        <li>Store assumptions in one control panel sheet.</li>
+        <li>Use comments/notes on important business rules.</li>
+      </ol>
+    </section>
+
+    <section id="capstone-project">
+      <h2>Final Dataset Project (End-to-End)</h2>
+      <p class="tagline">Build one complete project from raw CSV to business dashboard.</p>
+
+      <h3>Project Objective</h3>
+      <p>Create a monthly regional sales performance dashboard that shows target achievement, product mix, and return impact.</p>
+
+      <h3>Dataset Choice</h3>
+      <ul>
+        <li>Starter mode: <code>excel-project-sales-raw.csv</code> (20 rows)</li>
+        <li>Interview/portfolio mode: <code>excel-project-sales-large.csv</code> (240 rows)</li>
+      </ul>
+
+      <h3>Project Steps and Data State Changes</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Step</th>
+            <th>Action in Excel</th>
+            <th>Data State Before</th>
+            <th>Data State After</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Import raw CSV into Raw_Data</td>
+            <td>Mixed formats, inconsistent text</td>
+            <td>Same data loaded and ready for processing</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Power Query clean and set data types</td>
+            <td>Text dates, mixed casing, spacing issues</td>
+            <td>Standardized dates/text and reliable schema</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Add calculated columns (revenue, month, quarter)</td>
+            <td>Only raw transaction fields</td>
+            <td>Business-ready metrics on each row</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Lookup region targets and managers</td>
+            <td>No benchmark context</td>
+            <td>Each row linked to target and owner</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Create PivotTable and PivotChart</td>
+            <td>20 row-level records</td>
+            <td>Aggregated regional summary view</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Build dashboard with slicers</td>
+            <td>Static summary</td>
+            <td>Interactive report for management use</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Expected Output Checklist</h3>
+      <ul class="checklist">
+        <li>Cleaned dataset with zero invalid date formats.</li>
+        <li>Email validation flag column completed.</li>
+        <li>NetRevenue and discount impact columns complete.</li>
+        <li>Pivot by Region and Product with monthly filters.</li>
+        <li>Dashboard with at least 3 charts and 3 KPI cards.</li>
+      </ul>
+
+      <h3>Practical Interview-Style Questions (Use Your Project)</h3>
+      <ol class="steps">
+        <li>Which region has the highest net revenue after discount?</li>
+        <li>How much revenue was lost to discounts?</li>
+        <li>Which product has highest return risk?</li>
+        <li>Are any regions below target, and by how much?</li>
+      </ol>
+    </section>
+
+    <section id="practice-roadmap">
+      <h2>30-Day Practice Roadmap</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Week</th>
+            <th>Focus</th>
+            <th>Deliverable</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Week 1</td>
+            <td>Basic concepts, data entry, formatting, SUM/AVERAGE/IF</td>
+            <td>Clean sales table with basic KPIs</td>
+          </tr>
+          <tr>
+            <td>Week 2</td>
+            <td>Lookups, text/date functions, validation, conditional formatting</td>
+            <td>Interactive cleaned dataset with quality checks</td>
+          </tr>
+          <tr>
+            <td>Week 3</td>
+            <td>Pivot tables/charts, dashboard layout, visualization best practices</td>
+            <td>Management summary dashboard</td>
+          </tr>
+          <tr>
+            <td>Week 4</td>
+            <td>Power Query, Power Pivot, what-if analysis, macro basics</td>
+            <td>Automated refreshable monthly analytics workbook</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>
+      Built as a practical Excel learning path from beginner to expert for data analysis and visualization.
+    </footer>
+  </div>
+  <script>
+    (function () {
+      const DATA_FILES = {
+        starter: "excel-project-sales-raw.csv",
+        large: "excel-project-sales-large.csv"
+      };
+      const LOOKUP_FILE = "excel-project-region-targets.csv";
+
+      const els = {
+        dataset: document.getElementById("datasetSelect"),
+        rowLimit: document.getElementById("rowLimit"),
+        stepButtons: document.getElementById("stepButtons"),
+        explain: document.getElementById("labExplain"),
+        table: document.getElementById("labTable"),
+        kpi: document.getElementById("labKpi"),
+        bars: document.getElementById("labBars"),
+        status: document.getElementById("labStatus")
+      };
+
+      const state = {
+        datasetKey: "starter",
+        step: "raw",
+        rawRows: [],
+        transformedRows: [],
+        regionTargets: {}
+      };
+
+      function parseCsv(text) {
+        const lines = text.replace(/\r/g, "").split("\n").filter(Boolean);
+        if (!lines.length) return [];
+        const headers = lines[0].split(",");
+        return lines.slice(1).map(line => {
+          const cols = line.split(",");
+          const row = {};
+          headers.forEach((h, i) => {
+            row[h] = (cols[i] || "").trim();
+          });
+          return row;
+        });
+      }
+
+      function parseDateFlexible(input) {
+        if (!input) return null;
+        const t = input.trim();
+        const d1 = new Date(t);
+        if (!Number.isNaN(d1.getTime())) return d1;
+
+        const m1 = t.match(/^(\d{2})-(\d{2})-(\d{4})$/);
+        if (m1) return new Date(Number(m1[3]), Number(m1[2]) - 1, Number(m1[1]));
+
+        const m2 = t.match(/^(\d{4})\/(\d{2})\/(\d{2})$/);
+        if (m2) return new Date(Number(m2[1]), Number(m2[2]) - 1, Number(m2[3]));
+
+        const m3 = t.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+        if (m3) return new Date(Number(m3[3]), Number(m3[2]) - 1, Number(m3[1]));
+
+        return null;
+      }
+
+      function fmtDate(d) {
+        if (!d || Number.isNaN(d.getTime())) return "Invalid Date";
+        const day = String(d.getDate()).padStart(2, "0");
+        const mon = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][d.getMonth()];
+        return day + "-" + mon + "-" + d.getFullYear();
+      }
+
+      function fmtMonth(d) {
+        if (!d || Number.isNaN(d.getTime())) return "Invalid";
+        const mon = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][d.getMonth()];
+        return mon + "-" + d.getFullYear();
+      }
+
+      function toNum(v) {
+        const n = Number(v);
+        return Number.isFinite(n) ? n : 0;
+      }
+
+      function cleanRow(r) {
+        const dt = parseDateFlexible(r.OrderDate);
+        const regionClean = (r.Region || "").trim();
+        const regionProper = regionClean ? regionClean.charAt(0).toUpperCase() + regionClean.slice(1).toLowerCase() : "";
+        const salesRepClean = (r.SalesRep || "").trim();
+        const salesRepProper = salesRepClean ? salesRepClean.charAt(0).toUpperCase() + salesRepClean.slice(1).toLowerCase() : "";
+
+        const units = toNum(r.Units);
+        const unitPrice = toNum(r.UnitPrice);
+        const discount = toNum(r.Discount);
+        const gross = units * unitPrice;
+        const discountAmount = gross * discount;
+        const net = gross - discountAmount;
+        const regionInfo = state.regionTargets[regionProper] || { MonthlyTarget: "", Manager: "" };
+
+        return {
+          OrderID: r.OrderID,
+          OrderDate_Raw: r.OrderDate,
+          OrderDate_Clean: fmtDate(dt),
+          Month: fmtMonth(dt),
+          Region_Raw: r.Region,
+          Region_Clean: regionProper,
+          SalesRep_Raw: r.SalesRep,
+          SalesRep_Clean: salesRepProper,
+          Product: r.Product,
+          Units: units,
+          UnitPrice: unitPrice,
+          Discount: discount,
+          GrossRevenue: Math.round(gross * 100) / 100,
+          DiscountAmount: Math.round(discountAmount * 100) / 100,
+          NetRevenue: Math.round(net * 100) / 100,
+          Email: r.Email,
+          Email_Valid: (r.Email || "").includes("@") && (r.Email || "").includes(".") ? "Valid" : "Invalid",
+          Status: r.Status,
+          RegionTarget: toNum(regionInfo.MonthlyTarget),
+          Manager: regionInfo.Manager
+        };
+      }
+
+      function summarizeByRegion(rows) {
+        const map = {};
+        rows.forEach(r => {
+          const key = r.Region_Clean || "Unknown";
+          if (!map[key]) {
+            map[key] = { Region: key, Orders: 0, NetRevenue: 0, DiscountAmount: 0, Returned: 0, Target: r.RegionTarget || 0 };
+          }
+          map[key].Orders += 1;
+          map[key].NetRevenue += r.NetRevenue;
+          map[key].DiscountAmount += r.DiscountAmount;
+          if ((r.Status || "").toLowerCase() === "returned") map[key].Returned += 1;
+        });
+        return Object.values(map).map(x => {
+          const gap = x.NetRevenue - x.Target;
+          return {
+            Region: x.Region,
+            Orders: x.Orders,
+            NetRevenue: Math.round(x.NetRevenue),
+            DiscountLoss: Math.round(x.DiscountAmount),
+            ReturnRatePct: x.Orders ? (x.Returned / x.Orders * 100).toFixed(1) : "0.0",
+            Target: Math.round(x.Target),
+            GapToTarget: Math.round(gap)
+          };
+        }).sort((a, b) => b.NetRevenue - a.NetRevenue);
+      }
+
+      function renderTable(rows, limit) {
+        els.table.innerHTML = "";
+        if (!rows.length) {
+          els.table.innerHTML = "<tr><th>No data available</th></tr>";
+          return;
+        }
+        const columns = Object.keys(rows[0]);
+        const thead = document.createElement("thead");
+        const trh = document.createElement("tr");
+        columns.forEach(c => {
+          const th = document.createElement("th");
+          th.textContent = c;
+          trh.appendChild(th);
+        });
+        thead.appendChild(trh);
+        els.table.appendChild(thead);
+
+        const tbody = document.createElement("tbody");
+        rows.slice(0, limit).forEach(r => {
+          const tr = document.createElement("tr");
+          columns.forEach(c => {
+            const td = document.createElement("td");
+            td.textContent = String(r[c]);
+            tr.appendChild(td);
+          });
+          tbody.appendChild(tr);
+        });
+        els.table.appendChild(tbody);
+      }
+
+      function renderKpi(rows) {
+        const totalNet = rows.reduce((a, r) => a + (r.NetRevenue || 0), 0);
+        const totalDisc = rows.reduce((a, r) => a + (r.DiscountAmount || 0), 0);
+        const returned = rows.filter(r => (r.Status || "").toLowerCase() === "returned").length;
+        const invalid = rows.filter(r => r.Email_Valid === "Invalid").length;
+        const cards = [
+          { label: "Rows", value: rows.length },
+          { label: "Net Revenue", value: Math.round(totalNet).toLocaleString() },
+          { label: "Discount Loss", value: Math.round(totalDisc).toLocaleString() },
+          { label: "Returned Orders", value: returned },
+          { label: "Invalid Emails", value: invalid }
+        ];
+        els.kpi.innerHTML = cards.map(c => "<div class=\"kpi\"><div class=\"label\">" + c.label + "</div><div class=\"value\">" + c.value + "</div></div>").join("");
+      }
+
+      function renderBars(summaryRows) {
+        if (!summaryRows.length) {
+          els.bars.innerHTML = "";
+          return;
+        }
+        const maxVal = Math.max(...summaryRows.map(r => r.NetRevenue), 1);
+        els.bars.innerHTML = summaryRows.map(r => {
+          const pct = Math.max(4, Math.round((r.NetRevenue / maxVal) * 100));
+          return "<div class=\"bar-row\">"
+            + "<strong>" + r.Region + "</strong>"
+            + "<div class=\"bar-track\"><div class=\"bar-fill\" style=\"width:" + pct + "%\"></div></div>"
+            + "<span>" + r.NetRevenue.toLocaleString() + "</span>"
+            + "</div>";
+        }).join("");
+      }
+
+      function updateStepUi() {
+        const btns = Array.from(els.stepButtons.querySelectorAll(".step-btn"));
+        btns.forEach(btn => {
+          btn.classList.toggle("active", btn.dataset.step === state.step);
+        });
+      }
+
+      function render() {
+        const limit = Math.max(5, Math.min(250, Number(els.rowLimit.value) || 20));
+        const rawRows = state.rawRows;
+        const cleanRows = state.transformedRows;
+        const summaryRows = summarizeByRegion(cleanRows);
+
+        let viewRows = rawRows;
+        let explain = "Step 1 shows source CSV exactly as imported into Raw_Data.";
+
+        if (state.step === "clean") {
+          viewRows = cleanRows.map(r => ({
+            OrderID: r.OrderID,
+            OrderDate_Raw: r.OrderDate_Raw,
+            OrderDate_Clean: r.OrderDate_Clean,
+            Region_Raw: r.Region_Raw,
+            Region_Clean: r.Region_Clean,
+            SalesRep_Raw: r.SalesRep_Raw,
+            SalesRep_Clean: r.SalesRep_Clean,
+            Email: r.Email,
+            Email_Valid: r.Email_Valid
+          }));
+          explain = "Step 2 standardizes date, region, and sales rep fields; invalid emails are flagged for correction.";
+        }
+
+        if (state.step === "enriched") {
+          viewRows = cleanRows.map(r => ({
+            OrderID: r.OrderID,
+            Region: r.Region_Clean,
+            Product: r.Product,
+            Units: r.Units,
+            UnitPrice: r.UnitPrice,
+            Discount: r.Discount,
+            GrossRevenue: r.GrossRevenue,
+            DiscountAmount: r.DiscountAmount,
+            NetRevenue: r.NetRevenue,
+            RegionTarget: r.RegionTarget,
+            Manager: r.Manager,
+            Status: r.Status
+          }));
+          explain = "Step 3 adds business calculations and lookup enrichment so each transaction is analysis-ready.";
+        }
+
+        if (state.step === "summary") {
+          viewRows = summaryRows;
+          explain = "Step 4 aggregates transaction rows into regional insights, similar to a PivotTable output.";
+        }
+
+        els.explain.textContent = explain;
+        renderTable(viewRows, limit);
+        renderKpi(cleanRows);
+        renderBars(summaryRows);
+        els.status.textContent = "Loaded " + rawRows.length + " rows from " + DATA_FILES[state.datasetKey] + " and rendered step: " + state.step + ".";
+      }
+
+      async function loadText(path) {
+        const res = await fetch(path, { cache: "no-store" });
+        if (!res.ok) throw new Error("Could not load " + path);
+        return await res.text();
+      }
+
+      async function loadDataset() {
+        try {
+          const [salesText, lookupText] = await Promise.all([
+            loadText(DATA_FILES[state.datasetKey]),
+            loadText(LOOKUP_FILE)
+          ]);
+
+          const salesRows = parseCsv(salesText);
+          const lookupRows = parseCsv(lookupText);
+          const lookup = {};
+          lookupRows.forEach(r => {
+            const region = (r.Region || "").trim();
+            if (region) lookup[region] = r;
+          });
+
+          state.rawRows = salesRows;
+          state.regionTargets = lookup;
+          state.transformedRows = salesRows.map(cleanRow);
+          render();
+        } catch (err) {
+          els.explain.textContent = "Unable to load CSV directly in current browser mode. Use VS Code local web preview or serve folder through a local HTTP server.";
+          els.status.textContent = String(err.message || err);
+          els.table.innerHTML = "<tr><th>CSV loading error</th></tr><tr><td>Use a local server preview so fetch can access files in this folder.</td></tr>";
+          els.kpi.innerHTML = "";
+          els.bars.innerHTML = "";
+        }
+      }
+
+      els.dataset.addEventListener("change", () => {
+        state.datasetKey = els.dataset.value;
+        loadDataset();
+      });
+
+      els.rowLimit.addEventListener("input", render);
+
+      els.stepButtons.addEventListener("click", (e) => {
+        const btn = e.target.closest(".step-btn");
+        if (!btn) return;
+        state.step = btn.dataset.step;
+        updateStepUi();
+        render();
+      });
+
+      updateStepUi();
+      loadDataset();
+    })();
+  </script>
+
+  <script src="../global-script.js"></script>
+</body>
+</html>

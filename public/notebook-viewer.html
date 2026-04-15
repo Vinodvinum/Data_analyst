@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notebook Viewer</title>
+  <style>
+    :root{--bg:#f4f8fb;--ink:#102235;--line:#d8e3ef;--panel:#fff;--code:#0b1220}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;background:var(--bg);color:var(--ink)}
+    .wrap{max-width:1200px;margin:0 auto;padding:20px}
+    .hero,.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px}
+    h1,h2{margin-top:0}
+    a{color:#0b57d0;text-decoration:none}a:hover{text-decoration:underline}
+    .row{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:#fff}
+    .msg{color:#4b5563}
+    .cell{border:1px solid var(--line);border-radius:10px;margin:10px 0;background:#fff;overflow:hidden}
+    .cell .head{padding:8px 10px;background:#eef5ff;font-weight:700;font-size:.9rem}
+    .cell pre{margin:0;padding:10px;overflow:auto;background:#fff;white-space:pre-wrap}
+    .code pre{background:var(--code);color:#e2e8f0}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>IPYNB Viewer</h1>
+      <p class="msg">Read notebook content in browser and open pre-rendered output HTML when available.</p>
+      <div class="row">
+        <a class="chip" href="index.html">Back to Hub</a>
+        <a class="chip" href="notebook-viewer.html?file=notebooks/python-data-analysis-guide.ipynb&output=outputs/python-data-analysis-guide-output.html">Python notebook</a>
+        <a class="chip" href="notebook-viewer.html?file=notebooks/sql-data-analysis-guide.ipynb&output=outputs/sql-data-analysis-guide-output.html">SQL notebook</a>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 id="title">No notebook selected</h2>
+      <p id="meta" class="msg"></p>
+      <p id="outlink" class="msg"></p>
+      <div id="cells"></div>
+    </section>
+  </div>
+
+  <script>
+    function toText(src) {
+      if (!src) return '';
+      return Array.isArray(src) ? src.join('') : String(src);
+    }
+
+    (async function() {
+      const qs = new URLSearchParams(location.search);
+      const file = qs.get('file');
+      const out = qs.get('output');
+      const title = document.getElementById('title');
+      const meta = document.getElementById('meta');
+      const outlink = document.getElementById('outlink');
+      const cellsWrap = document.getElementById('cells');
+      if (!file) return;
+      title.textContent = file;
+      if (out) outlink.innerHTML = `Notebook output view: <a href="${out}">${out}</a>`;
+      try {
+        const res = await fetch(file);
+        const nb = await res.json();
+        const cells = nb.cells || [];
+        meta.textContent = `Total cells: ${cells.length}`;
+        cells.forEach((c, i) => {
+          const div = document.createElement('div');
+          div.className = 'cell ' + (c.cell_type === 'code' ? 'code' : 'markdown');
+          const head = document.createElement('div');
+          head.className = 'head';
+          head.textContent = `${i + 1}. ${c.cell_type.toUpperCase()}`;
+          const pre = document.createElement('pre');
+          pre.textContent = toText(c.source);
+          div.appendChild(head);
+          div.appendChild(pre);
+          cellsWrap.appendChild(div);
+        });
+      } catch (e) {
+        meta.textContent = `Could not load notebook JSON in this browser context: ${e.message}`;
+      }
+    })();
+  </script>
+</body>
+</html>
+

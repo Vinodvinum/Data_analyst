@@ -66,6 +66,42 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      <section className="section">
+        <div className="section-head">
+          <h2>Legacy Assets</h2>
+          <p>
+            Access your complete existing library including guide files, notebooks,
+            outputs, notebook viewer, and web practice lab.
+          </p>
+        </div>
+
+        <div className="guide-grid">
+          <article className="guide-card glass-panel">
+            <h3>All Guide Files</h3>
+            <p>Browse every guide currently under the guides folder.</p>
+            <Link className="inline-link" to="/guides">
+              Open Guide Hub
+            </Link>
+          </article>
+
+          <article className="guide-card glass-panel">
+            <h3>Notebooks & Outputs</h3>
+            <p>Open notebook files, rendered outputs, and launch notebook viewer.</p>
+            <Link className="inline-link" to="/notebooks">
+              Open Notebook Hub
+            </Link>
+          </article>
+
+          <article className="guide-card glass-panel">
+            <h3>Web Practice Lab</h3>
+            <p>Launch the standalone web-practice-lab and additional tools.</p>
+            <Link className="inline-link" to="/tools">
+              Open Tools Hub
+            </Link>
+          </article>
+        </div>
+      </section>
     </>
   );
 }

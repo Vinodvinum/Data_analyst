@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Power BI Data Analysis Master Guide (Beginner to Expert)</title>
+  <style>
+    :root {
+      --bg: #f6f7f3;
+      --card: #ffffff;
+      --ink: #17212b;
+      --muted: #52606d;
+      --brand: #0f766e;
+      --brand-2: #d97706;
+      --brand-3: #1d4ed8;
+      --line: #d7e0e8;
+      --soft: #eef7f5;
+      --soft-2: #fff6e8;
+      --shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--ink);
+      line-height: 1.65;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(15, 118, 110, 0.12) 0%, transparent 24%),
+        radial-gradient(circle at 100% 0%, rgba(217, 119, 6, 0.12) 0%, transparent 28%),
+        linear-gradient(180deg, #fbfcfa 0%, #f6f7f3 100%);
+    }
+
+    .container {
+      width: min(1200px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 40px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0f766e, #134e4a 50%, #0ea5e9 125%);
+      color: #fff;
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1.1;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 90ch;
+      opacity: 0.96;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 0.92rem;
+      backdrop-filter: blur(6px);
+    }
+
+    nav, section, .callout, .card, .table-wrap {
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    nav, section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      margin-bottom: 18px;
+      padding: 22px;
+    }
+
+    nav h2, section h2, section h3, section h4 {
+      margin-top: 0;
+      line-height: 1.2;
+      color: #102033;
+    }
+
+    .level {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-radius: 999px;
+      padding: 4px 10px;
+      margin-bottom: 10px;
+      border: 1px solid transparent;
+    }
+
+    .beginner { background: #eafaf7; color: var(--brand); border-color: #c6ece4; }
+    .intermediate { background: #eff6ff; color: var(--brand-3); border-color: #d6e4ff; }
+    .advanced { background: #fff6e8; color: #b45309; border-color: #f5deb6; }
+    .expert { background: #f3e8ff; color: #7c3aed; border-color: #e5d4ff; }
+
+    .toc {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 8px 18px;
+      padding-left: 20px;
+      margin: 8px 0 0;
+    }
+
+    a { color: #0b57d0; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .muted { color: var(--muted); }
+
+    .grid-2, .grid-3 {
+      display: grid;
+      gap: 14px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+    .card {
+      background: #fcfdff;
+      border: 1px solid var(--line);
+      padding: 16px;
+    }
+
+    .callout {
+      padding: 14px 16px;
+      margin: 14px 0;
+      background: #f8fafc;
+      border-left: 5px solid var(--brand-3);
+    }
+
+    .note { border-left-color: var(--brand); background: var(--soft); }
+    .warning { border-left-color: var(--brand-2); background: var(--soft-2); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 16px;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th { background: #eef7ff; }
+
+    pre {
+      margin: 12px 0 0;
+      overflow: auto;
+      background: #0b1220;
+      color: #ecfeff;
+      border-radius: 14px;
+      padding: 14px;
+      border: 1px solid #182437;
+    }
+
+    code { font-family: "Cascadia Mono", Consolas, "Courier New", monospace; }
+
+    .dataset-box {
+      border: 1px dashed var(--line);
+      background: #fbfcfe;
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .checklist {
+      padding-left: 18px;
+      margin: 8px 0 0;
+    }
+
+    .footer-note {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 720px) {
+      .container { width: min(100% - 20px, 1200px); padding-top: 14px; }
+      .hero, nav, section { padding: 18px; border-radius: 16px; }
+      table { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <h1>Power BI Data Analysis Master Guide</h1>
+      <p>
+        A practical, beginner-friendly to expert-level guide for learning Power BI the way professional analysts and BI developers use it:
+        clean data in Power Query, build a strong model, write correct DAX, design dashboards that tell a story, and optimize for performance.
+      </p>
+      <p><a href="../index.html">Master Hub</a> | <a href="data-analyst-interview-preparation-guide.html">Interview Prep</a> | <a href="https://github.com/Vinodvinum/Data_analyst">GitHub Repo</a></p>
+      <div class="pill-row">
+        <span class="pill">Beginner to Expert</span>
+        <span class="pill">Power Query + Data Modeling + DAX</span>
+        <span class="pill">Real dashboards and business use cases</span>
+        <span class="pill">Job-ready for BI and analytics roles</span>
+      </div>
+    </header>
+
+    <nav>
+      <h2>Table of Contents</h2>
+      <ul class="toc">
+        <li><a href="#quick-start">Quick Start Plan</a></li>
+        <li><a href="#how-to-use">How to Use This Guide</a></li>
+        <li><a href="#beginner">1. Beginner Fundamentals</a></li>
+        <li><a href="#powerquery">2. Power Query and Data Cleaning</a></li>
+        <li><a href="#modeling">3. Data Modeling</a></li>
+        <li><a href="#dax">4. DAX Deep Dive</a></li>
+        <li><a href="#visuals">5. Visualization and Dashboard Design</a></li>
+        <li><a href="#advanced">6. Advanced Features</a></li>
+        <li><a href="#performance">7. Performance Optimization</a></li>
+        <li><a href="#projects">8. Real-World Projects</a></li>
+        <li><a href="#integration">9. Ecosystem Integration</a></li>
+        <li><a href="#ai">10. AI in Power BI</a></li>
+        <li><a href="#memory">11. Memory Tricks and Best Practices</a></li>
+        <li><a href="#interview">12. Interview Preparation</a></li>
+        <li><a href="#mastery">13. Mastery-Level Thinking</a></li>
+      </ul>
+    </nav>
+
+    <section id="quick-start">
+      <span class="level beginner">Quick start</span>
+      <h2>Beginner-Friendly 5-Step Start Plan</h2>
+      <ol>
+        <li>Open Power BI Desktop and load one sales CSV and one lookup table.</li>
+        <li>Clean headers/types in Power Query and remove duplicates.</li>
+        <li>Build a simple star model (Sales + Date + Product + Region).</li>
+        <li>Create 3 measures: Sales, Order Count, Average Order Value.</li>
+        <li>Build one page with KPI cards, monthly trend, and region bar chart.</li>
+      </ol>
+      <p class="muted">Then use the web lab to practice SQL and Python transformations that feed your BI workflow.</p>
+    </section>
+
+    <section id="training-hub">
+      <span class="level beginner">Start here</span>
+      <h2>Training Hub and Resources</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Cross-links</h3>
+          <ul class="checklist">
+            <li><a href="../index.html">Master landing page</a></li>
+            <li><a href="excel-data-analysis-guide.html">Excel guide</a></li>
+            <li><a href="sql-data-analysis-guide.html">SQL guide</a></li>
+            <li><a href="python-data-analysis-guide.html">Python guide</a></li>
+            <li><a href="data-analyst-interview-preparation-guide.html">Interview guide</a></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>File access</h3>
+          <ul class="checklist">
+            <li><a href="../notebook-viewer.html?file=notebooks/python-data-analysis-guide.ipynb&amp;output=outputs/python-data-analysis-guide-output.html">view python notebook</a></li>
+            <li><a href="../notebook-viewer.html?file=notebooks/sql-data-analysis-guide.ipynb&amp;output=outputs/sql-data-analysis-guide-output.html">view sql notebook</a></li>
+            <li><a href="../csv-viewer.html?file=outputs/sales_project_summary.csv">view sales_project_summary.csv</a></li>
+            <li><a href="../csv-viewer.html?file=datasets/sql-practice-orders.csv">view sql-practice-orders.csv</a></li>
+            <li><a href="../csv-viewer.html?file=datasets/sql-finance-invoices.csv">view sql-finance-invoices.csv</a></li>
+            <li><a href="../csv-viewer.html?file=datasets/sql-finance-monthly-budget.csv">view sql-finance-monthly-budget.csv</a></li>
+          </ul>
+        </div>
+      </div>
+      <p><a href="../web-practice-lab.html">Open web practice lab (Excel + SQL + Python)</a></p>
+    </section>
+
+    <section id="how-to-use">
+      <span class="level beginner">For beginners</span>
+      <h2>How to Use This Guide</h2>
+      <p>
+        If you are new, read the sections in order and build one small dashboard while you learn. Do not try to memorize Power BI first.
+        Build a report with a sample sales table, then come back and connect the steps to what you created.
+      </p>
+      <div class="callout note">
+        <strong>Beginner rule:</strong> every concept in Power BI becomes easier if you ask three questions: What is the data shape, what calculation is needed, and what business decision will this visual help with?
+      </div>
+      <div class="dataset-box">
+        <strong>Recommended practice datasets in this workspace:</strong>
+        <ul class="checklist">
+          <li>Sales: use order, customer, product, region, and finance tables.</li>
+          <li>Users: use customer signup, activity, and segmentation fields.</li>
+          <li>Finance: use invoice, payment, and budget tables for collections and variance analysis.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="beginner">
+      <span class="level beginner">Beginner</span>
+      <h2>1. Power BI Fundamentals</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>What Power BI Is</h3>
+          <p>
+            Power BI is Microsoft's business intelligence platform for connecting data, cleaning it, modeling it, and building interactive dashboards.
+            It is used when a team needs reliable reporting that refreshes and can be shared across the business.
+          </p>
+          <table>
+            <tr><th>Component</th><th>What it does</th><th>Business use case</th></tr>
+            <tr><td>Power BI Desktop</td><td>Build reports, models, and DAX measures</td><td>Analyst creates the first version of a dashboard</td></tr>
+            <tr><td>Power BI Service</td><td>Publish, refresh, share, and govern reports</td><td>Team consumes a live sales dashboard</td></tr>
+            <tr><td>Power BI Mobile</td><td>View reports on phones and tablets</td><td>Managers monitor KPIs on the move</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Interface Overview</h3>
+          <ul class="checklist">
+            <li><strong>Report view:</strong> build visuals and interactions.</li>
+            <li><strong>Data view:</strong> inspect loaded tables and columns.</li>
+            <li><strong>Model view:</strong> create relationships between tables.</li>
+            <li><strong>Fields pane:</strong> where tables, columns, and measures live.</li>
+            <li><strong>Visualizations pane:</strong> choose chart types, cards, maps, and filters.</li>
+          </ul>
+          <div class="callout warning">
+            <strong>Common beginner mistake:</strong> trying to build charts before understanding relationships. In Power BI, a bad model creates confusing dashboards later.
+          </div>
+        </div>
+      </div>
+
+      <h3>Importing Data</h3>
+      <p>Typical starting sources are Excel, CSV, SQL databases, SharePoint folders, and cloud sources.</p>
+      <table>
+        <tr><th>Source</th><th>Best use</th><th>Example</th></tr>
+        <tr><td>Excel</td><td>Small team files and ad-hoc inputs</td><td>Monthly budget tracker</td></tr>
+        <tr><td>CSV</td><td>Simple flat files and exports</td><td>Sales transactions export</td></tr>
+        <tr><td>SQL database</td><td>Operational data and large tables</td><td>Orders, invoices, customers</td></tr>
+      </table>
+      <div class="callout note">
+        <strong>Business use case:</strong> a sales analyst may pull orders from SQL, customers from CRM export, and budgets from Excel. Power BI combines them into one model for reporting.
+      </div>
+    </section>
+
+    <section id="powerquery">
+      <span class="level intermediate">Very important</span>
+      <h2>2. Data Transformation in Power Query</h2>
+      <p>
+        Power Query is where clean data starts. Think of it as the place where raw tables become analysis-ready tables before DAX ever runs.
+      </p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Cleaning Data</h3>
+          <ul class="checklist">
+            <li>Remove duplicates so each row means one record.</li>
+            <li>Handle missing values by replacing, imputing, or filtering.</li>
+            <li>Trim spaces and fix case when text fields are inconsistent.</li>
+            <li>Change data types early so dates and numbers behave correctly.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Transformations You Will Use Often</h3>
+          <ul class="checklist">
+            <li>Split columns like full name into first and last name.</li>
+            <li>Merge columns for a display label or key.</li>
+            <li>Filter rows to keep only relevant periods or regions.</li>
+            <li>Add custom columns for margin, status, or buckets.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Step-by-Step Example</h3>
+      <div class="grid-2">
+        <div class="card">
+          <h4>Raw Sales Table</h4>
+          <table>
+            <tr><th>Order ID</th><th>Customer</th><th>Order Date</th><th>Sales</th><th>Region</th></tr>
+            <tr><td>1001</td><td>Ana Gomez</td><td>2024-06-01</td><td>1200</td><td>West </td></tr>
+            <tr><td>1001</td><td>Ana Gomez</td><td>2024-06-01</td><td>1200</td><td>West </td></tr>
+            <tr><td>1002</td><td>John Lee</td><td></td><td>950</td><td>East</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <h4>Cleaned Table</h4>
+          <table>
+            <tr><th>Order ID</th><th>Customer</th><th>Order Date</th><th>Sales</th><th>Region</th><th>Flag</th></tr>
+            <tr><td>1001</td><td>Ana Gomez</td><td>2024-06-01</td><td>1200</td><td>West</td><td>Keep</td></tr>
+            <tr><td>1002</td><td>John Lee</td><td>2024-06-02</td><td>950</td><td>East</td><td>Estimated date</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <h3>M Language Basics</h3>
+      <p>
+        M is the language behind Power Query. You do not need to master it on day one, but you should understand what a query script looks like.
+      </p>
+      <pre><code>let
+    Source = Csv.Document(File.Contents("sales.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+    ChangedType = Table.TransformColumnTypes(PromotedHeaders, {{"Order Date", type date}, {"Sales", type number}}),
+    RemovedDuplicates = Table.Distinct(ChangedType, {"Order ID"}),
+    CleanRegion = Table.TransformColumns(RemovedDuplicates, {{"Region", Text.Trim, type text}})
+in
+    CleanRegion</code></pre>
+      <div class="callout note">
+        <strong>Business use case:</strong> a refreshable report often fails because dates are stored as text. Fixing the type in Power Query prevents broken time intelligence later.
+      </div>
+    </section>
+
+    <section id="modeling">
+      <span class="level intermediate">Core skill</span>
+      <h2>3. Data Modeling</h2>
+      <p>
+        Strong models make DAX easier and dashboards faster. Weak models force you to write complicated formulas and often cause wrong totals.
+      </p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Star Schema vs Flat Table</h3>
+          <table>
+            <tr><th>Model</th><th>What it looks like</th><th>When to use it</th></tr>
+            <tr><td>Star schema</td><td>One fact table in the center, surrounded by dimensions</td><td>Best for reporting and analytics</td></tr>
+            <tr><td>Flat table</td><td>All fields in one wide table</td><td>Only okay for small demos or quick prototyping</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Core Table Types</h3>
+          <table>
+            <tr><th>Table type</th><th>Examples</th><th>Role</th></tr>
+            <tr><td>Fact table</td><td>Sales, orders, invoices</td><td>Stores transactions and numeric values</td></tr>
+            <tr><td>Dimension table</td><td>Customer, product, date, region</td><td>Stores descriptive context for slicing and filtering</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <h3>Relationships</h3>
+      <table>
+        <tr><th>Concept</th><th>Meaning</th><th>Example</th><th>Business note</th></tr>
+        <tr><td>One-to-many</td><td>One customer has many orders</td><td>Customers[CustomerID] -> Sales[CustomerID]</td><td>Most common and preferred</td></tr>
+        <tr><td>Many-to-many</td><td>Multiple rows on both sides</td><td>Products and campaigns via a bridge table</td><td>Use carefully and only when needed</td></tr>
+        <tr><td>Filter direction</td><td>How filters flow through relationships</td><td>Usually single direction from dimension to fact</td><td>Reduces ambiguity and improves performance</td></tr>
+      </table>
+
+      <div class="callout note">
+        <strong>Real-world dataset example:</strong> use Sales fact with Date, Customer, Product, and Region dimensions. A manager can then slice sales by month, category, territory, and customer segment without changing the model.
+      </div>
+
+      <h3>Simple Star Schema</h3>
+      <pre><code>DimDate      DimCustomer     DimProduct      DimRegion
+   \             |              |               /
+    \            |              |              /
+     ----------- FactSales -------------</code></pre>
+    </section>
+
+    <section id="dax">
+      <span class="level advanced">Most important</span>
+      <h2>4. DAX Deep Dive</h2>
+      <p>
+        DAX is the language that turns a Power BI model into a real analytical engine. If Power Query cleans data, DAX turns that data into business answers.
+      </p>
+
+      <h3>4.1 Basic DAX</h3>
+      <div class="grid-2">
+        <div class="card">
+          <h4>Calculated Columns vs Measures</h4>
+          <table>
+            <tr><th>Type</th><th>When it runs</th><th>Best for</th><th>Business use case</th></tr>
+            <tr><td>Calculated column</td><td>At refresh time, row by row</td><td>Static attributes and row labels</td><td>Customer tier, age bucket, profit flag</td></tr>
+            <tr><td>Measure</td><td>At query time, based on filter context</td><td>Aggregations and dynamic calculations</td><td>Sales, margin, YoY growth, KPI cards</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <h4>Essential Functions</h4>
+          <table>
+            <tr><th>Function</th><th>Syntax</th><th>What it does</th></tr>
+            <tr><td>SUM</td><td>SUM(Sales[Amount])</td><td>Adds numeric values</td></tr>
+            <tr><td>AVERAGE</td><td>AVERAGE(Sales[Amount])</td><td>Returns mean value</td></tr>
+            <tr><td>COUNT / COUNTA</td><td>COUNT(Table[Column])</td><td>Counts numeric or nonblank values</td></tr>
+            <tr><td>DIVIDE</td><td>DIVIDE(numerator, denominator, 0)</td><td>Safer division with blank handling</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="callout note">
+        <strong>Business use case:</strong> a sales KPI card should usually be a measure, because the number must change when the user selects a different date, region, or product category.
+      </div>
+
+      <pre><code>Sales Amount = SUM(Sales[SalesAmount])
+Average Order Value = DIVIDE([Sales Amount], DISTINCTCOUNT(Sales[OrderID]), 0)
+Order Count = COUNT(Sales[OrderID])</code></pre>
+
+      <h3>4.2 Intermediate DAX</h3>
+      <div class="grid-2">
+        <div class="card">
+          <h4>CALCULATE</h4>
+          <p><strong>Syntax:</strong> CALCULATE(expression, filter1, filter2, ...)</p>
+          <p><strong>What it does:</strong> changes filter context so you can answer "sales for one region", "sales for last year", or "sales after removing one slicer".</p>
+          <p><strong>Business use case:</strong> monthly sales for the West region only.</p>
+          <pre><code>West Sales = CALCULATE([Sales Amount], 'Region'[RegionName] = "West")</code></pre>
+        </div>
+        <div class="card">
+          <h4>FILTER, ALL, ALLEXCEPT, VALUES</h4>
+          <ul class="checklist">
+            <li><strong>FILTER:</strong> returns rows that meet a condition.</li>
+            <li><strong>ALL:</strong> removes filters so you can compare against a full total.</li>
+            <li><strong>ALLEXCEPT:</strong> clears all filters except selected columns.</li>
+            <li><strong>VALUES:</strong> returns the current distinct values in context.</li>
+          </ul>
+          <pre><code>Percent of Total =
+DIVIDE(
+    [Sales Amount],
+    CALCULATE([Sales Amount], ALL(Sales)),
+    0
+)</code></pre>
+        </div>
+      </div>
+
+      <h3>4.3 Context Understanding</h3>
+      <table>
+        <tr><th>Concept</th><th>Explanation</th><th>Simple example</th><th>Why it matters</th></tr>
+        <tr><td>Row context</td><td>The formula is evaluated one row at a time</td><td>Calculated column on Sales table</td><td>Needed for row-level logic</td></tr>
+        <tr><td>Filter context</td><td>The current filters from slicers, visuals, and CALCULATE</td><td>Sales for a selected month</td><td>Controls what the measure sees</td></tr>
+        <tr><td>Context transition</td><td>CALCULATE converts row context into filter context</td><td>Using a row value inside an iterator</td><td>Critical for advanced measures</td></tr>
+      </table>
+      <div class="callout warning">
+        <strong>Beginner trap:</strong> many wrong DAX results happen because the analyst confuses row context with filter context. When totals look wrong, inspect the context first.
+      </div>
+
+      <h3>4.4 Advanced DAX</h3>
+      <div class="grid-2">
+        <div class="card">
+          <h4>Time Intelligence</h4>
+          <table>
+            <tr><th>Function</th><th>Syntax</th><th>Business use case</th></tr>
+            <tr><td>TOTALYTD</td><td>TOTALYTD([Sales Amount], 'Date'[Date])</td><td>Year-to-date revenue</td></tr>
+            <tr><td>SAMEPERIODLASTYEAR</td><td>CALCULATE([Sales Amount], SAMEPERIODLASTYEAR('Date'[Date]))</td><td>Compare this year to last year</td></tr>
+            <tr><td>DATEADD</td><td>CALCULATE([Sales Amount], DATEADD('Date'[Date], -1, MONTH))</td><td>Previous period comparison</td></tr>
+          </table>
+          <pre><code>YoY Growth % =
+DIVIDE(
+    [Sales Amount] - CALCULATE([Sales Amount], SAMEPERIODLASTYEAR('Date'[Date])),
+    CALCULATE([Sales Amount], SAMEPERIODLASTYEAR('Date'[Date])),
+    0
+)</code></pre>
+        </div>
+        <div class="card">
+          <h4>Running Totals, Ranking, Share</h4>
+          <pre><code>Running Sales =
+CALCULATE(
+    [Sales Amount],
+    FILTER(
+        ALL('Date'[Date]),
+        'Date'[Date] <= MAX('Date'[Date])
+    )
+)
+
+Rank by Sales =
+RANKX(ALL(Customer[CustomerName]), [Sales Amount], , DESC, Dense)</code></pre>
+          <p><strong>Business use case:</strong> identify top customers, rolling revenue, and monthly trends for management reviews.</p>
+        </div>
+      </div>
+
+      <h3>4.5 DAX Pattern Memory</h3>
+      <table>
+        <tr><th>Need</th><th>Pattern</th><th>Example idea</th></tr>
+        <tr><td>Remove filters</td><td>ALL</td><td>Percent of total</td></tr>
+        <tr><td>Change a filter</td><td>CALCULATE</td><td>West region sales</td></tr>
+        <tr><td>Compare time periods</td><td>SAMEPERIODLASTYEAR / DATEADD</td><td>YoY growth</td></tr>
+        <tr><td>Find top items</td><td>RANKX</td><td>Top products by revenue</td></tr>
+        <tr><td>Avoid divide-by-zero</td><td>DIVIDE</td><td>Margin %</td></tr>
+      </table>
+    </section>
+
+    <section id="visuals">
+      <span class="level intermediate">Design</span>
+      <h2>5. Data Visualization and Dashboard Design</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Chart Selection</h3>
+          <table>
+            <tr><th>Question</th><th>Best visual</th><th>Why</th></tr>
+            <tr><td>Compare categories</td><td>Bar chart</td><td>Easy to rank and compare</td></tr>
+            <tr><td>Show trend over time</td><td>Line chart</td><td>Shows movement clearly</td></tr>
+            <tr><td>Show KPI status</td><td>Card or KPI visual</td><td>Best for single numbers and targets</td></tr>
+            <tr><td>Show part-to-whole</td><td>Bar chart or treemap</td><td>Usually clearer than pie charts</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Dashboard Controls</h3>
+          <ul class="checklist">
+            <li>Slicers for date, region, product, or segment.</li>
+            <li>Drill-down for year to quarter to month.</li>
+            <li>Drill-through for moving to detail pages.</li>
+            <li>Tooltips for extra context without clutter.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout note">
+        <strong>Dashboard design principle:</strong> choose the visual that answers the business question fastest. The best dashboard is readable in 10 seconds and explainable in 2 minutes.
+      </div>
+      <table>
+        <tr><th>Good practice</th><th>Why it helps</th><th>Beginner mistake to avoid</th></tr>
+        <tr><td>Use spacing and alignment</td><td>Makes the page feel calm and professional</td><td>Cramping every visual together</td></tr>
+        <tr><td>Limit colors</td><td>Focuses attention on exceptions</td><td>Using a different color for every bar</td></tr>
+        <tr><td>Label important values</td><td>Reduces guesswork</td><td>Relying only on tooltips</td></tr>
+      </table>
+    </section>
+
+    <section id="advanced">
+      <span class="level advanced">Advanced</span>
+      <h2>6. Advanced Power BI Features</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Row-Level Security</h3>
+          <p>
+            RLS restricts what a user can see. It is used when regional managers should only see their own region or when finance should see only approved data.
+          </p>
+          <pre><code>-- Example role filter on Region table
+Region[RegionName] = "West"</code></pre>
+        </div>
+        <div class="card">
+          <h3>Bookmarks, Buttons, and Dynamic Titles</h3>
+          <p>Use bookmarks to create guided storytelling and buttons to move between pages or states.</p>
+          <pre><code>Dynamic Title =
+"Sales Dashboard - " & SELECTEDVALUE('Region'[RegionName], "All Regions")</code></pre>
+        </div>
+      </div>
+
+      <h3>Parameters</h3>
+      <p>
+        Parameters are useful for what-if analysis, dynamic thresholds, and flexible calculations. A classic example is margin target or discount scenario testing.
+      </p>
+      <div class="callout note">
+        <strong>Business use case:</strong> a sales leader can test how revenue changes if price increases by 2 percent or if the discount threshold changes.
+      </div>
+    </section>
+
+    <section id="performance">
+      <span class="level advanced">Very important</span>
+      <h2>7. Performance Optimization</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Reduce Model Size</h3>
+          <ul class="checklist">
+            <li>Remove unused columns and rows.</li>
+            <li>Prefer numeric keys over long text keys.</li>
+            <li>Use star schema instead of one huge table.</li>
+            <li>Disable auto date/time when it creates unnecessary tables.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Optimize DAX</h3>
+          <ul class="checklist">
+            <li>Avoid unnecessary iterators when a simple aggregation works.</li>
+            <li>Use measures instead of many calculated columns when possible.</li>
+            <li>Keep filters simple and readable.</li>
+            <li>Test performance with real slicers and page interactions.</li>
+          </ul>
+        </div>
+      </div>
+      <table>
+        <tr><th>Area</th><th>Bad pattern</th><th>Better pattern</th></tr>
+        <tr><td>Modeling</td><td>Wide flat table with repeated attributes</td><td>Fact table plus clean dimensions</td></tr>
+        <tr><td>Relationships</td><td>Many bidirectional relationships everywhere</td><td>Single direction unless there is a strong reason</td></tr>
+        <tr><td>DAX</td><td>Nested logic without testing context</td><td>Break the calculation into smaller measures</td></tr>
+      </table>
+    </section>
+
+    <section id="projects">
+      <span class="level expert">Projects</span>
+      <h2>8. Real-World Business Projects</h2>
+      <p>Use these as portfolio projects or internal case studies. Each one should be built with a clear model, a small set of strong measures, and a simple story.</p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Sales Dashboard</h3>
+          <p><strong>Problem:</strong> track revenue, profit, top products, and regional trends.</p>
+          <p><strong>Model:</strong> FactSales, DimDate, DimCustomer, DimProduct, DimRegion.</p>
+          <p><strong>Measures:</strong></p>
+          <pre><code>Sales Amount = SUM(Sales[SalesAmount])
+Gross Profit = SUM(Sales[SalesAmount]) - SUM(Sales[Cost])
+Gross Margin % = DIVIDE([Gross Profit], [Sales Amount], 0)</code></pre>
+          <p><strong>Dashboard:</strong> KPI cards, monthly trend, top products, regional map, and drill-through to product detail.</p>
+        </div>
+        <div class="card">
+          <h3>Financial Dashboard</h3>
+          <p><strong>Problem:</strong> monitor invoicing, collections, overdue balances, and budget variance.</p>
+          <p><strong>Model:</strong> FactInvoices, FactPayments, DimCustomer, DimDate, DimBudget.</p>
+          <p><strong>Measures:</strong></p>
+          <pre><code>Invoiced Revenue = SUM(Invoices[InvoiceAmount])
+Collected Revenue = SUM(Payments[PaymentAmount])
+Collection Rate = DIVIDE([Collected Revenue], [Invoiced Revenue], 0)</code></pre>
+          <p><strong>Dashboard:</strong> invoice status cards, aging buckets, monthly collection trend, target variance by country.</p>
+        </div>
+        <div class="card">
+          <h3>Customer Analytics Dashboard</h3>
+          <p><strong>Problem:</strong> understand acquisition, retention, churn, and segment value.</p>
+          <p><strong>Model:</strong> FactOrders, FactActivity, DimCustomer, DimDate, DimSegment.</p>
+          <p><strong>Measures:</strong></p>
+          <pre><code>Active Customers = DISTINCTCOUNT(Sales[CustomerID])
+Repeat Purchase Rate =
+DIVIDE([Customers with 2+ Orders], [Active Customers], 0)</code></pre>
+          <p><strong>Dashboard:</strong> cohort view, retention trend, segment summary, churn risk indicators.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="integration">
+      <span class="level intermediate">Ecosystem</span>
+      <h2>9. Power BI + Ecosystem Integration</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Power BI with SQL</h3>
+          <p>Use SQL for extraction, joins, and pre-aggregation when the source database is the system of record.</p>
+          <p><strong>Example:</strong> build a view for monthly revenue by country and connect Power BI to that view.</p>
+        </div>
+        <div class="card">
+          <h3>Power BI with Excel and Python</h3>
+          <p>Use Excel for light input tables and finance planning. Use Python for advanced cleanup, forecasting, and text processing before loading to Power BI.</p>
+          <p><strong>Example:</strong> clean messy customer names in Python, save a CSV, then load it into Power BI Desktop.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="ai">
+      <span class="level advanced">Modern skill</span>
+      <h2>10. AI in Power BI</h2>
+      <p>
+        AI features can speed up exploration, but you still need to validate the logic. Use them to generate ideas, not to replace checking the numbers.
+      </p>
+      <table>
+        <tr><th>Feature</th><th>What it helps with</th><th>Business use case</th></tr>
+        <tr><td>Q&A</td><td>Ask questions in natural language</td><td>Managers ask for sales by region and month</td></tr>
+        <tr><td>AI visuals</td><td>Find patterns and anomalies</td><td>Spot unusual dips in revenue</td></tr>
+        <tr><td>ChatGPT support</td><td>Draft DAX ideas and dashboard structure</td><td>Speed up prototyping and brainstorming</td></tr>
+      </table>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Plain-language example</h3>
+          <p>If a manager asks, "Why did revenue fall in June?", Q&A can quickly show sales by country, product, and week. You then inspect the real data and confirm whether the drop is a regional issue, a product mix shift, or a missing refresh.</p>
+        </div>
+        <div class="card">
+          <h3>Prompt example</h3>
+          <pre><code>Write a DAX measure for year-to-date sales and explain it in simple language.
+Use a sales table with Date, Region, Product, and Revenue columns.
+Then suggest a dashboard layout for an executive audience.</code></pre>
+        </div>
+      </div>
+      <pre><code>ChatGPT prompt example:
+"Write a DAX measure for month-over-month sales growth and explain the filter context.
+Use a star schema with Date, Product, Customer, and Sales tables.
+Also suggest a dashboard layout for an executive sales report."</code></pre>
+    </section>
+
+    <section id="memory">
+      <span class="level beginner">Memory tricks</span>
+      <h2>11. Memory Tricks and Best Practices</h2>
+      <table>
+        <tr><th>Pattern</th><th>Memory trick</th><th>Example</th></tr>
+        <tr><td>CALCULATE</td><td>Change the lens</td><td>Same measure, different filter</td></tr>
+        <tr><td>ALL</td><td>Remove the lens</td><td>Percent of total</td></tr>
+        <tr><td>DATEADD</td><td>Shift the calendar</td><td>Previous month comparison</td></tr>
+        <tr><td>RANKX</td><td>Sort the winners</td><td>Top products</td></tr>
+      </table>
+      <div class="callout warning">
+        <strong>Common beginner mistakes:</strong> building a flat model, overusing bidirectional filters, using the wrong visual for the question, and writing DAX before the model is clean.
+      </div>
+      <p><strong>Debugging measures:</strong> test one part at a time, check the filter context, inspect a visual with only one dimension, and compare the measure against a manual calculation in a small sample.</p>
+    </section>
+
+    <section id="interview">
+      <span class="level expert">Interview prep</span>
+      <h2>12. Interview Preparation</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Common Power BI Questions</h3>
+          <ul class="checklist">
+            <li>What is the difference between a calculated column and a measure?</li>
+            <li>Explain row context and filter context.</li>
+            <li>How do you design a star schema?</li>
+            <li>When would you use RLS?</li>
+            <li>Why is CALCULATE so important?</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Practical Scenarios</h3>
+          <ul class="checklist">
+            <li>Revenue dropped 15 percent this month. How would you investigate it?</li>
+            <li>Users complain the dashboard is slow. What would you check first?</li>
+            <li>Sales totals are wrong by region. What model issues could cause that?</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout note">
+        <strong>Interview answer style:</strong> describe the business goal first, then the model, then the measure logic, and only then the final visual. That order sounds professional and is easy to follow.
+      </div>
+    </section>
+
+    <section id="mastery">
+      <span class="level expert">Mastery level</span>
+      <h2>13. How BI Developers Think</h2>
+      <p>
+        Senior BI developers think in terms of trust, performance, clarity, and decision impact. They do not build dashboards just because a chart is possible. They build them because the business needs a reliable answer to a real question.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Before building</h3>
+          <p>Ask what decision the report supports, who will use it, how often it refreshes, and what action follows from each KPI.</p>
+        </div>
+        <div class="card">
+          <h3>While building</h3>
+          <p>Clean the model, keep measures readable, use consistent naming, and test every visual against the source data.</p>
+        </div>
+        <div class="card">
+          <h3>After building</h3>
+          <p>Check refresh, security, page speed, and whether the report still answers the original business problem.</p>
+        </div>
+      </div>
+      <p class="footer-note">This guide is designed to work as training material for beginners while still staying close to the standards used in real BI teams.</p>
+    </section>
+  </div>
+</body>
+</html>

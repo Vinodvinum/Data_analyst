@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Analyst Master Cheat Sheet 2</title>
+  <script>
+    const savedTheme = localStorage.getItem('data-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  </script>
+  <link rel="stylesheet" href="../global-styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>📊 Data Analyst Master Cheat Sheet 2 - Complete Guide</h1>
+      <p><strong>Comprehensive reference:</strong> Excel formulas, SQL syntax, Python codes, Power BI workflows, data analysis step-by-step process, interview questions, definitions, memory tips &amp; tricks, one-day revision plan</p>
+      <p><a href="../index.html" style="color:#fff;text-decoration:underline;">↑ Back to Hub</a></p>
+    </section>
+
+    <!-- SECTION 1: COMPLETE DATA ANALYSIS PROCESS -->
+    <section>
+      <h2>🔄 Data Analysis Complete Process (Step-by-Step)</h2>
+      <p><strong>6-Step Framework with Real Example:</strong></p>
+      <ol>
+        <li><strong>1. DEFINE (Think)</strong> - Understand business question
+          <ul>
+            <li>What problem to solve? (e.g., "Why did sales drop 15% in Q3?")</li>
+            <li>What metric matters? (Revenue, Units, Customer Count, Retention)</li>
+            <li>What's success? (Find root cause, improve by 10%)</li>
+          </ul>
+        </li>
+        <li><strong>2. COLLECT (Gather)</strong> - Get data from sources
+          <ul>
+            <li>Database query, CSV files, APIs, or systems</li>
+            <li>Time range, filters, relevant tables</li>
+            <li>Example: Extract 12 months of order data from database</li>
+          </ul>
+        </li>
+        <li><strong>3. CLEAN (Prepare)</strong> - Fix data quality issues
+          <ul>
+            <li>Remove duplicates, handle missing values (NULL, blanks)</li>
+            <li>Fix wrong data types, remove outliers</li>
+            <li>Standardize formats (dates, text case)</li>
+            <li>Example: Remove orders with NULL region_id, fix date formats</li>
+          </ul>
+        </li>
+        <li><strong>4. ANALYZE (Dig)</strong> - Find patterns &amp; trends
+          <ul>
+            <li>Aggregate data (sum, count, average)</li>
+            <li>Compare groups (region, product, time period)</li>
+            <li>Calculate growth/decline, rank, percentages</li>
+            <li>Example: Group by month &amp; region - identify West dropped 20%, East stable</li>
+          </ul>
+        </li>
+        <li><strong>5. VISUALIZE (Show)</strong> - Create charts &amp; dashboards
+          <ul>
+            <li>Line chart for trends, bar for comparison, pie for composition</li>
+            <li>Interactive filters for drill-down exploration</li>
+            <li>Example: Line chart shows West declining from $500K to $400K</li>
+          </ul>
+        </li>
+        <li><strong>6. INSIGHT &amp; RECOMMEND (Decide)</strong> - Explain &amp; act
+          <ul>
+            <li>What's the root cause? (Lost sales rep, competitor, pricing)</li>
+            <li>What's the business impact? (Revenue loss, customer churn)</li>
+            <li>What should we do? (Action: Hire salespeople, run promotion)</li>
+            <li>Example: "West region lost top salesman Aug → hire 2 replacements + offer discount"</li>
+          </ul>
+        </li>
+      </ol>
+      <div class="card">
+        <h3>🏢 Real Business Example: Sales Performance Analysis</h3>
+        <p><strong>Problem:</strong> Q3 revenue dropped 15% vs Q2 (from $1M to $850K)</p>
+        <p><strong>Data:</strong> 12 months of orders (Date, Region, Product, Salesperson, Amount)</p>
+        <p><strong>Step 1 - Define:</strong> Find what caused the drop (region? product? team?)</p>
+        <p><strong>Step 2 - Collect:</strong> Extract from Sales DB: orders from Jan-Dec last year</p>
+        <p><strong>Step 3 - Clean:</strong> Remove duplicate entries, fix NULL regions, standardize dates</p>
+        <p><strong>Step 4 - Analyze:</strong></p>
+        <ul>
+          <li>By Region: West down 20%, South down 10%, North up 5%, East stable</li>
+          <li>By Product: Product-C dropped 30% (recall or competition?)</li>
+          <li>By Team: Salesperson John left in Aug = his $100K revenue gap</li>
+        </ul>
+        <p><strong>Step 5 - Visualize:</strong> Stacked bar chart by region/month, pie chart show Product-C is 40% of drop</p>
+        <p><strong>Step 6 - Recommend:</strong> "Hire replacement for John NOW, investigate Product-C competitor pricing, run 10% discount in West for next 30 days"</p>
+      </div>
+    </section>
+
+    <!-- SECTION 2: EXCEL COMPLETE -->
+    <section>
+      <h2>📊 EXCEL - Formulas, Functions &amp; Data Cleaning</h2>
+      
+      <h3>📌 Basic Math &amp; Aggregation Functions</h3>
+      <table>
+        <tr>
+          <th>Function</th>
+          <th>Purpose</th>
+          <th>Example</th>
+          <th>Result</th>
+        </tr>
+        <tr>
+          <td><strong>SUM</strong></td>
+          <td>Add all numbers</td>
+          <td>=SUM(A2:A10)</td>
+          <td>Sum of A2 to A10</td>
+        </tr>
+        <tr>
+          <td><strong>AVERAGE</strong></td>
+          <td>Mean of numbers</td>
+          <td>=AVERAGE(B2:B10)</td>
+          <td>Average sales amount</td>
+        </tr>
+        <tr>
+          <td><strong>COUNT</strong></td>
+          <td>Count only numbers</td>
+          <td>=COUNT(A2:A10)</td>
+          <td>How many numeric cells?</td>
+        </tr>
+        <tr>
+          <td><strong>COUNTA</strong></td>
+          <td>Count any non-empty</td>
+          <td>=COUNTA(A2:A10)</td>
+          <td>How many cells have data (text/number)?</td>
+        </tr>
+        <tr>
+          <td><strong>MAX / MIN</strong></td>
+          <td>Highest / Lowest value</td>
+          <td>=MAX(C2:C10) / =MIN(C2:C10)</td>
+          <td>Highest/lowest sales</td>
+        </tr>
+      </table>
+
+      <h3>📌 Logic &amp; Conditional Functions</h3>
+      <table>
+        <tr>
+          <th>Function</th>
+          <th>Purpose</th>
+          <th>Example</th>
+          <th>Result</th>
+        </tr>
+        <tr>
+          <td><strong>IF</strong></td>
+          <td>If condition true, then X, else Y</td>
+          <td>=IF(B2&gt;5000, "High", "Low")</td>
+          <td>Categorize sales as High/Low</td>
+        </tr>
+        <tr>
+          <td><strong>IFS</strong></td>
+          <td>Multiple conditions</td>
+          <td>=IFS(B2&gt;10000,"VIP", B2&gt;5000,"Regular", B2&lt;5000,"New")</td>
+          <td>3-tier customer classification</td>
+        </tr>
+        <tr>
+          <td><strong>AND / OR</strong></td>
+          <td>Combine conditions</td>
+          <td>=IF(AND(B2&gt;1000, C2="West"), "Target", "Skip")</td>
+          <td>Complex logic: Large sales in West</td>
+        </tr>
+        <tr>
+          <td><strong>COUNTIF</strong></td>
+          <td>Count cells matching criteria</td>
+          <td>=COUNTIF(B2:B100, "&gt;5000")</td>
+          <td>How many sales &gt; 5000?</td>
+        </tr>
+        <tr>
+          <td><strong>SUMIF</strong></td>
+          <td>Sum if condition met</td>
+          <td>=SUMIF(C2:C100, "West", B2:B100)</td>
+          <td>Total sales in West region</td>
+        </tr>
+        <tr>
+          <td><strong>SUMIFS</strong></td>
+          <td>Sum with multiple conditions</td>
+          <td>=SUMIFS(B2:B100, C2:C100, "West", D2:D100, "Q3")</td>
+          <td>Total sales in West for Q3</td>
+        </tr>
+      </table>
+
+      <h3>📌 Lookup Functions</h3>
+      <table>
+        <tr>
+          <th>Function</th>
+          <th>Purpose</th>
+          <th>Example</th>
+        </tr>
+        <tr>
+          <td><strong>VLOOKUP</strong></td>
+          <td>Find value in table, return from same row</td>
+          <td>=VLOOKUP("West", RegionTable, 3, FALSE) ← Find West, return 3rd column</td>
+        </tr>
+        <tr>
+          <td><strong>XLOOKUP</strong> (new)</td>
+          <td>More flexible VLOOKUP</td>
+          <td>=XLOOKUP("West", RegionList, SalesList, "Not found")</td>
+        </tr>
+        <tr>
+          <td><strong>INDEX-MATCH</strong></td>
+          <td>Powerful combo for any direction</td>
+          <td>=INDEX(SalesList, MATCH("West", RegionList, 0))</td>
+        </tr>
+      </table>
+
+      <h3>📌 Text Cleaning Functions</h3>
+      <table>
+        <tr>
+          <th>Function</th>
+          <th>Purpose</th>
+          <th>Example</th>
+          <th>Input → Output</th>
+        </tr>
+        <tr>
+          <td><strong>TRIM</strong></td>
+          <td>Remove extra spaces</td>
+          <td>=TRIM(A2)</td>
+          <td>"  John  Doe  " → "John Doe"</td>
+        </tr>
+        <tr>
+          <td><strong>PROPER</strong></td>
+          <td>Capitalize first letter</td>
+          <td>=PROPER(C2)</td>
+          <td>"john doe" → "John Doe"</td>
+        </tr>
+        <tr>
+          <td><strong>UPPER / LOWER</strong></td>
+          <td>All caps / all lowercase</td>
+          <td>=UPPER(D2)</td>
+          <td>"John" → "JOHN"</td>
+        </tr>
+        <tr>
+          <td><strong>CLEAN</strong></td>
+          <td>Remove special characters</td>
+          <td>=CLEAN(E2)</td>
+          <td>Clean non-printable chars</td>
+        </tr>
+        <tr>
+          <td><strong>LEN</strong></td>
+          <td>Count characters</td>
+          <td>=LEN(F2)</td>
+          <td>"Excel" = 5 characters</td>
+        </tr>
+        <tr>
+          <td><strong>CONCATENATE / &amp;</strong></td>
+          <td>Join text</td>
+          <td>=A2&amp;" - "&amp;B2</td>
+          <td>"John" &amp; "Smith" → "John - Smith"</td>
+        </tr>
+      </table>
+
+      <h3>📌 Date Functions</h3>
+      <table>
+        <tr>
+          <th>Function</th>
+          <th>Purpose</th>
+          <th>Example</th>
+        </tr>
+        <tr>
+          <td><strong>TODAY()</strong></td>
+          <td>Current date</td>
+          <td>=TODAY()</td>
+        </tr>
+        <tr>
+          <td><strong>DATE</strong></td>
+          <td>Create date</td>
+          <td>=DATE(2024, 3, 15)</td>
+        </tr>
+        <tr>
+          <td><strong>YEAR / MONTH / DAY</strong></td>
+          <td>Extract parts</td>
+          <td>=YEAR(A2), =MONTH(A2)</td>
+        </tr>
+        <tr>
+          <td><strong>DATEDIF</strong></td>
+          <td>Days between dates</td>
+          <td>=DATEDIF(Start_Date, End_Date, "D")</td>
+        </tr>
+      </table>
+
+      <h3>📌 Pivot Table - Complete Steps</h3>
+      <ol>
+        <li><strong>Select data:</strong> Click any cell in your data table (has headers)</li>
+        <li><strong>Insert Pivot:</strong> Data Tab → PivotTable → New Worksheet</li>
+        <li><strong>Drag fields:</strong>
+          <ul>
+            <li>Region field → Rows Area</li>
+            <li>Amount field → Values Area (automatically sums)</li>
+            <li>Month field → Columns Area (see trend by month)</li>
+          </ul>
+        </li>
+        <li><strong>Add filters:</strong> Product field → Filters Area (filter by product)</li>
+        <li><strong>Expand data:</strong> Click expand arrows to see sub-categories</li>
+        <li><strong>Format:</strong> Right-click, format cells as currency ($)</li>
+      </ol>
+      <p><strong>Pivot Example:</strong> Sales data → Pivot by Region (rows), Month (columns), Amount (sum) → See $500K West in Jan, $400K in Aug (the 15% drop!)</p>
+    </section>
+
+    <!-- SECTION 3: SQL COMPLETE -->
+    <section>
+      <h2>🗄️ SQL - Syntax, Queries &amp; Analysis Patterns</h2>
+
+      <h3>📌 Basic SELECT Query Structure</h3>
+      <pre>SELECT column1, column2, SUM(sales) AS total_sales
+FROM orders
+WHERE order_date >= '2024-01-01' AND status = 'completed'
+GROUP BY column1, column2
+HAVING SUM(sales) > 1000
+ORDER BY total_sales DESC;</pre>
+
+      <h3>📌 SQL Functions for Analysis</h3>
+      <table>
+        <tr>
+          <th>Function</th>
+          <th>Purpose</th>
+          <th>Example</th>
+        </tr>
+        <tr>
+          <td><strong>SUM()</strong></td>
+          <td>Total</td>
+          <td>SELECT SUM(amount) FROM orders;</td>
+        </tr>
+        <tr>
+          <td><strong>COUNT()</strong></td>
+          <td>Count non-NULL values</td>
+          <td>SELECT COUNT(id) FROM orders; ← Count rows</td>
+        </tr>
+        <tr>
+          <td><strong>COUNT(*)</strong></td>
+          <td>Count all rows (including NULL)</td>
+          <td>SELECT COUNT(*) FROM orders;</td>
+        </tr>
+        <tr>
+          <td><strong>AVG()</strong></td>
+          <td>Average</td>
+          <td>SELECT AVG(amount) FROM orders;</td>
+        </tr>
+        <tr>
+          <td><strong>MAX() / MIN()</strong></td>
+          <td>Highest / Lowest</td>
+          <td>SELECT MAX(amount), MIN(amount) FROM orders;</td>
+        </tr>
+        <tr>
+          <td><strong>GROUP BY</strong></td>
+          <td>Group rows, aggregate each group</td>
+          <td>SELECT region, SUM(amount) FROM orders GROUP BY region;</td>
+        </tr>
+        <tr>
+          <td><strong>HAVING</strong></td>
+          <td>Filter groups (like WHERE for GROUP BY)</td>
+          <td>GROUP BY region HAVING SUM(amount) > 5000;</td>
+        </tr>
+      </table>
+
+      <h3>📌 JOIN Types - Connect Multiple Tables</h3>
+      <table>
+        <tr>
+          <th>JOIN Type</th>
+          <th>Purpose</th>
+          <th>SQL Example</th>
+        </tr>
+        <tr>
+          <td><strong>INNER JOIN</strong></td>
+          <td>Only matching rows from both tables</td>
+          <td>SELECT o.id, c.name FROM orders o INNER JOIN customers c ON o.customer_id = c.id;</td>
+        </tr>
+        <tr>
+          <td><strong>LEFT JOIN</strong></td>
+          <td>All from left table + matching from right</td>
+          <td>SELECT o.id, c.name FROM orders o LEFT JOIN customers c ON o.customer_id = c.id;</td>
+        </tr>
+        <tr>
+          <td><strong>RIGHT JOIN</strong></td>
+          <td>All from right table + matching from left</td>
+          <td>SELECT o.id, c.name FROM orders o RIGHT JOIN customers c ON o.customer_id = c.id;</td>
+        </tr>
+      </table>
+
+      <h3>📌 Real SQL Analysis Queries</h3>
+      <pre>-- 1. Total sales by region
+SELECT region, SUM(amount) AS total_sales
+FROM orders
+WHERE status = 'completed'
+GROUP BY region
+ORDER BY total_sales DESC;
+
+-- 2. Find top 10 customers by spending
+SELECT customer_id, SUM(amount) AS total_spent
+FROM orders
+GROUP BY customer_id
+ORDER BY total_spent DESC
+LIMIT 10;
+
+-- 3. Month-over-month growth (compare months)
+SELECT 
+  DATE_TRUNC('month', order_date) AS month,
+  SUM(amount) AS monthly_revenue,
+  LAG(SUM(amount)) OVER (ORDER BY DATE_TRUNC('month', order_date)) AS prev_month,
+  ROUND(((SUM(amount) - LAG(SUM(amount)) OVER (ORDER BY DATE_TRUNC('month', order_date))) / LAG(SUM(amount)) OVER (ORDER BY DATE_TRUNC('month', order_date)) * 100), 2) AS growth_pct
+FROM orders
+GROUP BY DATE_TRUNC('month', order_date)
+ORDER BY month;
+
+-- 4. Find duplicates
+SELECT id, COUNT(*) AS count
+FROM orders
+GROUP BY id
+HAVING COUNT(*) > 1;
+
+-- 5. Rank products by sales (with ROW_NUMBER)
+SELECT product_id, SUM(amount) AS revenue,
+  ROW_NUMBER() OVER (ORDER BY SUM(amount) DESC) AS rank
+FROM orders
+GROUP BY product_id;</pre>
+
+      <h3>📌 SQL Date Syntax</h3>
+      <table>
+        <tr>
+          <th>Function</th>
+          <th>Purpose</th>
+          <th>Example</th>
+        </tr>
+        <tr>
+          <td><strong>DATE_TRUNC</strong></td>
+          <td>Round date to month/year/day</td>
+          <td>SELECT DATE_TRUNC('month', order_date)</td>
+        </tr>
+        <tr>
+          <td><strong>EXTRACT</strong></td>
+          <td>Extract year/month/day</td>
+          <td>SELECT EXTRACT(YEAR FROM order_date)</td>
+        </tr>
+        <tr>
+          <td><strong>ORDER BY date DESC</strong></td>
+          <td>Sort newest first</td>
+          <td>ORDER BY order_date DESC;</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- SECTION 4: PYTHON COMPLETE -->
+    <section>
+      <h2>🐍 PYTHON - Pandas, NumPy &amp; Data Analysis Code</h2>
+
+      <h3>📌 Import &amp; Load Data</h3>
+      <pre>import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Load CSV file
+df = pd.read_csv('sales_data.csv')
+
+# Check structure
+print(df.head())        # First 5 rows
+print(df.shape)         # Rows, columns
+print(df.dtypes)        # Data types
+print(df.info())        # Summary</pre>
+
+      <h3>📌 Data Cleaning</h3>
+      <pre>-- Drop duplicates
+df = df.drop_duplicates()
+
+-- Check missing values
+print(df.isna().sum())
+
+-- Remove rows with missing values
+df = df.dropna()
+
+-- Fill missing values with average
+df['amount'] = df['amount'].fillna(df['amount'].mean())
+
+-- Fix data types
+df['order_date'] = pd.to_datetime(df['order_date'])
+
+-- Remove extra spaces from text
+df['region'] = df['region'].str.strip()</pre>
+
+      <h3>📌 Exploratory Data Analysis (EDA)</h3>
+      <pre>-- Basic statistics
+print(df.describe())           # Mean, std, min, max
+print(df['amount'].mean())     # Average
+print(df['amount'].sum())      # Total
+print(df['region'].value_counts())  # Frequency of each region
+
+-- Filter data
+high_sales = df[df['amount'] > 5000]
+
+-- Sort data
+df_sorted = df.sort_values(by='amount', ascending=False)
+
+-- Create new column
+df['sales_category'] = df['amount'].apply(lambda x: 'High' if x &gt; 5000 else 'Low')</pre>
+
+      <h3>📌 Grouping &amp; Aggregation</h3>
+      <pre>-- Group by region, sum sales
+region_sales = df.groupby('region')['amount'].sum()
+
+-- Multiple aggregations
+summary = df.groupby('region').agg({
+    'amount': 'sum',       # Total sales
+    'id': 'count',         # Number of orders
+    'customer_id': 'nunique'  # Number of unique customers
+})
+
+-- Group by multiple columns
+monthly_region = df.groupby(['region', pd.Grouper(key='order_date', freq='M')])['amount'].sum()</pre>
+
+      <h3>📌 Merging DataFrames (Like SQL JOIN)</h3>
+      <pre>-- Merge two tables
+merged = pd.merge(orders, customers, left_on='customer_id', right_on='id', how='inner')
+# how='inner' → INNER JOIN
+# how='left' → LEFT JOIN
+# how='right' → RIGHT JOIN
+
+-- Concatenate tables
+combined = pd.concat([df1, df2], axis=0)  # Stack vertically</pre>
+
+      <h3>📌 Visualization (Charts)</h3>
+      <pre>import matplotlib.pyplot as plt
+
+-- Line chart (trend)
+df.groupby('month')['amount'].sum().plot(kind='line')
+plt.title('Sales Trend')
+plt.show()
+
+-- Bar chart (comparison)
+df.groupby('region')['amount'].sum().plot(kind='bar')
+plt.title('Sales by Region')
+plt.show()
+
+-- Pie chart (composition)
+df['product'].value_counts().plot(kind='pie')
+plt.show()</pre>
+
+      <h3>📌 Common Data Analysis Patterns</h3>
+      <pre>-- 1. Find top 10 regions by sales
+top_regions = df.groupby('region')['amount'].sum().sort_values(ascending=False).head(10)
+
+-- 2. Calculate month-over-month growth
+df['month'] = df['order_date'].dt.to_period('M')
+monthly = df.groupby('month')['amount'].sum()
+growth = monthly.pct_change() * 100
+
+-- 3. Identify duplicate customers
+duplicate_customers = df[df.duplicated(subset=['customer_id'], keep=False)]
+
+-- 4. Calculate percentiles (e.g., top 25%)
+top_25_threshold = df['amount'].quantile(0.75)
+top_customers = df[df['amount'] >= top_25_threshold]</pre>
+    </section>
+
+    <!-- SECTION 5: POWER BI COMPLETE -->
+    <section>
+      <h2>📈 POWER BI - Workflow &amp; Dashboard Building</h2>
+
+      <h3>📌 5-Step Power BI Workflow</h3>
+      <table>
+        <tr>
+          <th>Step</th>
+          <th>What to do</th>
+          <th>Example</th>
+        </tr>
+        <tr>
+          <td><strong>1. Load Data</strong></td>
+          <td>Import CSV, Excel, or Database</td>
+          <td>Get Data → CSV → Select sales_data.csv</td>
+        </tr>
+        <tr>
+          <td><strong>2. Transform (Query)</strong></td>
+          <td>Clean, filter, rename columns</td>
+          <td>Remove NULL regions, rename "Amount" → "Sales"</td>
+        </tr>
+        <tr>
+          <td><strong>3. Model (Relationships)</strong></td>
+          <td>Connect tables with primary/foreign keys</td>
+          <td>Link Orders table (customer_id) with Customers table (id)</td>
+        </tr>
+        <tr>
+          <td><strong>4. Visualize (Create Charts)</strong></td>
+          <td>Add cards, charts, filters to canvas</td>
+          <td>Bar chart (revenue by region), Line chart (trend by month)</td>
+        </tr>
+        <tr>
+          <td><strong>5. Publish (Share Dashboard)</strong></td>
+          <td>Publish to Power BI Service or share file</td>
+          <td>Export to .pbix or publish online</td>
+        </tr>
+      </table>
+
+      <h3>📌 Common Visualizations</h3>
+      <table>
+        <tr>
+          <th>Chart Type</th>
+          <th>When to Use</th>
+          <th>Example</th>
+        </tr>
+        <tr>
+          <td><strong>Line Chart</strong></td>
+          <td>Show trends over time</td>
+          <td>Sales trend month-by-month</td>
+        </tr>
+        <tr>
+          <td><strong>Bar Chart</strong></td>
+          <td>Compare categories</td>
+          <td>Sales by region (West vs East vs South)</td>
+        </tr>
+        <tr>
+          <td><strong>Pie Chart</strong></td>
+          <td>Show composition/breakdown</td>
+          <td>Market share: Product-A 40%, Product-B 30%, Product-C 30%</td>
+        </tr>
+        <tr>
+          <td><strong>Card</strong></td>
+          <td>Display single metric</td>
+          <td>Total Revenue: $1.2M</td>
+        </tr>
+        <tr>
+          <td><strong>Table</strong></td>
+          <td>Show detailed data rows</td>
+          <td>List of top 100 customers with revenue</td>
+        </tr>
+        <tr>
+          <td><strong>Scatter Plot</strong></td>
+          <td>Show correlation between 2 metrics</td>
+          <td>Marketing spend vs Sales revenue</td>
+        </tr>
+      </table>
+
+      <h3>📌 DAX (Data Analysis Expressions) - Create Calculated Columns &amp; Measures</h3>
+      <pre>-- Create a calculated column (adds to data model)
+Sales Category = IF([Amount] > 5000, "High", "Low")
+
+-- Create a measure (shows in visualizations)
+Total Revenue = SUM(Orders[Amount])
+
+-- Count distinct customers
+Unique Customers = DISTINCTCOUNT(Orders[Customer_ID])
+
+-- Year-to-date total
+YTD Revenue = TOTALYTD(SUM(Orders[Amount]), Orders[Date])
+
+-- Previous month comparison
+Revenue Growth % = ([Current Month Revenue] - [Previous Month Revenue]) / [Previous Month Revenue]</pre>
+
+      <h3>📌 Power BI Dashboard Best Practices</h3>
+      <ul>
+        <li>✅ Add filters (slicers) for Region, Date, Product to explore data</li>
+        <li>✅ Use consistent color scheme (blue for revenue, red for loss)</li>
+        <li>✅ Show KPIs at top (Total Revenue, Growth %, Customer Count)</li>
+        <li>✅ Add trend chart to show month-over-month movement</li>
+        <li>✅ Include table with top 10 / bottom 10 items</li>
+        <li>✅ Use drill-down: Click bar chart → See details</li>
+        <li>✅ Title each visualization clearly ("Q3 Revenue by Region")</li>
+      </ul>
+    </section>
+
+    <!-- SECTION 6: INTERVIEW SCRIPTS & QUESTIONS -->
+    <section>
+      <h2>💼 Interview Questions, Definitions &amp; Explanations</h2>
+
+      <h3>📌 Key Definitions Every Data Analyst Should Know</h3>
+      <ul>
+        <li><strong>KPI (Key Performance Indicator):</strong> Main metric to measure business success (e.g., Total Revenue, Customer Retention, Conversion Rate)</li>
+        <li><strong>Root Cause Analysis:</strong> Finding the "why" behind a problem (e.g., "Sales dropped because we lost top salesman")</li>
+        <li><strong>Cohort Analysis:</strong> Group customers by signup date, track behavior over time (e.g., Aug cohort has 60% retention vs Jul cohort 55%)</li>
+        <li><strong>Retention Rate:</strong> % of customers staying (e.g., 100 Jan customers → 60 stayed in Feb = 60% retention)</li>
+        <li><strong>Churn Rate:</strong> % of customers leaving (opposite of retention; if retention 60%, churn is 40%)</li>
+        <li><strong>Aggregation:</strong> Combining detailed data into summary (e.g., sum sales by region)</li>
+        <li><strong>Granularity:</strong> Level of detail in data (daily granularity vs monthly)</li>
+        <li><strong>Outlier:</strong> Unusual data point that doesn't fit pattern (e.g., $1M sale when normal is $5K)</li>
+        <li><strong>NULL / Missing Data:</strong> Empty cell with no value - must be handled in cleaning</li>
+        <li><strong>Data Quality:</strong> Accuracy, completeness, consistency of data</li>
+      </ul>
+
+      <h3>📌 Common Interview Questions with Answers</h3>
+      <div class="card">
+        <h4>Q1: "Tell me about your data analysis process."</h4>
+        <p><strong>Answer:</strong> I follow 6 steps: (1) Define the business question and success metric, (2) Collect data from relevant sources, (3) Clean data by removing duplicates and fixing types, (4) Analyze by grouping and aggregating, (5) Visualize findings in charts, (6) Recommend next steps based on insights. For example, if asked "Why did sales drop?", I'd extract 12 months of orders, check totals by region to identify where the drop happened, look for patterns like lost salespeople or competitor activity, then create a dashboard and recommend action.</p>
+      </div>
+
+      <div class="card">
+        <h4>Q2: "How do you clean messy data?"</h4>
+        <p><strong>Answer:</strong> First, I identify issues: (1) Missing values (NULLs) - I either remove rows or fill with average/mode, (2) Duplicates - check key fields and keep first occurrence, (3) Wrong types (date stored as text) - convert using to_datetime() or TEXT functions, (4) Inconsistent formats - use TRIM, PROPER, UPPER/LOWER for standardization, (5) Outliers - investigate if real or errors. I always document changes and validate the cleaned data.</p>
+      </div>
+
+      <div class="card">
+        <h4>Q3: "Compare VLOOKUP vs INDEX-MATCH."</h4>
+        <p><strong>Answer:</strong> VLOOKUP searches a table left-to-right, limited to forward direction. INDEX-MATCH is more flexible - it can search in any direction and combine with other functions. I prefer INDEX-MATCH because it's more robust. Example: =INDEX(Prices, MATCH(ProductID, Products, 0)) finds product in any order and returns price.</p>
+      </div>
+
+      <div class="card">
+        <h4>Q4: "Explain a SQL JOIN, which have you used?"</h4>
+        <p><strong>Answer:</strong> A JOIN connects rows from two tables based on matching keys. INNER JOIN returns only matching rows. LEFT JOIN keeps all rows from the left table + matching from right (good if you want every order even if customer not found). I use INNER JOIN when I want clean matches, LEFT JOIN when I need to keep all records. Example: LEFT JOIN Orders with Customers on customer_id to see all orders and their customer names (NULL if no match).</p>
+      </div>
+
+      <div class="card">
+        <h4>Q5: "Walk me through a real data analysis project."</h4>
+        <p><strong>Answer:</strong> Project: "Customer Churn Prediction". Business question: "Which customers are likely to leave?" Step 1: Defined churn as no purchase in 90 days. Step 2: Extracted customer purchase history + demographics. Step 3: Cleaned by removing test accounts, fixing dates. Step 4: Analyzed: found 30% inactive for 90+ days, new customers churn more (80%) vs old (10%). Step 5: Created dashboard showing churn risk by cohort. Step 6: Recommended: "Focus retention budget on customers aged 0-6 months; offer loyalty rewards." Result: Churn dropped 5% in next quarter.</p>
+      </div>
+
+      <div class="card">
+        <h4>Q6: "How do you validate your analysis is correct?"</h4>
+        <p><strong>Answer:</strong> I validate in multiple ways: (1) Spot-check numbers manually against source data, (2) Compare totals (sum of all regions should match overall total), (3) Check filters applied correctly (if filtering Q3 dates, verify all dates are Jul-Sep), (4) Ask business stakeholder "Does this number make sense?" (5) Look for logical consistency (can't have 120% growth), (6) Review data quality - how many NULLs did I exclude?</p>
+      </div>
+
+      <div class="card">
+        <h4>Q7: "What's a KPI and how do you set targets?"</h4>
+        <p><strong>Answer:</strong> KPI is a measurable metric tied to business goals. Examples: Revenue, Customer Acquisition Cost, Retention Rate, Conversion Rate. To set targets: (1) Look at historical trend (was it growing 5%/month?), (2) Compare to industry benchmark, (3) Set realistic goal (5-10% improvement is usually achievable), (4) Break into sub-targets (monthly milestones). Example: If current retention 70%, industry average 75%, set target 75% by end of Q2, track weekly.</p>
+      </div>
+
+      <div class="card">
+        <h4>Q8: "Tell me a time you found an error in data or analysis."</h4>
+        <p><strong>Answer:</strong> I was analyzing Q3 sales, found West region total $300K but my aggregate showed $350K. Root cause: I had duplicate order IDs from two database exports. I identified duplicates using GROUP BY id HAVING COUNT(*) > 1 in SQL, removed extras, recalculated. The corrected $300K matched source. This taught me to always check for duplicates in the first cleaning step. Now I verify row counts before and after cleaning.</p>
+      </div>
+
+      <h3>📌 Technical Follow-Up Questions</h3>
+      <ul>
+        <li><strong>"Why use GROUP BY instead of filtering?"</strong> → GROUP BY aggregates multiple rows into one; filtering just selects rows. GROUP BY needed for "total by region".</li>
+        <li><strong>"What's the difference between COUNT(*) and COUNT(column)?"</strong> → COUNT(*) counts all rows; COUNT(column) skips NULL values. Use COUNT(*) for "how many rows?" and COUNT(column) for "how many have data?"</li>
+        <li><strong>"When would you use HAVING vs WHERE?"</strong> → WHERE filters rows before grouping; HAVING filters groups after aggregation. Example: WHERE status='completed' filters orders first, then HAVING SUM(amount) > 1000 filters the summed results.</li>
+        <li><strong>"Explain ROW_NUMBER() window function."</strong> → Ranks rows in order. Example: SELECT product, revenue, ROW_NUMBER() OVER (ORDER BY revenue DESC) ranks products by revenue. Used for "top 10" queries.</li>
+      </ul>
+    </section>
+
+    <!-- SECTION 7: MEMORY TIPS & TRICKS -->
+    <section>
+      <h2>🧠 Memory Tips &amp; Tricks for Fast Recall</h2>
+
+      <h3>📌 Acronyms &amp; Mnemonics</h3>
+      <ul>
+        <li><strong>DEFINE-COLLECT-CLEAN-ANALYZE-VISUALIZE-INSIGHT</strong> → (DCCAVI) - 6-step data analysis</li>
+        <li><strong>SUM-AVERAGE-COUNT-MAX</strong> → (SACM) - Most common aggregations</li>
+        <li><strong>VLOOKUP searches DOWN, INDEX-MATCH searches ANY direction</strong> → (DOWN vs ANY)</li>
+        <li><strong>SELECT-FROM-WHERE-GROUP BY-ORDER BY</strong> → (SFWGO) - SQL query order</li>
+        <li><strong>INNER-LEFT-RIGHT</strong> → (ILR) - 3 main JOIN types</li>
+        <li><strong>Load-Transform-Model-Visualize-Publish</strong> → (LTMVP) - Power BI steps</li>
+      </ul>
+
+      <h3>📌 Quick Recall Formulas</h3>
+      <ul>
+        <li>Excel: <strong>IF always has 3 parts: condition, if-true-value, if-false-value</strong></li>
+        <li>SQL: <strong>GROUP BY must include all non-aggregated columns</strong></li>
+        <li>Python: <strong>Pandas chain: read → filter → group → aggregate → plot</strong></li>
+        <li>Power BI: <strong>DAX measures use AGGREGATE functions: SUM, COUNT, AVG</strong></li>
+      </ul>
+
+      <h3>📌 Visual Patterns to Remember</h3>
+      <ul>
+        <li><strong>Trend/Time:</strong> Use LINE CHART</li>
+        <li><strong>Comparison/Category:</strong> Use BAR CHART</li>
+        <li><strong>Breakdown/Percentage:</strong> Use PIE CHART</li>
+        <li><strong>Single Number:</strong> Use CARD</li>
+        <li><strong>Many Details:</strong> Use TABLE</li>
+      </ul>
+
+      <h3>📌 Common Mistakes to Avoid</h3>
+      <ul>
+        <li>❌ Forgetting to remove duplicates → Use COUNT(id) vs COUNT(DISTINCT id) to check</li>
+        <li>❌ NULL values skewing averages → Always check ISNA().SUM() first</li>
+        <li>❌ Time zones causing date mismatches → Standardize to UTC</li>
+        <li>❌ Filtering but forgetting to apply → Always verify result count changed</li>
+        <li>❌ Using wrong join and losing data → Verify row counts before/after JOIN</li>
+      </ul>
+    </section>
+
+    <!-- SECTION 8: ONE-DAY REVISION PLAN -->
+    <section>
+      <h2>⏰ One-Day Intensive Revision Plan (8 Hours)</h2>
+      <p><strong>Schedule for quick memory refresh before interview or exam:</strong></p>
+
+      <table>
+        <tr>
+          <th>Time Block</th>
+          <th>Topic</th>
+          <th>Action</th>
+          <th>Duration</th>
+        </tr>
+        <tr>
+          <td><strong>9-10 AM</strong></td>
+          <td>Data Analysis Process</td>
+          <td>Review 6 steps, write down example (sales drop case), practice explaining in 2 min</td>
+          <td>1 hour</td>
+        </tr>
+        <tr>
+          <td><strong>10-11 AM</strong></td>
+          <td>Excel Formulas</td>
+          <td>Quick-fire: SUM, IF, COUNTIF, SUMIF, INDEX-MATCH. Write 5 formulas from scratch</td>
+          <td>1 hour</td>
+        </tr>
+        <tr>
+          <td><strong>11 AM-12 PM</strong></td>
+          <td>SQL Syntax</td>
+          <td>SELECT, WHERE, GROUP BY, ORDER BY, JOIN. Write 5 queries: total by region, top 10, month trends</td>
+          <td>1 hour</td>
+        </tr>
+        <tr>
+          <td><strong>12-1 PM</strong></td>
+          <td>LUNCH BREAK</td>
+          <td>Recharge (15 min) + Quiz yourself on definitions (15 min)</td>
+          <td>1 hour</td>
+        </tr>
+        <tr>
+          <td><strong>1-2 PM</strong></td>
+          <td>Python Pandas</td>
+          <td>read_csv, drop_duplicates, group_by, merge. Write 3 data cleaning scenarios</td>
+          <td>1 hour</td>
+        </tr>
+        <tr>
+          <td><strong>2-3 PM</strong></td>
+          <td>Power BI &amp; DAX</td>
+          <td>5-step workflow, create 3 DAX measures, understand relationships</td>
+          <td>1 hour</td>
+        </tr>
+        <tr>
+          <td><strong>3-4 PM</strong></td>
+          <td>Interview Prep</td>
+          <td>Read 8 Q&amp;A scenarios, practice 2-min answers, memorize key definitions</td>
+          <td>1 hour</td>
+        </tr>
+        <tr>
+          <td><strong>4-5 PM</strong></td>
+          <td>Mock Project</td>
+          <td>Pick a scenario (churn, sales drop). Verbally walk through all 6 analysis steps. Time yourself</td>
+          <td>1 hour</td>
+        </tr>
+      </table>
+
+      <p><strong>Final Hour Checklist:</strong>
+      <ul>
+        <li>☑ Can I explain data analysis process in 2 minutes?</li>
+        <li>☑ Can I write SUM, IF, INDEX-MATCH without help?</li>
+        <li>☑ Can I write a SQL query with GROUP BY and ORDER BY?</li>
+        <li>☑ Can I read Pandas code and explain it?</li>
+        <li>☑ Do I know when to use which chart in Power BI?</li>
+        <li>☑ Can I answer 5 interview questions?</li>
+        <li>☑ Do I know 10+ key definitions?</li>
+      </ul>
+      </p>
+    </section>
+
+    <!-- FOOTER -->
+    <section style="text-align: center; background: #f0f6ff;">
+      <p><strong>✅ You now have a complete reference guide for data analysis!</strong></p>
+      <p>Use this for: Learning, interviews, quick reference, refreshing memory, teaching others</p>
+      <p><a href="../index.html" style="color:#0b57d0;font-weight:bold;">← Back to Learning Hub</a></p>
+    </section>
+  </div>
+
+  <script src="../global-script.js"></script>
+</body>
+</html>

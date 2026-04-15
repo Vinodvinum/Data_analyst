@@ -21,10 +21,19 @@ export default function SiteLayout({ children, themeContext }) {
             <Link className={pathname === "/" ? "active" : ""} to="/">
               Home
             </Link>
+            <Link className={pathname === "/guides" ? "active" : ""} to="/guides">
+              All Guides
+            </Link>
             <Link to="/guides/excel">Excel</Link>
             <Link to="/guides/sql">SQL</Link>
             <Link to="/guides/python">Python</Link>
             <Link to="/guides/powerbi">Power BI</Link>
+            <Link className={pathname === "/notebooks" ? "active" : ""} to="/notebooks">
+              Notebooks
+            </Link>
+            <Link className={pathname === "/tools" ? "active" : ""} to="/tools">
+              Tools
+            </Link>
           </nav>
         </div>
       </header>
