@@ -1,4 +1,4 @@
-﻿yrderID,OrderDate,Region,SalesRep,Product,Units,UnitPrice,Discount,Channel,CustomerPhone,Email,Status
+﻿OrderID,OrderDate,Region,SalesRep,Product,Units,UnitPrice,Discount,Channel,CustomerPhone,Email,Status
 2001,2026-01-01,North,Asha,Keyboard,8,950,0.03,Online,9100000001,asha1@example.com,Closed
 2002,02 Jan 2026,South,Neha,Mouse,11,550,0.04,Retail,9100000002,neha2@example.com,Closed
 2003,01-03-2026,East,Ravi,Monitor,14,7800,0.05,Partner,9100000003,ravi3@example.com,Closed
