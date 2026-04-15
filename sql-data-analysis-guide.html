@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SQL for Data Analysis: Beginner to Expert Guide</title>
+  <style>
+    :root {
+      --bg: #f6f8fc;
+      --card: #ffffff;
+      --ink: #162033;
+      --muted: #51607a;
+      --brand: #0f766e;
+      --brand-2: #1d4ed8;
+      --accent: #7c3aed;
+      --line: #dbe4f0;
+      --soft: #edf7f5;
+      --warn: #9a3412;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, #e7fff9 0%, transparent 28%),
+        radial-gradient(circle at top right, #eef4ff 0%, transparent 30%),
+        var(--bg);
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    header {
+      background: linear-gradient(120deg, #0f766e, #1d4ed8);
+      color: #fff;
+      border-radius: 18px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 2rem;
+    }
+
+    header p {
+      margin: 0;
+      max-width: 90ch;
+      opacity: 0.96;
+    }
+
+    nav, section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    nav {
+      padding: 20px;
+    }
+
+    section {
+      padding: 24px;
+    }
+
+    h2, h3, h4 {
+      margin-top: 0;
+      line-height: 1.25;
+      color: #0f172a;
+    }
+
+    h2 { margin-bottom: 10px; }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #e7f9f1;
+      color: var(--brand);
+      border: 1px solid #c4eadc;
+      margin-bottom: 12px;
+    }
+
+    .tag.adv { background: #eef2ff; color: var(--brand-2); border-color: #c7d2fe; }
+    .tag.exp { background: #f5f3ff; color: var(--accent); border-color: #ddd6fe; }
+
+    .toc {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 8px 20px;
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    a { color: #0b57d0; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    p, li { color: var(--ink); }
+    .muted { color: var(--muted); }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      background: #fbfdff;
+    }
+
+    .tip, .warning, .note {
+      border-left: 5px solid;
+      padding: 10px 12px;
+      border-radius: 8px;
+      margin: 12px 0;
+      background: #f8fafc;
+    }
+
+    .tip { border-left-color: #2563eb; }
+    .warning { border-left-color: var(--warn); }
+    .note { border-left-color: var(--brand); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 16px;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th { background: #eef6ff; }
+
+    pre {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 12px;
+      border-radius: 10px;
+      overflow-x: auto;
+      border: 1px solid #1f2937;
+      margin: 8px 0 14px;
+      font-size: 0.92rem;
+    }
+
+    code {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.94em;
+    }
+
+    .schema {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+      margin: 10px 0 16px;
+    }
+
+    .schema .card h4 {
+      margin-bottom: 6px;
+    }
+
+    .join-diagram {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      align-items: center;
+      margin: 10px 0 16px;
+    }
+
+    .join-box {
+      border: 2px dashed #93c5fd;
+      border-radius: 12px;
+      padding: 14px;
+      background: #f8fbff;
+      min-height: 118px;
+    }
+
+    .join-box strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #1d4ed8;
+    }
+
+    .join-arrow {
+      text-align: center;
+      font-weight: 700;
+      color: #0f766e;
+    }
+
+    .sql-order {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px;
+      font-weight: 600;
+    }
+
+    .project-box {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      background: #fcfdff;
+      margin: 12px 0;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 16px 8px 30px;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 700px) {
+      .container { padding: 14px; }
+      header h1 { font-size: 1.55rem; }
+      section { padding: 16px; }
+      table, th, td { font-size: 0.88rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>SQL for Data Analysis: Beginner to Expert Guide</h1>
+      <p>A practical, industry-focused SQL training guide for data analysts. It starts with core query fundamentals, moves through joins and aggregation, then goes deep into window functions, CTEs, analytical patterns, optimization, case studies, and interview preparation.</p>
+      <p><a href="index.html">Master Hub</a> | <a href="data-analyst-interview-preparation-guide.html">Interview Prep</a> | <a href="https://github.com/Vinodvinum/Data_analyst">GitHub Repo</a></p>
+    </header>
+
+    <nav id="toc">
+      <h2>Table of Contents</h2>
+      <ol class="toc">
+        <li><a href="#how-to-use">How to Use This Guide</a></li>
+        <li><a href="#datasets">Practice Datasets</a></li>
+        <li><a href="#practice-lab">Practice Lab</a></li>
+        <li><a href="#answer-key">Answer Key</a></li>
+        <li><a href="#advanced-answer-key">Advanced Challenges Answer Key</a></li>
+        <li><a href="#finance-pack">Finance Dataset Pack</a></li>
+        <li><a href="#finance-answer-key">Finance Answer Key</a></li>
+        <li><a href="#beginner">Beginner Level</a></li>
+        <li><a href="#sql-fundamentals">SQL Fundamentals</a></li>
+        <li><a href="#intermediate">Intermediate Level</a></li>
+        <li><a href="#filter-aggregate">Filtering and Aggregation</a></li>
+        <li><a href="#joins">Joins Deep Dive</a></li>
+        <li><a href="#advanced">Advanced Level</a></li>
+        <li><a href="#window-functions">Window Functions</a></li>
+        <li><a href="#subqueries-cte">Subqueries and CTEs</a></li>
+        <li><a href="#conditional-cleaning">CASE, NULLs, and Cleaning</a></li>
+        <li><a href="#expert">Expert Level</a></li>
+        <li><a href="#analytical-patterns">Analytical Query Patterns</a></li>
+        <li><a href="#advanced-aggregations">Advanced Aggregations</a></li>
+        <li><a href="#set-operations">Set Operations</a></li>
+        <li><a href="#data-modeling">Data Modeling Concepts</a></li>
+        <li><a href="#optimization">Query Optimization</a></li>
+        <li><a href="#case-studies">Real-World Case Studies</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#interview">SQL Interview Preparation</a></li>
+        <li><a href="#interview-cheat">Interview Cheat Sheet Page</a></li>
+        <li><a href="#memory">Memory Tricks and Mental Models</a></li>
+        <li><a href="#best-practices">Best Practices</a></li>
+        <li><a href="#ecosystem">SQL Ecosystem Integration</a></li>
+        <li><a href="#ai-sql">AI + SQL</a></li>
+        <li><a href="#mastery">Mastery-Level Thinking</a></li>
+      </ol>
+    </nav>
+
+    <section id="training-hub">
+      <span class="tag">Hub</span>
+      <h2>Training Hub and Resources</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Cross-links</h3>
+          <ul>
+            <li><a href="index.html">Master landing page</a></li>
+            <li><a href="excel-data-analysis-guide.html">Excel guide</a></li>
+            <li><a href="python-data-analysis-guide.html">Python guide</a></li>
+            <li><a href="powerbi-data-analysis-guide.html">Power BI guide</a></li>
+            <li><a href="data-analyst-interview-preparation-guide.html">Interview guide</a></li>
+            <li><a href="sql-interview-cheat-sheet.html">SQL cheat sheet</a></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Files</h3>
+          <ul>
+            <li><a href="sql-data-analysis-guide.ipynb">sql-data-analysis-guide.ipynb</a></li>
+            <li><a href="sql-practice-users.csv">sql-practice-users.csv</a></li>
+            <li><a href="sql-practice-orders.csv">sql-practice-orders.csv</a></li>
+            <li><a href="sql-practice-products.csv">sql-practice-products.csv</a></li>
+            <li><a href="sql-practice-events.csv">sql-practice-events.csv</a></li>
+            <li><a href="sql-practice-subscriptions.csv">sql-practice-subscriptions.csv</a></li>
+            <li><a href="sql-finance-customers.csv">sql-finance-customers.csv</a></li>
+            <li><a href="sql-finance-invoices.csv">sql-finance-invoices.csv</a></li>
+            <li><a href="sql-finance-payments.csv">sql-finance-payments.csv</a></li>
+            <li><a href="sql-finance-monthly-budget.csv">sql-finance-monthly-budget.csv</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-to-use">
+      <span class="tag">Intro</span>
+      <h2>How to Use This Guide</h2>
+      <p class="muted">Read it in order, but also copy each query into a SQL editor and run it against real tables. SQL is learned by reading results, not just memorizing syntax.</p>
+      <ul>
+        <li>Each concept includes syntax, explanation, and a realistic data example.</li>
+        <li>Use the sample schema in this guide to practice queries against users, orders, transactions, and events.</li>
+        <li>Re-run examples with your own dataset once the logic makes sense.</li>
+        <li>Keep a notebook of query patterns; analysts reuse patterns constantly.</li>
+      </ul>
+      <div class="tip"><strong>Goal:</strong> Build the exact SQL skill set expected of job-ready analysts in product, finance, marketing, operations, and strategy teams.</div>
+      <div class="note"><strong>Notebook alternative:</strong> A runnable notebook version is available as <code>sql-data-analysis-guide.ipynb</code> for cell-by-cell practice.</div>
+    </section>
+
+    <section id="datasets">
+      <span class="tag">Schema</span>
+      <h2>Practice Datasets Used Throughout This Guide</h2>
+      <p>All examples use realistic analyst-friendly tables.</p>
+      <p>Dataset pack files in this folder:</p>
+      <ul>
+        <li><code>sql-practice-users.csv</code></li>
+        <li><code>sql-practice-orders.csv</code></li>
+        <li><code>sql-practice-products.csv</code></li>
+        <li><code>sql-practice-events.csv</code></li>
+        <li><code>sql-practice-subscriptions.csv</code></li>
+      </ul>
+      <div class="schema">
+        <div class="card">
+          <h4>users</h4>
+          <p>user_id, signup_date, country, acquisition_channel, plan_type, is_active</p>
+        </div>
+        <div class="card">
+          <h4>orders</h4>
+          <p>order_id, user_id, order_date, product_id, quantity, unit_price, discount_amount, order_status</p>
+        </div>
+        <div class="card">
+          <h4>transactions</h4>
+          <p>transaction_id, order_id, payment_date, payment_method, amount, payment_status</p>
+        </div>
+        <div class="card">
+          <h4>events</h4>
+          <p>event_id, user_id, event_time, event_name, session_id, page_url</p>
+        </div>
+        <div class="card">
+          <h4>products</h4>
+          <p>product_id, product_name, category, list_price, launch_date</p>
+        </div>
+        <div class="card">
+          <h4>subscriptions</h4>
+          <p>subscription_id, user_id, start_date, end_date, plan_monthly_fee, churn_flag</p>
+        </div>
+      </div>
+      <div class="note"><strong>Business context:</strong> These tables are enough to analyze sales dashboards, retention, funnels, cohorts, churn, sessions, and revenue trends.</div>
+    </section>
+
+    <section id="practice-lab">
+      <span class="tag">Lab</span>
+      <h2>Practice Lab: What to Do First</h2>
+      <p>This is the actual workflow analysts should follow when they open the practice dataset pack in a SQL editor.</p>
+      <ol>
+        <li>Load the CSV files into tables named <code>users</code>, <code>orders</code>, <code>products</code>, <code>events</code>, and <code>subscriptions</code>.</li>
+        <li>Verify row counts and inspect column data types.</li>
+        <li>Run basic SELECT, DISTINCT, and LIMIT queries.</li>
+        <li>Join users to orders and inspect one-to-many behavior.</li>
+        <li>Aggregate revenue by month, country, and plan type.</li>
+        <li>Use window functions for ranking and running totals.</li>
+        <li>Build an output table for a dashboard and one for churn analysis.</li>
+      </ol>
+
+      <h3>Starter Validation Queries</h3>
+      <pre><code>SELECT COUNT(*) AS users_count FROM users;
+SELECT COUNT(*) AS orders_count FROM orders;
+SELECT COUNT(*) AS events_count FROM events;
+
+SELECT DISTINCT country FROM users ORDER BY country;
+
+SELECT * FROM orders LIMIT 5;</code></pre>
+
+      <h3>Expected Analyst Checks</h3>
+      <table>
+        <thead><tr><th>Check</th><th>Expected Result</th><th>Why It Matters</th></tr></thead>
+        <tbody>
+          <tr><td>Row count</td><td>Tables load with the expected number of rows</td><td>Confirms ingestion worked</td></tr>
+          <tr><td>Join key type</td><td>user_id and order_id are consistent types</td><td>Prevents broken joins</td></tr>
+          <tr><td>Null scan</td><td>Optional fields may be null, keys should not be</td><td>Protects data integrity</td></tr>
+          <tr><td>Date parse</td><td>Dates sort chronologically</td><td>Needed for windows and trends</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Expected Output Snapshots</h3>
+      <table>
+        <thead><tr><th>Query</th><th>Expected Output Shape</th><th>What You Learn</th></tr></thead>
+        <tbody>
+          <tr><td><code>SELECT DISTINCT country FROM users</code></td><td>Small list of countries</td><td>How to inspect dimension values</td></tr>
+          <tr><td><code>SELECT * FROM orders LIMIT 5</code></td><td>5 example order rows</td><td>How source grain looks</td></tr>
+          <tr><td>users LEFT JOIN orders</td><td>One row per user-order combination</td><td>One-to-many relationship behavior</td></tr>
+          <tr><td>Monthly revenue aggregation</td><td>One row per month and country</td><td>How transactional rows become summary rows</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="answer-key">
+      <span class="tag adv">Answer Key</span>
+      <h2>Solved Practice Lab Queries</h2>
+      <p class="muted">Use these after attempting the practice lab yourself. The point is to compare query structure, not just get the result.</p>
+
+      <h3>1) Row Counts and Sanity Checks</h3>
+      <pre><code>SELECT COUNT(*) AS users_count FROM users;
+SELECT COUNT(*) AS orders_count FROM orders;
+SELECT COUNT(*) AS events_count FROM events;
+SELECT COUNT(*) AS subscriptions_count FROM subscriptions;</code></pre>
+      <p><strong>Why:</strong> Confirms all source tables loaded correctly and lets you compare expected volume before analysis.</p>
+
+      <h3>2) Distinct Country List</h3>
+      <pre><code>SELECT DISTINCT country
+FROM users
+ORDER BY country;</code></pre>
+      <p><strong>Why:</strong> Helps you understand segmentation fields and check for messy source values.</p>
+
+      <h3>3) Revenue by Month and Country</h3>
+      <pre><code>SELECT
+  DATE_TRUNC('month', o.order_date) AS month,
+  u.country,
+  COUNT(*) AS orders,
+  SUM(o.quantity * o.unit_price - o.discount_amount) AS revenue
+FROM orders o
+JOIN users u
+  ON o.user_id = u.user_id
+WHERE o.order_status = 'completed'
+GROUP BY 1, 2
+ORDER BY 1, 2;</code></pre>
+      <p><strong>What it returns:</strong> One row per month-country combination, which is the standard shape for an executive revenue table.</p>
+
+      <h3>4) Top Customers by Total Spend</h3>
+      <pre><code>WITH customer_spend AS (
+  SELECT
+    user_id,
+    SUM(quantity * unit_price - discount_amount) AS total_spend
+  FROM orders
+  WHERE order_status = 'completed'
+  GROUP BY user_id
+)
+SELECT
+  user_id,
+  total_spend,
+  RANK() OVER (ORDER BY total_spend DESC) AS spend_rank
+FROM customer_spend
+ORDER BY spend_rank, user_id;</code></pre>
+
+      <h3>5) Monthly Running Revenue</h3>
+      <pre><code>WITH monthly AS (
+  SELECT
+    DATE_TRUNC('month', order_date) AS month,
+    SUM(quantity * unit_price - discount_amount) AS revenue
+  FROM orders
+  WHERE order_status = 'completed'
+  GROUP BY 1
+)
+SELECT
+  month,
+  revenue,
+  SUM(revenue) OVER (ORDER BY month) AS running_revenue
+FROM monthly
+ORDER BY month;</code></pre>
+
+      <h3>6) Churn Flagged Users</h3>
+      <pre><code>SELECT
+  user_id,
+  start_date,
+  end_date,
+  churn_flag,
+  CASE
+    WHEN churn_flag = 1 THEN 'Churned'
+    ELSE 'Active'
+  END AS churn_status
+FROM subscriptions;</code></pre>
+
+      <div class="tip"><strong>Practice rule:</strong> If your query works but the result shape does not match the business question, the logic is probably still wrong.</div>
+    </section>
+
+    <section id="advanced-answer-key">
+      <span class="tag adv">Advanced Answers</span>
+      <h2>Advanced Challenges Answer Key</h2>
+      <p class="muted">These solved queries target higher-difficulty interview and job tasks for joins and window logic.</p>
+
+      <h3>Challenge 1: Top 2 Customers Per Country by Revenue</h3>
+      <pre><code>WITH customer_revenue AS (
+  SELECT
+    u.country,
+    o.user_id,
+    SUM(o.quantity * o.unit_price - o.discount_amount) AS revenue
+  FROM orders o
+  JOIN users u
+    ON o.user_id = u.user_id
+  WHERE o.order_status = 'completed'
+  GROUP BY 1, 2
+)
+SELECT *
+FROM (
+  SELECT
+    country,
+    user_id,
+    revenue,
+    ROW_NUMBER() OVER (PARTITION BY country ORDER BY revenue DESC) AS rn
+  FROM customer_revenue
+) ranked
+WHERE rn <= 2
+ORDER BY country, rn;</code></pre>
+
+      <h3>Challenge 2: Month over Month Growth by Country</h3>
+      <pre><code>WITH monthly_country AS (
+  SELECT
+    DATE_TRUNC('month', o.order_date) AS month,
+    u.country,
+    SUM(o.quantity * o.unit_price - o.discount_amount) AS revenue
+  FROM orders o
+  JOIN users u ON o.user_id = u.user_id
+  WHERE o.order_status = 'completed'
+  GROUP BY 1, 2
+)
+SELECT
+  month,
+  country,
+  revenue,
+  revenue - LAG(revenue) OVER (PARTITION BY country ORDER BY month) AS mom_change
+FROM monthly_country
+ORDER BY country, month;</code></pre>
+
+      <h3>Challenge 3: Users with No Purchases (Anti Join)</h3>
+      <pre><code>SELECT u.user_id, u.country, u.plan_type
+FROM users u
+LEFT JOIN orders o
+  ON u.user_id = o.user_id
+  AND o.order_status = 'completed'
+WHERE o.order_id IS NULL
+ORDER BY u.user_id;</code></pre>
+
+      <h3>Challenge 4: 7-Day Rolling Revenue</h3>
+      <pre><code>WITH daily_revenue AS (
+  SELECT
+    order_date::date AS dt,
+    SUM(quantity * unit_price - discount_amount) AS revenue
+  FROM orders
+  WHERE order_status = 'completed'
+  GROUP BY 1
+)
+SELECT
+  dt,
+  revenue,
+  AVG(revenue) OVER (
+    ORDER BY dt
+    ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
+  ) AS rolling_7_day_avg
+FROM daily_revenue
+ORDER BY dt;</code></pre>
+    </section>
+
+    <section id="finance-pack">
+      <span class="tag">Finance</span>
+      <h2>Finance Dataset Pack for Analyst Practice</h2>
+      <p>Use this second dataset pack to practice billing, collections, and budget variance analytics.</p>
+      <ul>
+        <li><code>sql-finance-customers.csv</code></li>
+        <li><code>sql-finance-invoices.csv</code></li>
+        <li><code>sql-finance-payments.csv</code></li>
+        <li><code>sql-finance-monthly-budget.csv</code></li>
+      </ul>
+
+      <h3>Finance Practice Questions</h3>
+      <ol>
+        <li>Which customers have overdue invoices and what is overdue amount?</li>
+        <li>Which countries are below monthly revenue target?</li>
+        <li>What is collection rate by month and country?</li>
+        <li>Who are the top accounts by paid amount?</li>
+      </ol>
+
+      <h3>Sample Finance Query: Revenue vs Target</h3>
+      <pre><code>WITH invoice_rev AS (
+  SELECT
+    DATE_TRUNC('month', i.invoice_date) AS month,
+    c.country,
+    SUM(i.invoice_amount) AS invoiced_revenue
+  FROM invoices i
+  JOIN customers c ON i.customer_id = c.customer_id
+  GROUP BY 1, 2
+)
+SELECT
+  r.month,
+  r.country,
+  r.invoiced_revenue,
+  b.revenue_target,
+  r.invoiced_revenue - b.revenue_target AS variance_to_target
+FROM invoice_rev r
+LEFT JOIN monthly_budget b
+  ON r.month = b.month
+  AND r.country = b.country
+ORDER BY r.month, r.country;</code></pre>
+    </section>
+
+    <section id="finance-answer-key">
+      <span class="tag adv">Finance Answers</span>
+      <h2>Finance Answer Key (Solved Queries + Output Expectations)</h2>
+      <p class="muted">Use this after solving the finance practice questions. Compare both query logic and result shape.</p>
+
+      <h3>1) Overdue Invoices by Customer</h3>
+      <pre><code>SELECT
+  c.customer_id,
+  c.customer_name,
+  c.country,
+  i.invoice_id,
+  i.invoice_date,
+  i.due_date,
+  i.invoice_amount,
+  i.tax_amount,
+  (i.invoice_amount + i.tax_amount) AS gross_due
+FROM invoices i
+JOIN customers c
+  ON i.customer_id = c.customer_id
+WHERE i.status = 'Overdue'
+ORDER BY i.due_date;</code></pre>
+      <p><strong>Expected output:</strong> One row per overdue invoice with customer context and gross_due. Use it for collection follow-up queues.</p>
+
+      <h3>2) Countries Below Monthly Revenue Target</h3>
+      <pre><code>WITH invoice_rev AS (
+  SELECT
+    DATE_TRUNC('month', i.invoice_date) AS month,
+    c.country,
+    SUM(i.invoice_amount) AS invoiced_revenue
+  FROM invoices i
+  JOIN customers c
+    ON i.customer_id = c.customer_id
+  GROUP BY 1, 2
+)
+SELECT
+  r.month,
+  r.country,
+  r.invoiced_revenue,
+  b.revenue_target,
+  r.invoiced_revenue - b.revenue_target AS variance_to_target
+FROM invoice_rev r
+JOIN monthly_budget b
+  ON r.month = b.month
+  AND r.country = b.country
+WHERE r.invoiced_revenue < b.revenue_target
+ORDER BY r.month, variance_to_target;</code></pre>
+      <p><strong>Expected output:</strong> Only under-target country-month rows with negative variance_to_target values.</p>
+
+      <h3>3) Collection Rate by Month and Country</h3>
+      <pre><code>WITH invoiced AS (
+  SELECT
+    DATE_TRUNC('month', i.invoice_date) AS month,
+    c.country,
+    SUM(i.invoice_amount + i.tax_amount) AS total_invoiced
+  FROM invoices i
+  JOIN customers c
+    ON i.customer_id = c.customer_id
+  GROUP BY 1, 2
+),
+collected AS (
+  SELECT
+    DATE_TRUNC('month', p.payment_date) AS month,
+    c.country,
+    SUM(p.payment_amount) AS total_collected
+  FROM payments p
+  JOIN invoices i
+    ON p.invoice_id = i.invoice_id
+  JOIN customers c
+    ON i.customer_id = c.customer_id
+  WHERE p.payment_status = 'Settled'
+  GROUP BY 1, 2
+)
+SELECT
+  i.month,
+  i.country,
+  i.total_invoiced,
+  COALESCE(c.total_collected, 0) AS total_collected,
+  CASE
+    WHEN i.total_invoiced = 0 THEN 0
+    ELSE ROUND(COALESCE(c.total_collected, 0) / i.total_invoiced::numeric, 4)
+  END AS collection_rate
+FROM invoiced i
+LEFT JOIN collected c
+  ON i.month = c.month
+  AND i.country = c.country
+ORDER BY i.month, i.country;</code></pre>
+      <p><strong>Expected output:</strong> One row per month-country with invoiced amount, collected amount, and collection_rate between 0 and 1.</p>
+
+      <h3>4) Top Accounts by Paid Amount</h3>
+      <pre><code>WITH paid_amount AS (
+  SELECT
+    c.customer_id,
+    c.customer_name,
+    c.segment,
+    SUM(p.payment_amount) AS paid_total
+  FROM payments p
+  JOIN invoices i
+    ON p.invoice_id = i.invoice_id
+  JOIN customers c
+    ON i.customer_id = c.customer_id
+  WHERE p.payment_status = 'Settled'
+  GROUP BY 1, 2, 3
+)
+SELECT *
+FROM (
+  SELECT
+    customer_id,
+    customer_name,
+    segment,
+    paid_total,
+    DENSE_RANK() OVER (ORDER BY paid_total DESC) AS paid_rank
+  FROM paid_amount
+) r
+WHERE paid_rank <= 5
+ORDER BY paid_rank, customer_name;</code></pre>
+      <p><strong>Expected output:</strong> Top customers by settled payments with ranks for account-prioritization and sales planning.</p>
+
+      <h3>Finance Output Validation Table</h3>
+      <table>
+        <thead><tr><th>Output</th><th>Grain</th><th>Columns You Must Validate</th></tr></thead>
+        <tbody>
+          <tr><td>Overdue list</td><td>invoice_id</td><td>gross_due, due_date, status</td></tr>
+          <tr><td>Revenue vs target</td><td>month + country</td><td>invoiced_revenue, revenue_target, variance_to_target</td></tr>
+          <tr><td>Collection rate</td><td>month + country</td><td>total_invoiced, total_collected, collection_rate</td></tr>
+          <tr><td>Top paid accounts</td><td>customer_id</td><td>paid_total, paid_rank</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="beginner">
+      <span class="tag">Beginner</span>
+      <h2>Beginner Level: SQL Fundamentals</h2>
+      <p>Start with what SQL is, how relational databases work, and the minimum query patterns every analyst must know.</p>
+    </section>
+
+    <section id="sql-fundamentals">
+      <h2>SQL Fundamentals</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>What is SQL?</h3>
+          <p>SQL stands for Structured Query Language. It is used to ask questions of relational databases: retrieve, filter, group, join, and analyze structured data.</p>
+          <table>
+            <thead><tr><th>Concept</th><th>Explanation</th><th>Analyst Example</th></tr></thead>
+            <tbody>
+              <tr><td>Table</td><td>Rows and columns stored together</td><td>orders table</td></tr>
+              <tr><td>Row</td><td>One record</td><td>one order</td></tr>
+              <tr><td>Column</td><td>One attribute</td><td>order_date</td></tr>
+              <tr><td>Primary key</td><td>Unique row identifier</td><td>user_id in users</td></tr>
+              <tr><td>Foreign key</td><td>Reference to another table's key</td><td>orders.user_id links to users.user_id</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>How Relational Databases Work</h3>
+          <ul>
+            <li>Data is normalized into related tables.</li>
+            <li>Primary keys identify rows uniquely.</li>
+            <li>Foreign keys connect business entities.</li>
+            <li>Queries combine tables to create analysis-ready views.</li>
+          </ul>
+          <div class="tip"><strong>Analyst mindset:</strong> SQL is not only about selecting rows. It is about modeling a business question into a precise query structure.</div>
+        </div>
+      </div>
+
+      <h3>Basic Query Pattern</h3>
+      <div class="sql-order">SELECT -> FROM -> WHERE -> GROUP BY -> HAVING -> WINDOW -> ORDER BY</div>
+
+      <h3>Core Syntax, Explanation, and Example</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Clause</th>
+            <th>Syntax</th>
+            <th>Explanation</th>
+            <th>Real-World Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>SELECT</td>
+            <td>SELECT column1, column2</td>
+            <td>Chooses the columns you want to see.</td>
+            <td><code>SELECT user_id, country FROM users;</code></td>
+          </tr>
+          <tr>
+            <td>FROM</td>
+            <td>FROM table_name</td>
+            <td>Specifies the source table.</td>
+            <td><code>FROM orders</code></td>
+          </tr>
+          <tr>
+            <td>WHERE</td>
+            <td>WHERE condition</td>
+            <td>Filters rows before grouping.</td>
+            <td><code>WHERE order_status = 'completed'</code></td>
+          </tr>
+          <tr>
+            <td>DISTINCT</td>
+            <td>SELECT DISTINCT column</td>
+            <td>Removes duplicate values.</td>
+            <td><code>SELECT DISTINCT country FROM users;</code></td>
+          </tr>
+          <tr>
+            <td>LIMIT</td>
+            <td>LIMIT n</td>
+            <td>Returns only the first n rows.</td>
+            <td><code>SELECT * FROM orders LIMIT 10;</code></td>
+          </tr>
+          <tr>
+            <td>ORDER BY</td>
+            <td>ORDER BY column ASC|DESC</td>
+            <td>Sorts results.</td>
+            <td><code>ORDER BY order_date DESC</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Basic Query Examples</h3>
+      <pre><code>-- Find all active users from the United States
+SELECT user_id, signup_date, plan_type
+FROM users
+WHERE country = 'United States' AND is_active = 1
+ORDER BY signup_date DESC
+LIMIT 20;
+
+-- Get unique acquisition channels
+SELECT DISTINCT acquisition_channel
+FROM users
+ORDER BY acquisition_channel;</code></pre>
+      <div class="note"><strong>Real-world use:</strong> These are the first queries analysts use when checking source data, validating dashboards, or creating quick extracts for stakeholders.</div>
+    </section>
+
+    <section id="intermediate">
+      <span class="tag">Intermediate</span>
+      <h2>Intermediate Level: Core Data Analysis SQL</h2>
+      <p>This level is where SQL becomes a true analyst tool: aggregation, joins, and data shaping.</p>
+    </section>
+
+    <section id="filter-aggregate">
+      <h2>Filtering and Aggregation</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>WHERE vs HAVING</h3>
+          <table>
+            <thead><tr><th>Clause</th><th>When It Runs</th><th>Use Case</th></tr></thead>
+            <tbody>
+              <tr><td>WHERE</td><td>Before grouping</td><td>Filter raw rows</td></tr>
+              <tr><td>HAVING</td><td>After grouping</td><td>Filter aggregates</td></tr>
+            </tbody>
+          </table>
+          <pre><code>-- WHERE filters rows first
+SELECT country, COUNT(*)
+FROM users
+WHERE is_active = 1
+GROUP BY country;
+
+-- HAVING filters grouped results
+SELECT country, COUNT(*) AS user_count
+FROM users
+GROUP BY country
+HAVING COUNT(*) &gt; 100;</code></pre>
+        </div>
+        <div class="card">
+          <h3>Aggregate Functions</h3>
+          <table>
+            <thead><tr><th>Function</th><th>Syntax</th><th>Example</th><th>Use Case</th></tr></thead>
+            <tbody>
+              <tr><td>COUNT()</td><td>COUNT(column)</td><td><code>COUNT(order_id)</code></td><td>Number of orders</td></tr>
+              <tr><td>SUM()</td><td>SUM(column)</td><td><code>SUM(amount)</code></td><td>Total revenue</td></tr>
+              <tr><td>AVG()</td><td>AVG(column)</td><td><code>AVG(unit_price)</code></td><td>Average order value</td></tr>
+              <tr><td>MIN()</td><td>MIN(column)</td><td><code>MIN(order_date)</code></td><td>First date in period</td></tr>
+              <tr><td>MAX()</td><td>MAX(column)</td><td><code>MAX(order_date)</code></td><td>Latest date in period</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h3>Aggregation Example</h3>
+      <pre><code>-- Revenue by country for completed orders
+SELECT
+  u.country,
+  COUNT(o.order_id) AS order_count,
+  SUM(o.quantity * o.unit_price - o.discount_amount) AS net_revenue,
+  AVG(o.quantity * o.unit_price - o.discount_amount) AS avg_order_value
+FROM users u
+JOIN orders o
+  ON u.user_id = o.user_id
+WHERE o.order_status = 'completed'
+GROUP BY u.country
+ORDER BY net_revenue DESC;</code></pre>
+    </section>
+
+    <section id="joins">
+      <h2>Joins Deep Dive</h2>
+      <p>Joins combine tables into one analysis view. This is one of the most important analyst skills.</p>
+
+      <div class="join-diagram">
+        <div class="join-box">
+          <strong>users</strong>
+          user_id PK<br />
+          country<br />
+          plan_type<br />
+          signup_date
+        </div>
+        <div class="join-arrow">JOIN ON user_id -></div>
+        <div class="join-box">
+          <strong>orders</strong>
+          order_id PK<br />
+          user_id FK<br />
+          order_date<br />
+          amount
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Join Type</th>
+            <th>Syntax</th>
+            <th>Meaning</th>
+            <th>Business Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>INNER JOIN</td>
+            <td>FROM A INNER JOIN B ON A.id = B.id</td>
+            <td>Only matching rows from both tables.</td>
+            <td>Users with at least one order.</td>
+          </tr>
+          <tr>
+            <td>LEFT JOIN</td>
+            <td>FROM A LEFT JOIN B ON A.id = B.id</td>
+            <td>All rows from left table plus matches from right.</td>
+            <td>All users, even those with no orders.</td>
+          </tr>
+          <tr>
+            <td>RIGHT JOIN</td>
+            <td>FROM A RIGHT JOIN B ON A.id = B.id</td>
+            <td>All rows from right table plus matches from left.</td>
+            <td>All orders, even if user record is missing.</td>
+          </tr>
+          <tr>
+            <td>FULL OUTER JOIN</td>
+            <td>FROM A FULL OUTER JOIN B ON A.id = B.id</td>
+            <td>All rows from both tables.</td>
+            <td>Reconciliation between systems.</td>
+          </tr>
+          <tr>
+            <td>CROSS JOIN</td>
+            <td>FROM A CROSS JOIN B</td>
+            <td>Every combination of rows.</td>
+            <td>Scenario modeling or calendar expansion.</td>
+          </tr>
+          <tr>
+            <td>SELF JOIN</td>
+            <td>FROM A a JOIN A b ON ...</td>
+            <td>Table joined to itself.</td>
+            <td>Employee-manager hierarchies.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Join Examples</h3>
+      <pre><code>-- INNER JOIN: active customers with orders
+SELECT u.user_id, u.country, o.order_id, o.order_date, o.amount
+FROM users u
+INNER JOIN orders o
+  ON u.user_id = o.user_id;
+
+-- LEFT JOIN: keep all users and show orders if they exist
+SELECT u.user_id, u.country, o.order_id
+FROM users u
+LEFT JOIN orders o
+  ON u.user_id = o.user_id;
+
+-- SELF JOIN: find each user's referrer or manager relationship
+SELECT e.user_id, e.referral_user_id, r.signup_date AS referral_signup_date
+FROM users e
+LEFT JOIN users r
+  ON e.referral_user_id = r.user_id;</code></pre>
+
+      <h3>Join Output Walkthrough</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Join Type</th>
+            <th>What Happens to Rows</th>
+            <th>Example Result Behavior</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>INNER JOIN</td>
+            <td>Rows survive only when both tables match.</td>
+            <td>User 6 disappears if they have no order.</td>
+          </tr>
+          <tr>
+            <td>LEFT JOIN</td>
+            <td>All left rows survive, right side may be null.</td>
+            <td>All users appear, even if order_id is null.</td>
+          </tr>
+          <tr>
+            <td>FULL OUTER JOIN</td>
+            <td>All rows from both tables survive.</td>
+            <td>Shows unmatched users and unmatched orders for reconciliation.</td>
+          </tr>
+          <tr>
+            <td>CROSS JOIN</td>
+            <td>Every combination is created.</td>
+            <td>All product-country combinations for scenario planning.</td>
+          </tr>
+          <tr>
+            <td>SELF JOIN</td>
+            <td>A row is matched to another row in same table.</td>
+            <td>Referral or manager relationships among users.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Business Join Example: Users to Orders</h3>
+      <pre><code>SELECT
+  u.user_id,
+  u.country,
+  u.plan_type,
+  o.order_id,
+  o.order_date,
+  o.quantity * o.unit_price - o.discount_amount AS net_revenue
+FROM users u
+LEFT JOIN orders o
+  ON u.user_id = o.user_id
+ORDER BY u.user_id, o.order_date;</code></pre>
+      <p>Interpretation: each user appears once for each order. If a user has no order, the order columns stay NULL. This is how analysts build customer-level reporting tables.</p>
+
+      <div class="note"><strong>Memory rule:</strong> INNER = intersection, LEFT = keep left table, RIGHT = keep right table, FULL = everything, CROSS = all combinations, SELF = same table relationship.</div>
+    </section>
+
+    <section id="advanced">
+      <span class="tag adv">Advanced</span>
+      <h2>Advanced Level: Critical Analyst SQL</h2>
+      <p>Advanced SQL is where analysts move from basic reports to robust, reusable analytical queries.</p>
+    </section>
+
+    <section id="window-functions">
+      <h2>Window Functions: Deep Analyst Guide</h2>
+      <p>Window functions are essential for ranking, running totals, moving averages, time comparisons, and customer behavior analysis. They compute across a set of rows without collapsing the result like GROUP BY does.</p>
+
+      <h3>Window Function Structure</h3>
+      <pre><code>FUNCTION(...) OVER (
+  PARTITION BY partition_column
+  ORDER BY sort_column
+  ROWS BETWEEN ...
+)</code></pre>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Syntax</th>
+            <th>Explanation</th>
+            <th>Why Analysts Use It</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>PARTITION BY</td>
+            <td>PARTITION BY customer_id</td>
+            <td>Splits rows into groups for window calculations.</td>
+            <td>Per customer, per region, per month metrics.</td>
+          </tr>
+          <tr>
+            <td>ORDER BY</td>
+            <td>ORDER BY order_date</td>
+            <td>Defines row sequence inside the window.</td>
+            <td>Running totals, rank, prior/next row comparison.</td>
+          </tr>
+          <tr>
+            <td>ROWS BETWEEN</td>
+            <td>ROWS BETWEEN 6 PRECEDING AND CURRENT ROW</td>
+            <td>Defines row-based window frame.</td>
+            <td>7-day moving average, rolling sums.</td>
+          </tr>
+          <tr>
+            <td>RANGE BETWEEN</td>
+            <td>RANGE BETWEEN INTERVAL '30' DAY PRECEDING AND CURRENT ROW</td>
+            <td>Defines value-based frame.</td>
+            <td>Time-window analytics when dates are continuous.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Ranking Functions</h3>
+      <table>
+        <thead>
+          <tr><th>Function</th><th>Syntax</th><th>Meaning</th><th>Example Use Case</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>ROW_NUMBER()</td><td>ROW_NUMBER() OVER (...)</td><td>Unique sequence number</td><td>Remove duplicates or assign latest row</td></tr>
+          <tr><td>RANK()</td><td>RANK() OVER (...)</td><td>Equal values share rank and leave gaps</td><td>Top revenue customers with ties</td></tr>
+          <tr><td>DENSE_RANK()</td><td>DENSE_RANK() OVER (...)</td><td>Equal values share rank without gaps</td><td>Product ranking by category</td></tr>
+          <tr><td>NTILE()</td><td>NTILE(4) OVER (...)</td><td>Splits rows into equal buckets</td><td>Customer quartiles for segmentation</td></tr>
+        </tbody>
+      </table>
+
+      <h3>ROW_NUMBER Example: Remove Duplicates</h3>
+      <pre><code>WITH ranked_orders AS (
+  SELECT
+    o.*,
+    ROW_NUMBER() OVER (
+      PARTITION BY order_id
+      ORDER BY order_date DESC
+    ) AS rn
+  FROM orders o
+)
+SELECT *
+FROM ranked_orders
+WHERE rn = 1;</code></pre>
+      <p>This keeps the newest record per order_id. Analysts use this pattern constantly when cleaning duplicate transactions, users, or events.</p>
+
+      <h3>RANK and DENSE_RANK Example: Top Customers</h3>
+      <pre><code>SELECT
+  user_id,
+  SUM(amount) AS total_spend,
+  RANK() OVER (ORDER BY SUM(amount) DESC) AS spend_rank
+FROM orders
+GROUP BY user_id;</code></pre>
+
+      <h3>Running Totals Example</h3>
+      <pre><code>SELECT
+  order_date,
+  amount,
+  SUM(amount) OVER (
+    ORDER BY order_date
+    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+  ) AS running_revenue
+FROM orders;</code></pre>
+
+      <h3>Window Function Output Snapshot</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>order_date</th>
+            <th>amount</th>
+            <th>running_revenue</th>
+            <th>previous_amount</th>
+            <th>change_from_previous</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>2024-06-01</td><td>230.00</td><td>230.00</td><td>NULL</td><td>NULL</td></tr>
+          <tr><td>2024-06-15</td><td>299.00</td><td>529.00</td><td>230.00</td><td>69.00</td></tr>
+          <tr><td>2024-06-20</td><td>142.00</td><td>671.00</td><td>299.00</td><td>-157.00</td></tr>
+        </tbody>
+      </table>
+      <p>This snapshot helps analysts verify they understand row-by-row calculations before using them in dashboards or reports.</p>
+
+      <h3>Moving Average Example</h3>
+      <pre><code>SELECT
+  order_date,
+  amount,
+  AVG(amount) OVER (
+    ORDER BY order_date
+    ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
+  ) AS moving_7_row_avg
+FROM orders;</code></pre>
+
+      <h3>LAG and LEAD Example: Period Comparison</h3>
+      <pre><code>SELECT
+  order_date,
+  amount,
+  LAG(amount) OVER (ORDER BY order_date) AS previous_amount,
+  amount - LAG(amount) OVER (ORDER BY order_date) AS change_from_previous,
+  LEAD(amount) OVER (ORDER BY order_date) AS next_amount
+FROM orders;</code></pre>
+
+      <h3>FIRST_VALUE and LAST_VALUE Example</h3>
+      <pre><code>SELECT
+  user_id,
+  order_date,
+  amount,
+  FIRST_VALUE(amount) OVER (
+    PARTITION BY user_id
+    ORDER BY order_date
+  ) AS first_order_amount,
+  LAST_VALUE(amount) OVER (
+    PARTITION BY user_id
+    ORDER BY order_date
+    ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+  ) AS last_order_amount
+FROM orders;</code></pre>
+
+      <div class="warning"><strong>Important:</strong> LAST_VALUE often surprises people because its default frame may stop at the current row. Use an explicit frame when you need the true last row in the partition.</div>
+    </section>
+
+    <section id="subqueries-cte">
+      <h2>Subqueries and CTEs</h2>
+      <table>
+        <thead>
+          <tr><th>Type</th><th>Syntax</th><th>Explanation</th><th>Example Use Case</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Scalar subquery</td><td>SELECT (...) AS value</td><td>Returns one value</td><td>Compare order amount to average order amount</td></tr>
+          <tr><td>Correlated subquery</td><td>... WHERE col = outer.col</td><td>Depends on outer row</td><td>Find users with above-average spend in their country</td></tr>
+          <tr><td>CTE</td><td>WITH cte AS (...) SELECT ...</td><td>Named temporary result</td><td>Break complex logic into readable steps</td></tr>
+          <tr><td>Recursive CTE</td><td>WITH RECURSIVE ...</td><td>Repeats until stop condition</td><td>Hierarchy traversal, category trees</td></tr>
+        </tbody>
+      </table>
+
+      <h3>CTE Example</h3>
+      <pre><code>WITH monthly_revenue AS (
+  SELECT
+    DATE_TRUNC('month', order_date) AS month,
+    SUM(amount) AS revenue
+  FROM orders
+  GROUP BY 1
+)
+SELECT
+  month,
+  revenue,
+  revenue - LAG(revenue) OVER (ORDER BY month) AS mom_change
+FROM monthly_revenue;</code></pre>
+
+      <h3>Recursive CTE Example</h3>
+      <pre><code>WITH RECURSIVE org_tree AS (
+  SELECT employee_id, manager_id, employee_name, 0 AS level
+  FROM employees
+  WHERE manager_id IS NULL
+  UNION ALL
+  SELECT e.employee_id, e.manager_id, e.employee_name, t.level + 1
+  FROM employees e
+  JOIN org_tree t
+    ON e.manager_id = t.employee_id
+)
+SELECT * FROM org_tree;</code></pre>
+    </section>
+
+    <section id="conditional-cleaning">
+      <h2>Conditional Logic, NULL Handling, and Data Cleaning</h2>
+      <h3>CASE WHEN</h3>
+      <table>
+        <thead><tr><th>Syntax</th><th>Explanation</th><th>Example</th><th>Use Case</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>CASE WHEN condition THEN value ELSE value END</code></td>
+            <td>Conditional branching in SQL</td>
+            <td><code>CASE WHEN amount &gt;= 1000 THEN 'High' ELSE 'Low' END</code></td>
+            <td>Segmentation, labels, bucketing</td>
+          </tr>
+        </tbody>
+      </table>
+      <pre><code>SELECT
+  user_id,
+  amount,
+  CASE
+    WHEN amount &gt;= 1000 THEN 'High Value'
+    WHEN amount &gt;= 250 THEN 'Medium Value'
+    ELSE 'Low Value'
+  END AS spend_band
+FROM orders;</code></pre>
+
+      <h3>Handling NULLs</h3>
+      <table>
+        <thead><tr><th>Function</th><th>Syntax</th><th>Explanation</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>COALESCE</td><td>COALESCE(a, b, c)</td><td>Returns first non-null value</td><td><code>COALESCE(discount_amount, 0)</code></td></tr>
+          <tr><td>NULLIF</td><td>NULLIF(a, b)</td><td>Returns NULL if values are equal</td><td><code>NULLIF(payment_status, 'failed')</code></td></tr>
+        </tbody>
+      </table>
+      <pre><code>SELECT
+  user_id,
+  COALESCE(country, 'Unknown') AS country,
+  COALESCE(discount_amount, 0) AS discount_amount
+FROM users
+LEFT JOIN orders USING (user_id);</code></pre>
+
+      <h3>String Functions</h3>
+      <table>
+        <thead><tr><th>Function</th><th>Syntax</th><th>Explanation</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>TRIM</td><td>TRIM(text)</td><td>Removes leading/trailing spaces</td><td><code>TRIM(user_name)</code></td></tr>
+          <tr><td>LENGTH</td><td>LENGTH(text)</td><td>Counts characters</td><td><code>LENGTH(product_name)</code></td></tr>
+          <tr><td>SUBSTRING</td><td>SUBSTRING(text FROM x FOR y)</td><td>Returns part of string</td><td><code>SUBSTRING(email FROM 1 FOR 5)</code></td></tr>
+          <tr><td>CONCAT</td><td>CONCAT(a, b)</td><td>Joins text values</td><td><code>CONCAT(country, ' - ', plan_type)</code></td></tr>
+        </tbody>
+      </table>
+
+      <h3>Remove Duplicates with ROW_NUMBER</h3>
+      <pre><code>WITH deduped AS (
+  SELECT
+    t.*,
+    ROW_NUMBER() OVER (
+      PARTITION BY transaction_id
+      ORDER BY payment_date DESC
+    ) AS rn
+  FROM transactions t
+)
+SELECT *
+FROM deduped
+WHERE rn = 1;</code></pre>
+    </section>
+
+    <section id="expert">
+      <span class="tag exp">Expert</span>
+      <h2>Expert Level: Real Analyst Work</h2>
+      <p>At expert level, SQL is used to solve business problems: retention, cohorts, funnels, growth, churn, and large-scale reporting.</p>
+    </section>
+
+    <section id="analytical-patterns">
+      <h2>Analytical Query Patterns</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Cohort Analysis</h3>
+          <p><strong>Problem:</strong> Which signup cohort retains best over time?</p>
+          <p><strong>Pattern:</strong> Group users by signup month and compare later activity.</p>
+          <div class="note"><strong>Visual model:</strong> Signup month becomes the row label; each later activity month becomes a follow-up column so you can read retention like a matrix.</div>
+          <pre><code>WITH first_purchase AS (
+  SELECT user_id, MIN(order_date) AS first_order_date
+  FROM orders
+  GROUP BY user_id
+)
+SELECT
+  DATE_TRUNC('month', first_order_date) AS cohort_month,
+  COUNT(*) AS users
+FROM first_purchase
+GROUP BY 1;</code></pre>
+        </div>
+        <div class="card">
+          <h3>Retention Analysis</h3>
+          <p><strong>Problem:</strong> How many users return in later periods?</p>
+          <p><strong>Pattern:</strong> Compare cohort month to activity month.</p>
+          <div class="note"><strong>Visual model:</strong> Each cohort is a starting row, and retention decays over time from left to right.</div>
+          <pre><code>SELECT
+  cohort_month,
+  activity_month,
+  COUNT(DISTINCT user_id) AS active_users
+FROM user_activity
+GROUP BY 1, 2;</code></pre>
+        </div>
+        <div class="card">
+          <h3>Funnel Analysis</h3>
+          <p><strong>Problem:</strong> Where do users drop off in conversion flow?</p>
+          <p><strong>Pattern:</strong> Count users at each event stage.</p>
+          <div class="note"><strong>Visual model:</strong> Each step is a narrower bar: visit -> signup -> checkout -> purchase.</div>
+          <pre><code>SELECT event_name, COUNT(DISTINCT user_id)
+FROM events
+WHERE event_name IN ('visit', 'signup', 'checkout', 'purchase')
+GROUP BY event_name;</code></pre>
+        </div>
+        <div class="card">
+          <h3>Session Analysis</h3>
+          <p><strong>Problem:</strong> How long do users stay and what do they do in sessions?</p>
+          <p><strong>Pattern:</strong> Use session_id with timestamps to calculate duration.</p>
+          <div class="note"><strong>Visual model:</strong> Session timeline shows event order; duration is the distance between the first and last event.</div>
+          <pre><code>SELECT
+  session_id,
+  MIN(event_time) AS session_start,
+  MAX(event_time) AS session_end,
+  EXTRACT(EPOCH FROM MAX(event_time) - MIN(event_time)) AS session_seconds
+FROM events
+GROUP BY session_id;</code></pre>
+        </div>
+        <div class="card">
+          <h3>Time-Series Analysis</h3>
+          <p><strong>Problem:</strong> What is trend, seasonality, or anomaly behavior over time?</p>
+          <p><strong>Pattern:</strong> Aggregate by day/week/month, then compare with prior periods.</p>
+          <div class="note"><strong>Visual model:</strong> Put time on the x-axis, metric on the y-axis, and inspect slope, spikes, and recurring cycles.</div>
+          <pre><code>SELECT
+  DATE_TRUNC('month', order_date) AS month,
+  SUM(amount) AS revenue
+FROM orders
+GROUP BY 1
+ORDER BY 1;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="advanced-aggregations">
+      <h2>Advanced Aggregations</h2>
+      <table>
+        <thead><tr><th>Technique</th><th>Syntax</th><th>Explanation</th><th>Real Use Case</th></tr></thead>
+        <tbody>
+          <tr><td>Running totals</td><td>SUM(...) OVER (ORDER BY ...)</td><td>Cumulative metric</td><td>Cumulative revenue by day</td></tr>
+          <tr><td>Rolling averages</td><td>AVG(...) OVER (ROWS BETWEEN ...)</td><td>Smoothed trend</td><td>7-day average orders</td></tr>
+          <tr><td>PERCENT_RANK</td><td>PERCENT_RANK() OVER (...)</td><td>Relative standing</td><td>Customer percentile segmentation</td></tr>
+          <tr><td>CUME_DIST</td><td>CUME_DIST() OVER (...)</td><td>Cumulative distribution</td><td>Top 10 percent spenders</td></tr>
+        </tbody>
+      </table>
+      <pre><code>SELECT
+  user_id,
+  amount,
+  PERCENT_RANK() OVER (ORDER BY amount) AS spend_percentile,
+  CUME_DIST() OVER (ORDER BY amount) AS cumulative_share
+FROM orders;</code></pre>
+    </section>
+
+    <section id="set-operations">
+      <h2>Set Operations</h2>
+      <table>
+        <thead><tr><th>Operation</th><th>Syntax</th><th>Explanation</th><th>Example Use Case</th></tr></thead>
+        <tbody>
+          <tr><td>UNION</td><td>query1 UNION query2</td><td>Combines and removes duplicates</td><td>Merge monthly reports with deduping</td></tr>
+          <tr><td>UNION ALL</td><td>query1 UNION ALL query2</td><td>Combines and keeps duplicates</td><td>Append multiple event tables efficiently</td></tr>
+          <tr><td>INTERSECT</td><td>query1 INTERSECT query2</td><td>Common rows only</td><td>Users in two segments</td></tr>
+          <tr><td>EXCEPT</td><td>query1 EXCEPT query2</td><td>Rows in first set but not second</td><td>Users who signed up but never purchased</td></tr>
+        </tbody>
+      </table>
+      <pre><code>SELECT user_id FROM users_us
+UNION ALL
+SELECT user_id FROM users_eu;</code></pre>
+    </section>
+
+    <section id="data-modeling">
+      <h2>Data Modeling Concepts</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Fact Table</h3>
+          <p>Contains measurable events such as orders, transactions, or sessions.</p>
+          <p><strong>Example:</strong> orders(order_id, user_id, product_id, amount, order_date)</p>
+        </div>
+        <div class="card">
+          <h3>Dimension Table</h3>
+          <p>Contains descriptive attributes such as customer, product, or date metadata.</p>
+          <p><strong>Example:</strong> users(user_id, country, plan_type, signup_date)</p>
+        </div>
+        <div class="card">
+          <h3>Star Schema</h3>
+          <p>One central fact table connected to several dimensions. Common in analytics warehouses.</p>
+        </div>
+        <div class="card">
+          <h3>Snowflake Schema</h3>
+          <p>Dimension tables are normalized into sub-dimensions. Saves duplication but can add join complexity.</p>
+        </div>
+      </div>
+      <div class="tip"><strong>Analyst takeaway:</strong> Good data modeling makes reporting faster, simpler, and less error-prone.</div>
+    </section>
+
+    <section id="optimization">
+      <h2>Query Optimization</h2>
+      <p>Optimization matters when queries become slow, data is large, or dashboards refresh frequently.</p>
+      <table>
+        <thead><tr><th>Topic</th><th>Concept</th><th>Practical Advice</th></tr></thead>
+        <tbody>
+          <tr><td>Indexing basics</td><td>Indexes speed up filtering and joining columns</td><td>Index keys used in WHERE and JOIN frequently</td></tr>
+          <tr><td>Execution plans</td><td>DB shows how it will run a query</td><td>Look for scans, expensive joins, and sorts</td></tr>
+          <tr><td>Avoid full table scans</td><td>Scanning every row is expensive</td><td>Filter early and use selective predicates</td></tr>
+          <tr><td>Efficient joins</td><td>Join on indexed columns and correct grain</td><td>Keep join keys clean and typed correctly</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Optimization Examples</h3>
+      <pre><code>-- Better: filter the smallest set first
+WITH completed_orders AS (
+  SELECT order_id, user_id, amount
+  FROM orders
+  WHERE order_status = 'completed'
+)
+SELECT u.country, SUM(c.amount)
+FROM completed_orders c
+JOIN users u ON c.user_id = u.user_id
+GROUP BY u.country;</code></pre>
+      <div class="warning"><strong>Rule of thumb:</strong> If a query is slow, ask whether you can reduce rows earlier, join less data, or use pre-aggregated tables.</div>
+    </section>
+
+    <section id="case-studies">
+      <h2>Real-World Case Studies</h2>
+      <div class="project-box">
+        <h3>1) Sales Dashboard Queries</h3>
+        <p><strong>Problem:</strong> Track revenue, orders, average order value, and growth by month and country.</p>
+        <p><strong>SQL solution:</strong> Join users and orders, group by month and country, and compute net revenue.</p>
+        <pre><code>SELECT
+  DATE_TRUNC('month', o.order_date) AS month,
+  u.country,
+  COUNT(*) AS orders,
+  SUM(o.quantity * o.unit_price - o.discount_amount) AS revenue
+FROM orders o
+JOIN users u ON o.user_id = u.user_id
+GROUP BY 1, 2
+ORDER BY 1, 2;</code></pre>
+        <p><strong>Explanation:</strong> This query feeds dashboards for executives and analysts.</p>
+      </div>
+
+      <div class="project-box">
+        <h3>2) Customer Segmentation</h3>
+        <p><strong>Problem:</strong> Split customers into high, medium, and low spend groups.</p>
+        <p><strong>SQL solution:</strong> Aggregate spend per user, then bucket with CASE or NTILE.</p>
+        <pre><code>WITH spend AS (
+  SELECT user_id, SUM(amount) AS total_spend
+  FROM orders
+  GROUP BY user_id
+)
+SELECT
+  user_id,
+  total_spend,
+  NTILE(4) OVER (ORDER BY total_spend DESC) AS spend_quartile
+FROM spend;</code></pre>
+        <p><strong>Explanation:</strong> Useful for CRM, targeting, and lifecycle marketing.</p>
+      </div>
+
+      <div class="project-box">
+        <h3>3) Revenue Trend Analysis</h3>
+        <p><strong>Problem:</strong> Identify trend and month-over-month change.</p>
+        <p><strong>SQL solution:</strong> Aggregate by month and use LAG.</p>
+        <pre><code>WITH monthly AS (
+  SELECT DATE_TRUNC('month', order_date) AS month, SUM(amount) AS revenue
+  FROM orders
+  GROUP BY 1
+)
+SELECT
+  month,
+  revenue,
+  revenue - LAG(revenue) OVER (ORDER BY month) AS mom_change
+FROM monthly;</code></pre>
+        <p><strong>Explanation:</strong> Standard pattern for revenue reporting and business review decks.</p>
+      </div>
+
+      <div class="project-box">
+        <h3>4) Churn Detection</h3>
+        <p><strong>Problem:</strong> Identify users who stopped engaging or cancelled their subscription.</p>
+        <p><strong>SQL solution:</strong> Use subscriptions and activity gaps, then flag churned users.</p>
+        <pre><code>SELECT
+  user_id,
+  end_date,
+  CASE WHEN end_date IS NOT NULL THEN 1 ELSE 0 END AS churn_flag
+FROM subscriptions;</code></pre>
+        <p><strong>Explanation:</strong> Used to build churn alerts and retention pipelines.</p>
+      </div>
+
+      <div class="project-box">
+        <h3>5) Top-N Analysis</h3>
+        <p><strong>Problem:</strong> Show top 10 customers, products, or channels.</p>
+        <p><strong>SQL solution:</strong> Rank by metric and filter rank <= N.</p>
+        <pre><code>WITH customer_spend AS (
+  SELECT user_id, SUM(amount) AS total_spend
+  FROM orders
+  GROUP BY user_id
+)
+SELECT *
+FROM (
+  SELECT user_id, total_spend, RANK() OVER (ORDER BY total_spend DESC) AS rnk
+  FROM customer_spend
+) x
+WHERE rnk &lt;= 10;</code></pre>
+        <p><strong>Explanation:</strong> Common in sales, marketing, and executive reporting.</p>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Project 1: Revenue Dashboard</h3>
+          <ul>
+            <li>Build monthly revenue, order count, and AOV.</li>
+            <li>Use joins, grouping, and LAG.</li>
+            <li>Create a dashboard-ready output table.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Project 2: Retention Cohorts</h3>
+          <ul>
+            <li>Identify cohorts by signup month.</li>
+            <li>Track active users by month since signup.</li>
+            <li>Calculate retention percentages.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Project 3: Funnel Drop-Off</h3>
+          <ul>
+            <li>Measure visit -> signup -> add_to_cart -> purchase.</li>
+            <li>Quantify stage conversion rates.</li>
+            <li>Find biggest drop-offs.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Project 4: Churn Watchlist</h3>
+          <ul>
+            <li>Flag churn risk based on inactivity or cancellations.</li>
+            <li>Use CASE, windows, and date gaps.</li>
+            <li>Produce a monitoring table for CRM teams.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Project Deliverables</h3>
+      <table>
+        <thead><tr><th>Project</th><th>Input Tables</th><th>Output</th><th>Skill Proved</th></tr></thead>
+        <tbody>
+          <tr><td>Revenue Dashboard</td><td>users + orders</td><td>Monthly revenue summary</td><td>Joins, aggregation, windows</td></tr>
+          <tr><td>Retention Cohorts</td><td>users + orders + events</td><td>Cohort retention table</td><td>Time logic, cohorts, CTEs</td></tr>
+          <tr><td>Funnel Analysis</td><td>events</td><td>Stage conversion table</td><td>Counting distinct users, funnel logic</td></tr>
+          <tr><td>Churn Watchlist</td><td>subscriptions + events</td><td>Risk list</td><td>CASE, gaps, filtering</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Mini Project Output Pack</h3>
+      <div class="grid-2">
+        <div class="card">
+          <h4>Cohort Table Output</h4>
+          <p>Rows: signup cohort month</p>
+          <p>Columns: month 0, month 1, month 2, month 3 retention %</p>
+          <p>Use: retention reporting and lifecycle analysis</p>
+        </div>
+        <div class="card">
+          <h4>Funnel Output</h4>
+          <p>Rows: event stage</p>
+          <p>Columns: users, conversion_rate, drop_off</p>
+          <p>Use: product conversion and onboarding diagnosis</p>
+        </div>
+        <div class="card">
+          <h4>Churn Output</h4>
+          <p>Rows: user_id</p>
+          <p>Columns: last_active_date, days_inactive, churn_flag</p>
+          <p>Use: retention and CRM action lists</p>
+        </div>
+        <div class="card">
+          <h4>Revenue Output</h4>
+          <p>Rows: month, country</p>
+          <p>Columns: orders, revenue, running_revenue, growth_rate</p>
+          <p>Use: executive dashboard and trend tracking</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="interview">
+      <h2>SQL Interview Preparation</h2>
+      <h3>Common Interview Questions</h3>
+      <ul>
+        <li>Explain the difference between WHERE and HAVING.</li>
+        <li>When would you use LEFT JOIN instead of INNER JOIN?</li>
+        <li>How do window functions differ from GROUP BY?</li>
+        <li>How would you remove duplicates using SQL only?</li>
+        <li>How would you find the second highest order amount?</li>
+      </ul>
+
+      <h3>Complex Query Challenges</h3>
+      <ul>
+        <li>Top 3 products per region.</li>
+        <li>Month-over-month revenue growth by country.</li>
+        <li>Retention cohort table by signup month.</li>
+        <li>Users who bought in month 1 but not month 2.</li>
+        <li>Session duration and bounce rate by channel.</li>
+      </ul>
+
+      <h3>Edge Cases to Remember</h3>
+      <ul>
+        <li>Null values in joins and aggregates.</li>
+        <li>Duplicate rows in source tables.</li>
+        <li>Data type mismatches between join keys.</li>
+        <li>Ties in ranking functions.</li>
+        <li>Timezone and date truncation issues.</li>
+      </ul>
+
+      <h3>SQL for Excel, Power BI, and Tableau Interviews</h3>
+      <table>
+        <thead><tr><th>Scenario</th><th>What Interviewers Want</th><th>Strong Answer Pattern</th></tr></thead>
+        <tbody>
+          <tr><td>SQL feeding Excel</td><td>Can you build a clean extract for a spreadsheet model?</td><td>Use a CTE or view, return one row per business grain, and keep columns analysis-friendly.</td></tr>
+          <tr><td>SQL feeding Power BI</td><td>Can you shape data for a semantic model?</td><td>Load fact and dimension tables separately, keep surrogate keys consistent, and aggregate in the model when needed.</td></tr>
+          <tr><td>SQL feeding Tableau</td><td>Can you make performant dashboards?</td><td>Pre-filter, pre-join where appropriate, and avoid unnecessary detail rows in extracts.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Interview Prompt Examples</h3>
+      <pre><code>1. How would you prepare a SQL extract for an Excel dashboard that refreshes weekly?
+2. How would you design SQL tables for Power BI with star schema principles?
+3. A Tableau dashboard is slow. What SQL changes would you test first?
+4. How do you validate that a SQL metric matches an Excel pivot total?</code></pre>
+    </section>
+
+    <section id="interview-cheat">
+      <h2>Interview Cheat Sheet Page</h2>
+      <p>For fast revision, open the compact page in this workspace: <strong>sql-interview-cheat-sheet.html</strong>.</p>
+      <p>Use it before interviews to quickly review join logic, window patterns, BI integration points, and final edge-case checks.</p>
+    </section>
+
+    <section id="memory">
+      <h2>Memory Tricks and Mental Models</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>JOIN Visual Memory</h3>
+          <ul>
+            <li>INNER = overlap only</li>
+            <li>LEFT = keep left side</li>
+            <li>RIGHT = keep right side</li>
+            <li>FULL = union of both sides</li>
+            <li>CROSS = every combination</li>
+            <li>SELF = same table compared to itself</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Window Function Pattern</h3>
+          <p>Think: <strong>group inside the window, sort inside the group, compute across rows without collapsing them.</strong></p>
+          <ul>
+            <li>PARTITION BY = which group</li>
+            <li>ORDER BY = sequence inside the group</li>
+            <li>FRAME = how many rows or how much range</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Query Building Order</h3>
+      <div class="sql-order">SELECT -> FROM -> JOIN -> WHERE -> GROUP BY -> HAVING -> WINDOW -> ORDER BY</div>
+    </section>
+
+    <section id="best-practices">
+      <h2>Best Practices</h2>
+      <table>
+        <thead><tr><th>Area</th><th>Good Practice</th><th>Why It Matters</th></tr></thead>
+        <tbody>
+          <tr><td>Readability</td><td>Use meaningful aliases</td><td>Queries are easier to review and maintain</td></tr>
+          <tr><td>Formatting</td><td>Indent joins and CTEs clearly</td><td>Helps debugging and collaboration</td></tr>
+          <tr><td>Debugging</td><td>Start small and test step by step</td><td>Find logic errors faster</td></tr>
+          <tr><td>Nulls</td><td>Handle NULL explicitly</td><td>Prevents silent calculation mistakes</td></tr>
+          <tr><td>Dates</td><td>Use date truncation consistently</td><td>Prevents aggregation mismatches</td></tr>
+        </tbody>
+      </table>
+      <pre><code>-- Good aliasing example
+SELECT
+  u.user_id,
+  u.country,
+  o.order_id,
+  o.amount
+FROM users AS u
+LEFT JOIN orders AS o
+  ON u.user_id = o.user_id;</code></pre>
+      <div class="tip"><strong>Debugging method:</strong> Run the query in parts. First confirm each table, then each join, then each filter, then each aggregate.</div>
+    </section>
+
+    <section id="ecosystem">
+      <h2>SQL Ecosystem Integration</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>SQL with Excel</h3>
+          <ul>
+            <li>Use SQL to pull clean data into Excel.</li>
+            <li>Analyze results with pivots and charts.</li>
+            <li>Export summary tables for finance and operations teams.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>SQL with Python (Pandas)</h3>
+          <ul>
+            <li>Use SQL for filtering at the source.</li>
+            <li>Load query output into pandas for modeling or ML.</li>
+            <li>Keep heavy data shaping close to the database.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>SQL in BI Tools</h3>
+          <ul>
+            <li>Power BI and Tableau often sit on top of SQL queries.</li>
+            <li>Pre-aggregate where useful to improve dashboard speed.</li>
+            <li>Keep metric logic consistent between SQL and BI layers.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Warehouse Workflow</h3>
+          <ul>
+            <li>Source system -> staging -> clean mart -> reporting layer.</li>
+            <li>Analysts often query marts or views, not raw operational tables.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="ai-sql">
+      <h2>AI + SQL</h2>
+      <p>AI can help draft queries, explain syntax, and debug logic, but analysts must validate every result.</p>
+      <table>
+        <thead><tr><th>Use</th><th>Prompt Example</th><th>What to Check</th></tr></thead>
+        <tbody>
+          <tr><td>Generate queries</td><td>Write a SQL query to find monthly revenue by country from users and orders.</td><td>Join keys, grain, filters, aggregation logic</td></tr>
+          <tr><td>Debug SQL</td><td>This query returns duplicate rows. Find the issue and fix it.</td><td>Join multiplicity, grouping, null handling</td></tr>
+          <tr><td>Optimize queries</td><td>How can I make this query faster on large tables?</td><td>Indexes, filters, row reduction, join order</td></tr>
+        </tbody>
+      </table>
+      <h3>Prompt Templates</h3>
+      <pre><code>Prompt 1:
+I have tables users, orders, and products. Create a query to calculate monthly net revenue by country and explain each CTE.
+
+Prompt 2:
+Here is my SQL query. Diagnose why the result duplicates rows and suggest a corrected version.
+
+Prompt 3:
+Rewrite this query to use a window function instead of a self-join and explain the trade-off.</code></pre>
+    </section>
+
+    <section id="mastery">
+      <h2>Mastery-Level Thinking</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>How Analysts Think Using SQL</h3>
+          <p>Analysts think in business entities, metrics, grain, and time. They ask: What is the level of detail? What is the business question? Which table is the truth source? Where can duplication happen?</p>
+        </div>
+        <div class="card">
+          <h3>Common Mistakes in Real Jobs</h3>
+          <ul>
+            <li>Joining at the wrong grain.</li>
+            <li>Using GROUP BY too early or too late.</li>
+            <li>Filtering after aggregation when the question needs raw-row filtering.</li>
+            <li>Confusing counts of events with counts of users.</li>
+            <li>Forgetting that one user can create many rows.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Patterns Used by Strong Teams</h3>
+          <ul>
+            <li>CTEs to make logic readable and testable.</li>
+            <li>Window functions for rankings and trends.</li>
+            <li>Summary tables for dashboard performance.</li>
+            <li>Reusable date spine and cohort models.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>FAANG-Level Habit</h3>
+          <p>Break the business problem into measurable steps: define grain, find the base set, aggregate carefully, validate counts, and sanity-check outputs against intuition.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>End-to-End Project Track</h2>
+      <div class="project-box">
+        <h3>Project A: Sales Dashboard</h3>
+        <p>Build monthly revenue, orders, AOV, and growth by country using users and orders.</p>
+      </div>
+      <div class="project-box">
+        <h3>Project B: Customer Segmentation</h3>
+        <p>Use spend quartiles, recency, frequency, and channel to segment customers for CRM.</p>
+      </div>
+      <div class="project-box">
+        <h3>Project C: Churn Detection</h3>
+        <p>Use subscription data and inactivity windows to flag churn risk and retention opportunities.</p>
+      </div>
+      <div class="project-box">
+        <h3>Project D: Funnel and Session Analysis</h3>
+        <p>Use events and session_id to calculate conversion rates and session behavior.</p>
+      </div>
+    </section>
+
+    <footer>
+      Built as practical training material for analysts who need to write strong SQL in real business environments.
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Analyst Master Hub</title>
+  <style>
+    :root {
+      --bg: #f5f8fb;
+      --card: #ffffff;
+      --ink: #14202e;
+      --muted: #5b6776;
+      --brand: #0f766e;
+      --brand-2: #1d4ed8;
+      --brand-3: #b45309;
+      --line: #dbe5ef;
+      --soft: #eef8f5;
+      --soft-2: #eef5ff;
+      --soft-3: #fff5e8;
+      --shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.65;
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.12) 0%, transparent 28%),
+        radial-gradient(circle at top right, rgba(29, 78, 216, 0.12) 0%, transparent 30%),
+        linear-gradient(180deg, #fbfdff 0%, #f5f8fb 100%);
+    }
+
+    .container {
+      width: min(1220px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 24px 0 40px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0f766e 0%, #1d4ed8 55%, #0f172a 140%);
+      color: #fff;
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2.2rem, 4vw, 3.3rem);
+      line-height: 1.06;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 92ch;
+      opacity: 0.96;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 0.92rem;
+      backdrop-filter: blur(6px);
+    }
+
+    nav, section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+      padding: 22px;
+    }
+
+    h2, h3, h4 { margin-top: 0; line-height: 1.2; }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 4px 10px;
+      margin-bottom: 10px;
+      border: 1px solid transparent;
+    }
+
+    .tag-a { background: #eafaf7; color: var(--brand); border-color: #c6ece4; }
+    .tag-b { background: #eef5ff; color: var(--brand-2); border-color: #d6e4ff; }
+    .tag-c { background: #fff5e8; color: var(--brand-3); border-color: #efd7b5; }
+
+    .grid-2, .grid-3 {
+      display: grid;
+      gap: 14px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+    .card {
+      background: #fcfdff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
+    }
+
+    .card h3 { margin-bottom: 8px; }
+    .card p { margin-top: 0; }
+
+    a { color: #0b57d0; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .button:hover { transform: translateY(-1px); text-decoration: none; }
+    .button.primary { background: #fff; color: #0f172a; }
+    .button.secondary { background: rgba(255,255,255,0.12); color: #fff; border-color: rgba(255,255,255,0.18); }
+
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      margin-top: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 860px;
+      background: #fff;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th { background: #f1f7ff; }
+    .muted { color: var(--muted); }
+    ul { margin: 0; padding-left: 18px; }
+    .small { font-size: 0.94rem; }
+
+    pre {
+      overflow-x: auto;
+      background: #0b1220;
+      color: #eef2ff;
+      border-radius: 14px;
+      padding: 14px;
+      border: 1px solid #182437;
+      margin: 12px 0 0;
+    }
+
+    code { font-family: "Cascadia Mono", Consolas, "Courier New", monospace; }
+
+    .split {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #e8f4ff;
+      color: #174ea6;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .footer-note {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 720px) {
+      .container { width: min(100% - 18px, 1220px); padding-top: 14px; }
+      .hero, nav, section { padding: 18px; border-radius: 16px; }
+      .button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">Master Hub</span>
+      <h1>Data Analyst Learning Hub</h1>
+      <p>
+        Start here if you want one clean entry point for Excel, SQL, Python, Power BI, and interview preparation. Everything is organized for beginners first, but each guide goes deep enough for real job preparation.
+      </p>
+      <div class="pill-row">
+        <span class="pill">Practical datasets</span>
+        <span class="pill">Notebook practice</span>
+        <span class="pill">Business use cases</span>
+        <span class="pill">Job-ready interview prep</span>
+      </div>
+      <div class="button-row">
+        <a class="button primary" href="excel-data-analysis-guide.html">Open Excel Guide</a>
+        <a class="button primary" href="sql-data-analysis-guide.html">Open SQL Guide</a>
+        <a class="button primary" href="python-data-analysis-guide.html">Open Python Guide</a>
+        <a class="button primary" href="powerbi-data-analysis-guide.html">Open Power BI Guide</a>
+        <a class="button primary" href="data-analyst-interview-preparation-guide.html">Open Interview Guide</a>
+      </div>
+      <div class="button-row">
+        <a class="button secondary" href="https://github.com/Vinodvinum/Data_analyst">GitHub Repository</a>
+      </div>
+    </header>
+
+    <nav>
+      <h2>What You Can Open From Here</h2>
+      <ul class="grid-3 small">
+        <li><a href="excel-data-analysis-guide.html">Excel data analysis guide</a></li>
+        <li><a href="sql-data-analysis-guide.html">SQL data analysis guide</a></li>
+        <li><a href="python-data-analysis-guide.html">Python data analysis guide</a></li>
+        <li><a href="powerbi-data-analysis-guide.html">Power BI guide</a></li>
+        <li><a href="data-analyst-interview-preparation-guide.html">Interview preparation guide</a></li>
+        <li><a href="sql-interview-cheat-sheet.html">SQL interview cheat sheet</a></li>
+      </ul>
+    </nav>
+
+    <section>
+      <span class="section-tag tag-a">Cross-linked path</span>
+      <h2>Recommended Learning Path</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>1. Excel</h3>
+          <p>Use Excel first to understand formulas, pivots, data cleaning, and how tabular data behaves in a spreadsheet.</p>
+          <p><a href="excel-data-analysis-guide.html">Open the Excel guide</a></p>
+        </div>
+        <div class="card">
+          <h3>2. SQL</h3>
+          <p>Learn SQL to extract, filter, join, and aggregate data from databases and practice analytical patterns.</p>
+          <p><a href="sql-data-analysis-guide.html">Open the SQL guide</a></p>
+        </div>
+        <div class="card">
+          <h3>3. Python</h3>
+          <p>Use Python and pandas for cleaning, analysis, automation, and repeatable data workflows.</p>
+          <p><a href="python-data-analysis-guide.html">Open the Python guide</a></p>
+        </div>
+        <div class="card">
+          <h3>4. Power BI</h3>
+          <p>Build reporting, model data correctly, and write DAX for dashboards that explain business performance.</p>
+          <p><a href="powerbi-data-analysis-guide.html">Open the Power BI guide</a></p>
+        </div>
+        <div class="card">
+          <h3>5. Interview Prep</h3>
+          <p>Practice SQL, Python, Power BI, Excel, and business-case questions the way interviewers actually ask them.</p>
+          <p><a href="data-analyst-interview-preparation-guide.html">Open the interview guide</a></p>
+        </div>
+        <div class="card">
+          <h3>6. SQL Cheat Sheet</h3>
+          <p>Use the compact interview page for rapid revision of common patterns and query habits.</p>
+          <p><a href="sql-interview-cheat-sheet.html">Open the SQL cheat sheet</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <span class="section-tag tag-b">Resources</span>
+      <h2>Dataset, Notebook, and Output Access</h2>
+      <p class="muted">These files are the practical backbone of the guides. Use them together so the concepts feel real, not theoretical.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>File</th>
+              <th>Type</th>
+              <th>Use</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><a href="excel-project-sales-raw.csv">excel-project-sales-raw.csv</a></td><td>CSV</td><td>Raw sales data for Excel walkthroughs</td></tr>
+            <tr><td><a href="excel-project-region-targets.csv">excel-project-region-targets.csv</a></td><td>CSV</td><td>Target lookup table for Excel analysis</td></tr>
+            <tr><td><a href="excel-project-sales-large.csv">excel-project-sales-large.csv</a></td><td>CSV</td><td>Larger Excel practice dataset</td></tr>
+            <tr><td><a href="excel-workbook-template-layout.md">excel-workbook-template-layout.md</a></td><td>Markdown</td><td>Workbook layout and training template</td></tr>
+            <tr><td><a href="sql-practice-users.csv">sql-practice-users.csv</a></td><td>CSV</td><td>SQL practice users table</td></tr>
+            <tr><td><a href="sql-practice-orders.csv">sql-practice-orders.csv</a></td><td>CSV</td><td>SQL orders fact table</td></tr>
+            <tr><td><a href="sql-practice-products.csv">sql-practice-products.csv</a></td><td>CSV</td><td>SQL products dimension table</td></tr>
+            <tr><td><a href="sql-practice-events.csv">sql-practice-events.csv</a></td><td>CSV</td><td>Behavior and event analysis</td></tr>
+            <tr><td><a href="sql-practice-subscriptions.csv">sql-practice-subscriptions.csv</a></td><td>CSV</td><td>Retention and churn practice</td></tr>
+            <tr><td><a href="sql-finance-customers.csv">sql-finance-customers.csv</a></td><td>CSV</td><td>Finance customer dimension</td></tr>
+            <tr><td><a href="sql-finance-invoices.csv">sql-finance-invoices.csv</a></td><td>CSV</td><td>Finance invoice fact table</td></tr>
+            <tr><td><a href="sql-finance-payments.csv">sql-finance-payments.csv</a></td><td>CSV</td><td>Collections and payment analysis</td></tr>
+            <tr><td><a href="sql-finance-monthly-budget.csv">sql-finance-monthly-budget.csv</a></td><td>CSV</td><td>Budget and variance analysis</td></tr>
+            <tr><td><a href="python-sales.csv">python-sales.csv</a></td><td>CSV</td><td>Python sales analysis dataset</td></tr>
+            <tr><td><a href="python-users.csv">python-users.csv</a></td><td>CSV</td><td>User segmentation practice</td></tr>
+            <tr><td><a href="python-transactions.csv">python-transactions.csv</a></td><td>CSV</td><td>Transactions and joins practice</td></tr>
+            <tr><td><a href="python-products.csv">python-products.csv</a></td><td>CSV</td><td>Product lookup and enrichment</td></tr>
+            <tr><td><a href="python-data-analysis-guide.ipynb">python-data-analysis-guide.ipynb</a></td><td>Notebook</td><td>Runnable Python practice notebook</td></tr>
+            <tr><td><a href="sql-data-analysis-guide.ipynb">sql-data-analysis-guide.ipynb</a></td><td>Notebook</td><td>Runnable SQL practice notebook</td></tr>
+            <tr><td><a href="sales_project_summary.csv">sales_project_summary.csv</a></td><td>Output</td><td>Final output generated from the Python notebook</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <span class="section-tag tag-c">GitHub</span>
+      <h2>Repository and Push Workflow</h2>
+      <div class="split">
+        <div class="card">
+          <h3>Repository</h3>
+          <p>Your project repository is live at <a href="https://github.com/Vinodvinum/Data_analyst">Vinodvinum/Data_analyst</a>.</p>
+          <p>Use it as the main place to store and version the guides, notebooks, and dataset packs.</p>
+        </div>
+        <div class="card">
+          <h3>Basic Git flow</h3>
+          <pre><code>git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/Vinodvinum/Data_analyst.git
+git push -u origin main</code></pre>
+        </div>
+      </div>
+      <p class="footer-note">After the first push, future updates are just add, commit, and push. Keep the landing page as the simplest way to open the whole learning set.</p>
+    </section>
+  </div>
+</body>
+</html>

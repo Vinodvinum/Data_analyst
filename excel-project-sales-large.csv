@@ -1,0 +1,241 @@
+﻿yrderID,OrderDate,Region,SalesRep,Product,Units,UnitPrice,Discount,Channel,CustomerPhone,Email,Status
+2001,2026-01-01,North,Asha,Keyboard,8,950,0.03,Online,9100000001,asha1@example.com,Closed
+2002,02 Jan 2026,South,Neha,Mouse,11,550,0.04,Retail,9100000002,neha2@example.com,Closed
+2003,01-03-2026,East,Ravi,Monitor,14,7800,0.05,Partner,9100000003,ravi3@example.com,Closed
+2004,04-01-2026,West,Imran,Laptop Stand,17,1200,0.06,Online,9100000004,imran4@example.com,Open
+2005,2026-01-05,North,Priya,Webcam,20,2200,0.07,Retail,9100000005,priya5@example.com,Returned
+2006,06 Jan 2026,South,Karan,Keyboard,23,950,0.08,Partner,9100000006,karan6@example.com,Closed
+2007,01-07-2026,East,Meera,Mouse,26,550,0.02,Online,9100000007,meera7@example.com,Closed
+2008,08-01-2026,West,Sonia,Monitor,29,7800,0.03,Retail,9100000008,sonia8@example.com,Closed
+2009,2026-01-09,North,Arun,Laptop Stand,32,1200,0.04,Partner,9100000009,arun9@example.com,Open
+2010,10 Jan 2026,South,Dev,Webcam,35,2200,0.05,Online,9100000010,dev10@example.com,Returned
+2011,01-11-2026,East,Asha,Keyboard,38,950,0.06,Retail,9100000011,asha11@example.com,Closed
+2012,12-01-2026,West,Neha,Mouse,5,550,0.07,Partner,9100000012,neha12@example.com,Closed
+2013,2026-01-13,North,Ravi,Monitor,8,7800,0.08,Online,9100000013,ravi13@example.com,Closed
+2014,14 Jan 2026,South,Imran,Laptop Stand,11,1200,0.02,Retail,9100000014,imran14@example.com,Open
+2015,01-15-2026,East,Priya,Webcam,14,2200,0.03,Partner,9100000015,priya15@example.com,Returned
+2016,16-01-2026,West,Karan,Keyboard,17,950,0.04,Online,9100000016,karan16@example.com,Closed
+2017,2026-01-17,North,Meera,Mouse,20,550,0.05,Retail,9100000017,meera17@example.com,Closed
+2018,18 Jan 2026,South,Sonia,Monitor,23,7800,0.06,Partner,9100000018,sonia18@example.com,Closed
+2019,01-19-2026,East,Arun,Laptop Stand,26,1200,0.07,Online,9100000019,arun19@example.com,Open
+2020,20-01-2026,West,Dev,Webcam,29,2200,0.08,Retail,9100000020,dev20@example.com,Returned
+2021,2026-01-21,North,Asha,Keyboard,32,950,0.02,Partner,9100000021,asha21@example.com,Closed
+2022,22 Jan 2026,South,Neha,Mouse,35,550,0.03,Online,9100000022,neha22@example.com,Closed
+2023,01-23-2026,East,Ravi,Monitor,38,7800,0.04,Retail,9100000023,ravi23@example.com,Closed
+2024,24-01-2026,West,Imran,Laptop Stand,5,1200,0.05,Partner,9100000024,imran24@example.com,Open
+2025,2026-01-25,North,Priya,Webcam,8,2200,0.06,Online,9100000025,priya25@example.com,Returned
+2026,26 Jan 2026,South,Karan,Keyboard,11,950,0.07,Retail,9100000026,karan26@example.com,Closed
+2027,01-27-2026,East,  Meera,Mouse,14,550,0.08,Partner,9100000027,meera27@example.com,Closed
+2028,28-01-2026,West,Sonia,Monitor,17,7800,0.02,Online,9100000028,sonia28@example.com,Closed
+2029,2026-01-29,North,Arun,Laptop Stand,20,1200,0.03,Retail,9100000029,arun29@example.com,Open
+2030,30 Jan 2026,South,Dev,Webcam,23,2200,0.04,Partner,9100000030,dev30@example.com,Returned
+2031,01-31-2026,EAST,Asha,Keyboard,26,950,0.05,Online,9100000031,asha31@example.com,Closed
+2032,01-02-2026,West,Neha,Mouse,29,550,0.06,Retail,9100000032,neha32@example.com,Closed
+2033,2026-02-02,North,Ravi,Monitor,32,7800,0.07,Partner,9100000033,ravi33@example.com,Closed
+2034,03 Feb 2026,South,Imran,Laptop Stand,35,1200,0.08,Online,9100000034,imran34@example.com,Open
+2035,02-04-2026,East,Priya,Webcam,38,2200,0.02,Retail,9100000035,priya35@example.com,Returned
+2036,05-02-2026,West,Karan,Keyboard,5,950,0.03,Partner,9100000036,karan36@example.com,Closed
+2037,2026-02-06,North,Meera,Mouse,8,550,0.04,Online,9100000037,meera37@example.com,Closed
+2038,07 Feb 2026,South,Sonia,Monitor,11,7800,0.05,Retail,9100000038,sonia38@example.com,Closed
+2039,02-08-2026,East,Arun,Laptop Stand,14,1200,0.06,Partner,9100000039,arun39@example.com,Open
+2040,09-02-2026,West,Dev,Webcam,17,2200,0.07,Online,9100000040,dev40@example.com,Returned
+2041,2026-02-10,North,Asha,Keyboard,20,950,0.08,Retail,9100000041,asha41@example.com,Closed
+2042,11 Feb 2026,South,Neha,Mouse,23,550,0.02,Partner,9100000042,neha42@example.com,Closed
+2043,02-12-2026,East,Ravi,Monitor,26,7800,0.03,Online,9100000043,ravi43@example.com,Closed
+2044,13-02-2026,West,Imran,Laptop Stand,29,1200,0.04,Retail,9100000044,imran44@example.com,Open
+2045,2026-02-14,North,Priya,Webcam,32,2200,0.05,Partner,9100000045,priya45@example.com,Returned
+2046,15 Feb 2026,South,Karan,Keyboard,35,950,0.06,Online,9100000046,karan46@example.com,Closed
+2047,02-16-2026,East,Meera,Mouse,38,550,0.07,Retail,9100000047,meera47@example.com,Closed
+2048,17-02-2026,West,Sonia,Monitor,5,7800,0.08,Partner,9100000048,sonia48@example.com,Closed
+2049,2026-02-18,North,Arun,Laptop Stand,8,1200,0.02,Online,9100000049,arun49@example.com,Open
+2050,19 Feb 2026,South,Dev,Webcam,11,2200,0.03,Retail,9100000050,dev50@example.com,Returned
+2051,02-20-2026,East,Asha,Keyboard,14,950,0.04,Partner,9100000051,asha51@example.com,Closed
+2052,21-02-2026,West,Neha,Mouse,17,550,0.05,Online,9100000052,neha52@example.com,Closed
+2053,2026-02-22,North,Ravi,Monitor,20,7800,0.06,Retail,9100000053,ravi53@example.com,Closed
+2054,23 Feb 2026,South,  Imran,Laptop Stand,23,1200,0.07,Partner,9100000054,imran54@example.com,Open
+2055,02-24-2026,East,Priya,Webcam,26,2200,0.08,Online,9100000055,priya55@example,Returned
+2056,25-02-2026,West,Karan,Keyboard,29,950,0.02,Retail,9100000056,karan56@example.com,Closed
+2057,2026-02-26,North,Meera,Mouse,32,550,0.03,Partner,9100000057,meera57@example.com,Closed
+2058,27 Feb 2026,South,Sonia,Monitor,35,7800,0.04,Online,9100000058,sonia58@example.com,Closed
+2059,02-28-2026,East,Arun,Laptop Stand,38,1200,0.05,Retail,9100000059,arun59@example.com,Open
+2060,01-03-2026,West,Dev,Webcam,5,2200,0.06,Partner,9100000060,dev60@example.com,Returned
+2061,2026-03-02,North,Asha,Keyboard,8,950,0.07,Online,9100000061,asha61@example.com,Closed
+2062,03 Mar 2026,SOUTH,Neha,Mouse,11,550,0.08,Retail,9100000062,neha62@example.com,Closed
+2063,03-04-2026,East,Ravi,Monitor,14,7800,0.02,Partner,9100000063,ravi63@example.com,Closed
+2064,05-03-2026,West,Imran,Laptop Stand,17,1200,0.03,Online,9100000064,imran64@example.com,Open
+2065,2026-03-06,North,Priya,Webcam,20,2200,0.04,Retail,9100000065,priya65@example.com,Returned
+2066,07 Mar 2026,South,Karan,Keyboard,23,950,0.05,Partner,9100000066,karan66@example.com,Closed
+2067,03-08-2026,East,Meera,Mouse,26,550,0.06,Online,9100000067,meera67@example.com,Closed
+2068,09-03-2026,West,Sonia,Monitor,29,7800,0.07,Retail,9100000068,sonia68@example.com,Closed
+2069,2026-03-10,North,Arun,Laptop Stand,32,1200,0.08,Partner,9100000069,arun69@example.com,Open
+2070,11 Mar 2026,South,Dev,Webcam,35,2200,0.02,Online,9100000070,dev70@example.com,Returned
+2071,03-12-2026,East,Asha,Keyboard,38,950,0.03,Retail,9100000071,asha71@example.com,Closed
+2072,13-03-2026,West,Neha,Mouse,5,550,0.04,Partner,9100000072,neha72@example.com,Closed
+2073,2026-03-14,North,Ravi,Monitor,8,7800,0.05,Online,9100000073,ravi73@example.com,Closed
+2074,15 Mar 2026,South,Imran,Laptop Stand,11,1200,0.06,Retail,9100000074,imran74@example.com,Open
+2075,03-16-2026,East,Priya,Webcam,14,2200,0.07,Partner,9100000075,priya75@example.com,Returned
+2076,17-03-2026,West,Karan,Keyboard,17,950,0.08,Online,9100000076,karan76@example.com,Closed
+2077,2026-03-18,North,Meera,Mouse,20,550,0.02,Retail,9100000077,meera77@example.com,Closed
+2078,19 Mar 2026,South,Sonia,Monitor,23,7800,0.03,Partner,9100000078,sonia78@example.com,Closed
+2079,03-20-2026,East,Arun,Laptop Stand,26,1200,0.04,Online,9100000079,arun79@example.com,Open
+2080,21-03-2026,West,Dev,Webcam,29,2200,0.05,Retail,9100000080,dev80@example.com,Returned
+2081,2026-03-22,North,  Asha,Keyboard,32,950,0.06,Partner,9100000081,asha81@example.com,Closed
+2082,23 Mar 2026,South,Neha,Mouse,35,550,0.07,Online,9100000082,neha82@example.com,Closed
+2083,03-24-2026,East,Ravi,Monitor,38,7800,0.08,Retail,9100000083,ravi83@example.com,Closed
+2084,25-03-2026,West,Imran,Laptop Stand,5,1200,0.02,Partner,9100000084,imran84@example.com,Open
+2085,2026-03-26,North,Priya,Webcam,8,2200,0.03,Online,9100000085,priya85@example.com,Returned
+2086,27 Mar 2026,South,Karan,Keyboard,11,950,0.04,Retail,9100000086,karan86@example.com,Closed
+2087,03-28-2026,East,Meera,Mouse,14,550,0.05,Partner,9100000087,meera87@example.com,Closed
+2088,29-03-2026,West,Sonia,Monitor,17,7800,0.06,Online,9100000088,sonia88@example.com,Closed
+2089,2026-03-30,North,Arun,Laptop Stand,20,1200,0.07,Retail,9100000089,arun89@example.com,Open
+2090,31 Mar 2026,South,Dev,Webcam,23,2200,0.08,Partner,9100000090,dev90@example.com,Returned
+2091,04-01-2026,East,Asha,Keyboard,26,950,0.02,Online,9100000091,asha91@example.com,Closed
+2092,02-04-2026,West,Neha,Mouse,29,550,0.03,Retail,9100000092,neha92@example.com,Closed
+2093,2026-04-03,NORTH,Ravi,Monitor,32,7800,0.04,Partner,9100000093,ravi93@example.com,Closed
+2094,04 Apr 2026,South,Imran,Laptop Stand,35,1200,0.05,Online,9100000094,imran94@example.com,Open
+2095,04-05-2026,East,Priya,Webcam,38,2200,0.06,Retail,9100000095,priya95@example.com,Returned
+2096,06-04-2026,West,Karan,Keyboard,5,950,0.07,Partner,9100000096,karan96@example.com,Closed
+2097,2026-04-07,North,Meera,Mouse,8,550,0.08,Online,9100000097,meera97@example.com,Closed
+2098,08 Apr 2026,South,Sonia,Monitor,11,7800,0.02,Retail,9100000098,sonia98@example.com,Closed
+2099,04-09-2026,East,Arun,Laptop Stand,14,1200,0.03,Partner,9100000099,arun99@example.com,Open
+2100,10-04-2026,West,Dev,Webcam,17,2200,0.04,Online,9100000100,dev100@example.com,Returned
+2101,2026-04-11,North,Asha,Keyboard,20,950,0.05,Retail,9100000101,asha101@example.com,Closed
+2102,12 Apr 2026,South,Neha,Mouse,23,550,0.06,Partner,9100000102,neha102@example.com,Closed
+2103,04-13-2026,East,Ravi,Monitor,26,7800,0.07,Online,9100000103,ravi103@example.com,Closed
+2104,14-04-2026,West,Imran,Laptop Stand,29,1200,0.08,Retail,9100000104,imran104@example.com,Open
+2105,2026-04-15,North,Priya,Webcam,32,2200,0.02,Partner,9100000105,priya105@example.com,Returned
+2106,16 Apr 2026,South,Karan,Keyboard,35,950,0.03,Online,9100000106,karan106@example.com,Closed
+2107,04-17-2026,East,Meera,Mouse,38,550,0.04,Retail,9100000107,meera107@example.com,Closed
+2108,18-04-2026,West,  Sonia,Monitor,5,7800,0.05,Partner,9100000108,sonia108@example.com,Closed
+2109,2026-04-19,North,Arun,Laptop Stand,8,1200,0.06,Online,9100000109,arun109@example.com,Open
+2110,20 Apr 2026,South,Dev,Webcam,11,2200,0.07,Retail,9100000110,dev110@example,Returned
+2111,04-21-2026,East,Asha,Keyboard,14,950,0.08,Partner,9100000111,asha111@example.com,Closed
+2112,22-04-2026,West,Neha,Mouse,17,550,0.02,Online,9100000112,neha112@example.com,Closed
+2113,2026-04-23,North,Ravi,Monitor,20,7800,0.03,Retail,9100000113,ravi113@example.com,Closed
+2114,24 Apr 2026,South,Imran,Laptop Stand,23,1200,0.04,Partner,9100000114,imran114@example.com,Open
+2115,04-25-2026,East,Priya,Webcam,26,2200,0.05,Online,9100000115,priya115@example.com,Returned
+2116,26-04-2026,West,Karan,Keyboard,29,950,0.06,Retail,9100000116,karan116@example.com,Closed
+2117,2026-04-27,North,Meera,Mouse,32,550,0.07,Partner,9100000117,meera117@example.com,Closed
+2118,28 Apr 2026,South,Sonia,Monitor,35,7800,0.08,Online,9100000118,sonia118@example.com,Closed
+2119,04-29-2026,East,Arun,Laptop Stand,38,1200,0.02,Retail,9100000119,arun119@example.com,Open
+2120,30-04-2026,West,Dev,Webcam,5,2200,0.03,Partner,9100000120,dev120@example.com,Returned
+2121,2026-05-01,North,Asha,Keyboard,8,950,0.04,Online,9100000121,asha121@example.com,Closed
+2122,02 May 2026,South,Neha,Mouse,11,550,0.05,Retail,9100000122,neha122@example.com,Closed
+2123,05-03-2026,East,Ravi,Monitor,14,7800,0.06,Partner,9100000123,ravi123@example.com,Closed
+2124,04-05-2026,WEST,Imran,Laptop Stand,17,1200,0.07,Online,9100000124,imran124@example.com,Open
+2125,2026-05-05,North,Priya,Webcam,20,2200,0.08,Retail,9100000125,priya125@example.com,Returned
+2126,06 May 2026,South,Karan,Keyboard,23,950,0.02,Partner,9100000126,karan126@example.com,Closed
+2127,05-07-2026,East,Meera,Mouse,26,550,0.03,Online,9100000127,meera127@example.com,Closed
+2128,08-05-2026,West,Sonia,Monitor,29,7800,0.04,Retail,9100000128,sonia128@example.com,Closed
+2129,2026-05-09,North,Arun,Laptop Stand,32,1200,0.05,Partner,9100000129,arun129@example.com,Open
+2130,10 May 2026,South,Dev,Webcam,35,2200,0.06,Online,9100000130,dev130@example.com,Returned
+2131,05-11-2026,East,Asha,Keyboard,38,950,0.07,Retail,9100000131,asha131@example.com,Closed
+2132,12-05-2026,West,Neha,Mouse,5,550,0.08,Partner,9100000132,neha132@example.com,Closed
+2133,2026-05-13,North,Ravi,Monitor,8,7800,0.02,Online,9100000133,ravi133@example.com,Closed
+2134,14 May 2026,South,Imran,Laptop Stand,11,1200,0.03,Retail,9100000134,imran134@example.com,Open
+2135,05-15-2026,East,  Priya,Webcam,14,2200,0.04,Partner,9100000135,priya135@example.com,Returned
+2136,16-05-2026,West,Karan,Keyboard,17,950,0.05,Online,9100000136,karan136@example.com,Closed
+2137,2026-05-17,North,Meera,Mouse,20,550,0.06,Retail,9100000137,meera137@example.com,Closed
+2138,18 May 2026,South,Sonia,Monitor,23,7800,0.07,Partner,9100000138,sonia138@example.com,Closed
+2139,05-19-2026,East,Arun,Laptop Stand,26,1200,0.08,Online,9100000139,arun139@example.com,Open
+2140,20-05-2026,West,Dev,Webcam,29,2200,0.02,Retail,9100000140,dev140@example.com,Returned
+2141,2026-05-21,North,Asha,Keyboard,32,950,0.03,Partner,9100000141,asha141@example.com,Closed
+2142,22 May 2026,South,Neha,Mouse,35,550,0.04,Online,9100000142,neha142@example.com,Closed
+2143,05-23-2026,East,Ravi,Monitor,38,7800,0.05,Retail,9100000143,ravi143@example.com,Closed
+2144,24-05-2026,West,Imran,Laptop Stand,5,1200,0.06,Partner,9100000144,imran144@example.com,Open
+2145,2026-05-25,North,Priya,Webcam,8,2200,0.07,Online,9100000145,priya145@example.com,Returned
+2146,26 May 2026,South,Karan,Keyboard,11,950,0.08,Retail,9100000146,karan146@example.com,Closed
+2147,05-27-2026,East,Meera,Mouse,14,550,0.02,Partner,9100000147,meera147@example.com,Closed
+2148,28-05-2026,West,Sonia,Monitor,17,7800,0.03,Online,9100000148,sonia148@example.com,Closed
+2149,2026-05-29,North,Arun,Laptop Stand,20,1200,0.04,Retail,9100000149,arun149@example.com,Open
+2150,30 May 2026,South,Dev,Webcam,23,2200,0.05,Partner,9100000150,dev150@example.com,Returned
+2151,05-31-2026,East,Asha,Keyboard,26,950,0.06,Online,9100000151,asha151@example.com,Closed
+2152,01-06-2026,West,Neha,Mouse,29,550,0.07,Retail,9100000152,neha152@example.com,Closed
+2153,2026-06-02,North,Ravi,Monitor,32,7800,0.08,Partner,9100000153,ravi153@example.com,Closed
+2154,03 Jun 2026,South,Imran,Laptop Stand,35,1200,0.02,Online,9100000154,imran154@example.com,Open
+2155,06-04-2026,EAST,Priya,Webcam,38,2200,0.03,Retail,9100000155,priya155@example.com,Returned
+2156,05-06-2026,West,Karan,Keyboard,5,950,0.04,Partner,9100000156,karan156@example.com,Closed
+2157,2026-06-06,North,Meera,Mouse,8,550,0.05,Online,9100000157,meera157@example.com,Closed
+2158,07 Jun 2026,South,Sonia,Monitor,11,7800,0.06,Retail,9100000158,sonia158@example.com,Closed
+2159,06-08-2026,East,Arun,Laptop Stand,14,1200,0.07,Partner,9100000159,arun159@example.com,Open
+2160,09-06-2026,West,Dev,Webcam,17,2200,0.08,Online,9100000160,dev160@example.com,Returned
+2161,2026-06-10,North,Asha,Keyboard,20,950,0.02,Retail,9100000161,asha161@example.com,Closed
+2162,11 Jun 2026,South,  Neha,Mouse,23,550,0.03,Partner,9100000162,neha162@example.com,Closed
+2163,06-12-2026,East,Ravi,Monitor,26,7800,0.04,Online,9100000163,ravi163@example.com,Closed
+2164,13-06-2026,West,Imran,Laptop Stand,29,1200,0.05,Retail,9100000164,imran164@example.com,Open
+2165,2026-06-14,North,Priya,Webcam,32,2200,0.06,Partner,9100000165,priya165@example,Returned
+2166,15 Jun 2026,South,Karan,Keyboard,35,950,0.07,Online,9100000166,karan166@example.com,Closed
+2167,06-16-2026,East,Meera,Mouse,38,550,0.08,Retail,9100000167,meera167@example.com,Closed
+2168,17-06-2026,West,Sonia,Monitor,5,7800,0.02,Partner,9100000168,sonia168@example.com,Closed
+2169,2026-06-18,North,Arun,Laptop Stand,8,1200,0.03,Online,9100000169,arun169@example.com,Open
+2170,19 Jun 2026,South,Dev,Webcam,11,2200,0.04,Retail,9100000170,dev170@example.com,Returned
+2171,06-20-2026,East,Asha,Keyboard,14,950,0.05,Partner,9100000171,asha171@example.com,Closed
+2172,21-06-2026,West,Neha,Mouse,17,550,0.06,Online,9100000172,neha172@example.com,Closed
+2173,2026-06-22,North,Ravi,Monitor,20,7800,0.07,Retail,9100000173,ravi173@example.com,Closed
+2174,23 Jun 2026,South,Imran,Laptop Stand,23,1200,0.08,Partner,9100000174,imran174@example.com,Open
+2175,06-24-2026,East,Priya,Webcam,26,2200,0.02,Online,9100000175,priya175@example.com,Returned
+2176,25-06-2026,West,Karan,Keyboard,29,950,0.03,Retail,9100000176,karan176@example.com,Closed
+2177,2026-06-26,North,Meera,Mouse,32,550,0.04,Partner,9100000177,meera177@example.com,Closed
+2178,27 Jun 2026,South,Sonia,Monitor,35,7800,0.05,Online,9100000178,sonia178@example.com,Closed
+2179,06-28-2026,East,Arun,Laptop Stand,38,1200,0.06,Retail,9100000179,arun179@example.com,Open
+2180,29-06-2026,West,Dev,Webcam,5,2200,0.07,Partner,9100000180,dev180@example.com,Returned
+2181,2026-06-30,North,Asha,Keyboard,8,950,0.08,Online,9100000181,asha181@example.com,Closed
+2182,01 Jul 2026,South,Neha,Mouse,11,550,0.02,Retail,9100000182,neha182@example.com,Closed
+2183,07-02-2026,East,Ravi,Monitor,14,7800,0.03,Partner,9100000183,ravi183@example.com,Closed
+2184,03-07-2026,West,Imran,Laptop Stand,17,1200,0.04,Online,9100000184,imran184@example.com,Open
+2185,2026-07-04,North,Priya,Webcam,20,2200,0.05,Retail,9100000185,priya185@example.com,Returned
+2186,05 Jul 2026,SOUTH,Karan,Keyboard,23,950,0.06,Partner,9100000186,karan186@example.com,Closed
+2187,07-06-2026,East,Meera,Mouse,26,550,0.07,Online,9100000187,meera187@example.com,Closed
+2188,07-07-2026,West,Sonia,Monitor,29,7800,0.08,Retail,9100000188,sonia188@example.com,Closed
+2189,2026-07-08,North,  Arun,Laptop Stand,32,1200,0.02,Partner,9100000189,arun189@example.com,Open
+2190,09 Jul 2026,South,Dev,Webcam,35,2200,0.03,Online,9100000190,dev190@example.com,Returned
+2191,07-10-2026,East,Asha,Keyboard,38,950,0.04,Retail,9100000191,asha191@example.com,Closed
+2192,11-07-2026,West,Neha,Mouse,5,550,0.05,Partner,9100000192,neha192@example.com,Closed
+2193,2026-07-12,North,Ravi,Monitor,8,7800,0.06,Online,9100000193,ravi193@example.com,Closed
+2194,13 Jul 2026,South,Imran,Laptop Stand,11,1200,0.07,Retail,9100000194,imran194@example.com,Open
+2195,07-14-2026,East,Priya,Webcam,14,2200,0.08,Partner,9100000195,priya195@example.com,Returned
+2196,15-07-2026,West,Karan,Keyboard,17,950,0.02,Online,9100000196,karan196@example.com,Closed
+2197,2026-07-16,North,Meera,Mouse,20,550,0.03,Retail,9100000197,meera197@example.com,Closed
+2198,17 Jul 2026,South,Sonia,Monitor,23,7800,0.04,Partner,9100000198,sonia198@example.com,Closed
+2199,07-18-2026,East,Arun,Laptop Stand,26,1200,0.05,Online,9100000199,arun199@example.com,Open
+2200,19-07-2026,West,Dev,Webcam,29,2200,0.06,Retail,9100000200,dev200@example.com,Returned
+2201,2026-07-20,North,Asha,Keyboard,32,950,0.07,Partner,9100000201,asha201@example.com,Closed
+2202,21 Jul 2026,South,Neha,Mouse,35,550,0.08,Online,9100000202,neha202@example.com,Closed
+2203,07-22-2026,East,Ravi,Monitor,38,7800,0.02,Retail,9100000203,ravi203@example.com,Closed
+2204,23-07-2026,West,Imran,Laptop Stand,5,1200,0.03,Partner,9100000204,imran204@example.com,Open
+2205,2026-07-24,North,Priya,Webcam,8,2200,0.04,Online,9100000205,priya205@example.com,Returned
+2206,25 Jul 2026,South,Karan,Keyboard,11,950,0.05,Retail,9100000206,karan206@example.com,Closed
+2207,07-26-2026,East,Meera,Mouse,14,550,0.06,Partner,9100000207,meera207@example.com,Closed
+2208,27-07-2026,West,Sonia,Monitor,17,7800,0.07,Online,9100000208,sonia208@example.com,Closed
+2209,2026-07-28,North,Arun,Laptop Stand,20,1200,0.08,Retail,9100000209,arun209@example.com,Open
+2210,29 Jul 2026,South,Dev,Webcam,23,2200,0.02,Partner,9100000210,dev210@example.com,Returned
+2211,07-30-2026,East,Asha,Keyboard,26,950,0.03,Online,9100000211,asha211@example.com,Closed
+2212,31-07-2026,West,Neha,Mouse,29,550,0.04,Retail,9100000212,neha212@example.com,Closed
+2213,2026-08-01,North,Ravi,Monitor,32,7800,0.05,Partner,9100000213,ravi213@example.com,Closed
+2214,02 Aug 2026,South,Imran,Laptop Stand,35,1200,0.06,Online,9100000214,imran214@example.com,Open
+2215,08-03-2026,East,Priya,Webcam,38,2200,0.07,Retail,9100000215,priya215@example.com,Returned
+2216,04-08-2026,West,  Karan,Keyboard,5,950,0.08,Partner,9100000216,karan216@example.com,Closed
+2217,2026-08-05,NORTH,Meera,Mouse,8,550,0.02,Online,9100000217,meera217@example.com,Closed
+2218,06 Aug 2026,South,Sonia,Monitor,11,7800,0.03,Retail,9100000218,sonia218@example.com,Closed
+2219,08-07-2026,East,Arun,Laptop Stand,14,1200,0.04,Partner,9100000219,arun219@example.com,Open
+2220,08-08-2026,West,Dev,Webcam,17,2200,0.05,Online,9100000220,dev220@example,Returned
+2221,2026-08-09,North,Asha,Keyboard,20,950,0.06,Retail,9100000221,asha221@example.com,Closed
+2222,10 Aug 2026,South,Neha,Mouse,23,550,0.07,Partner,9100000222,neha222@example.com,Closed
+2223,08-11-2026,East,Ravi,Monitor,26,7800,0.08,Online,9100000223,ravi223@example.com,Closed
+2224,12-08-2026,West,Imran,Laptop Stand,29,1200,0.02,Retail,9100000224,imran224@example.com,Open
+2225,2026-08-13,North,Priya,Webcam,32,2200,0.03,Partner,9100000225,priya225@example.com,Returned
+2226,14 Aug 2026,South,Karan,Keyboard,35,950,0.04,Online,9100000226,karan226@example.com,Closed
+2227,08-15-2026,East,Meera,Mouse,38,550,0.05,Retail,9100000227,meera227@example.com,Closed
+2228,16-08-2026,West,Sonia,Monitor,5,7800,0.06,Partner,9100000228,sonia228@example.com,Closed
+2229,2026-08-17,North,Arun,Laptop Stand,8,1200,0.07,Online,9100000229,arun229@example.com,Open
+2230,18 Aug 2026,South,Dev,Webcam,11,2200,0.08,Retail,9100000230,dev230@example.com,Returned
+2231,08-19-2026,East,Asha,Keyboard,14,950,0.02,Partner,9100000231,asha231@example.com,Closed
+2232,20-08-2026,West,Neha,Mouse,17,550,0.03,Online,9100000232,neha232@example.com,Closed
+2233,2026-08-21,North,Ravi,Monitor,20,7800,0.04,Retail,9100000233,ravi233@example.com,Closed
+2234,22 Aug 2026,South,Imran,Laptop Stand,23,1200,0.05,Partner,9100000234,imran234@example.com,Open
+2235,08-23-2026,East,Priya,Webcam,26,2200,0.06,Online,9100000235,priya235@example.com,Returned
+2236,24-08-2026,West,Karan,Keyboard,29,950,0.07,Retail,9100000236,karan236@example.com,Closed
+2237,2026-08-25,North,Meera,Mouse,32,550,0.08,Partner,9100000237,meera237@example.com,Closed
+2238,26 Aug 2026,South,Sonia,Monitor,35,7800,0.02,Online,9100000238,sonia238@example.com,Closed
+2239,08-27-2026,East,Arun,Laptop Stand,38,1200,0.03,Retail,9100000239,arun239@example.com,Open
+2240,28-08-2026,West,Dev,Webcam,5,2200,0.04,Partner,9100000240,dev240@example.com,Returned

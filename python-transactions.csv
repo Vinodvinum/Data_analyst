@@ -1,0 +1,11 @@
+transaction_id,order_id,payment_date,payment_method,amount,status
+T001,1001,2024-06-02,Card,228.00,Settled
+T002,1002,2024-06-04,Bank Transfer,196.00,Settled
+T003,1003,2024-06-06,Card,269.10,Settled
+T004,1004,2024-06-08,Card,190.00,Settled
+T005,1005,2024-06-11,Bank Transfer,458.08,Settled
+T006,1006,2024-06-13,Card,568.10,Settled
+T007,1007,2024-07-02,Card,360.00,Settled
+T008,1008,2024-07-04,Bank Transfer,439.12,Settled
+T009,1009,2024-07-06,Card,98.00,Settled
+T010,1010,2024-07-09,Card,110.82,Pending

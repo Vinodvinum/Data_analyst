@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python for Data Analysis: Beginner to Expert Guide</title>
+  <style>
+    :root {
+      --bg: #f6f8fc;
+      --card: #ffffff;
+      --ink: #172033;
+      --muted: #51607a;
+      --brand: #0f766e;
+      --brand-2: #1d4ed8;
+      --accent: #7c3aed;
+      --line: #dbe4f0;
+      --warn: #9a3412;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, #e8fff8 0%, transparent 28%),
+        radial-gradient(circle at top right, #eef4ff 0%, transparent 30%),
+        var(--bg);
+      line-height: 1.65;
+    }
+
+    .wrap { max-width: 1260px; margin: 0 auto; padding: 24px; }
+    header, nav, section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+    header {
+      padding: 28px;
+      color: #fff;
+      background: linear-gradient(120deg, #0f766e, #1d4ed8);
+      border: none;
+    }
+    nav, section { padding: 22px; }
+    h1, h2, h3, h4 { margin-top: 0; line-height: 1.25; }
+    .muted { color: var(--muted); }
+    .tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #e7f9f1;
+      color: var(--brand);
+      border: 1px solid #c4eadc;
+      margin-bottom: 12px;
+    }
+    .tag.adv { background: #eef2ff; color: var(--brand-2); border-color: #c7d2fe; }
+    .tag.exp { background: #f5f3ff; color: var(--accent); border-color: #ddd6fe; }
+    .toc {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 8px 18px;
+      margin: 0;
+      padding-left: 20px;
+    }
+    a { color: #0b57d0; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      background: #fbfdff;
+    }
+    .tip, .warning, .note {
+      border-left: 5px solid;
+      padding: 10px 12px;
+      border-radius: 8px;
+      margin: 12px 0;
+      background: #f8fafc;
+    }
+    .tip { border-left-color: #2563eb; }
+    .warning { border-left-color: var(--warn); }
+    .note { border-left-color: var(--brand); }
+    table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 0.95rem; }
+    th, td { border: 1px solid var(--line); padding: 10px; text-align: left; vertical-align: top; }
+    th { background: #eef6ff; }
+    pre {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 12px;
+      border-radius: 10px;
+      overflow-x: auto;
+      border: 1px solid #1f2937;
+      margin: 8px 0 14px;
+      font-size: 0.92rem;
+    }
+    code { font-family: Consolas, "Courier New", monospace; font-size: 0.94em; }
+    .dataset-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      margin: 10px 0 16px;
+    }
+    .dataset-grid .card h4 { margin-bottom: 6px; }
+    .flow {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px;
+      font-weight: 600;
+    }
+    .project-box {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      background: #fcfdff;
+      margin: 12px 0;
+    }
+    footer { text-align: center; color: var(--muted); padding: 16px 8px 30px; font-size: 0.92rem; }
+    @media (max-width: 700px) {
+      .wrap { padding: 14px; }
+      header { padding: 20px; }
+      section, nav { padding: 16px; }
+      table, th, td { font-size: 0.88rem; }
+      header h1 { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Python for Data Analysis: Beginner to Expert Guide</h1>
+      <p>A practical, industry-oriented Python guide for data analysts and junior data scientists. It covers fundamentals, NumPy, pandas, visualization, advanced analysis, feature engineering, machine learning basics, and real-world projects.</p>
+      <p><a href="index.html">Master Hub</a> | <a href="data-analyst-interview-preparation-guide.html">Interview Prep</a> | <a href="https://github.com/Vinodvinum/Data_analyst">GitHub Repo</a></p>
+    </header>
+
+    <nav id="toc">
+      <h2>Table of Contents</h2>
+      <ol class="toc">
+        <li><a href="#how-to-use">How to Use This Guide</a></li>
+        <li><a href="#datasets">Practice Datasets</a></li>
+        <li><a href="#beginner">Beginner Level</a></li>
+        <li><a href="#fundamentals">Python Fundamentals</a></li>
+        <li><a href="#intermediate">Intermediate Level</a></li>
+        <li><a href="#numpy">NumPy</a></li>
+        <li><a href="#pandas">Pandas</a></li>
+        <li><a href="#cleaning">Data Cleaning</a></li>
+        <li><a href="#grouping">Aggregation and Grouping</a></li>
+        <li><a href="#visualization">Data Visualization</a></li>
+        <li><a href="#advanced">Advanced Level</a></li>
+        <li><a href="#advanced-pandas">Advanced Pandas</a></li>
+        <li><a href="#timeseries">Time Series Analysis</a></li>
+        <li><a href="#large-data">Working with Large Data</a></li>
+        <li><a href="#expert">Expert Level</a></li>
+        <li><a href="#techniques">Analytical Techniques</a></li>
+        <li><a href="#ml">Intro to Machine Learning</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#memory">Memory Tricks and Best Practices</a></li>
+        <li><a href="#productivity">Python Shortcuts and Productivity</a></li>
+        <li><a href="#integration">Integration with Tools</a></li>
+        <li><a href="#ai">AI + Python</a></li>
+        <li><a href="#mastery">Bonus: Mastery Thinking</a></li>
+      </ol>
+    </nav>
+
+    <section id="training-hub">
+      <span class="tag">Hub</span>
+      <h2>Training Hub and Resources</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Cross-links</h3>
+          <ul>
+            <li><a href="index.html">Master landing page</a></li>
+            <li><a href="excel-data-analysis-guide.html">Excel guide</a></li>
+            <li><a href="sql-data-analysis-guide.html">SQL guide</a></li>
+            <li><a href="powerbi-data-analysis-guide.html">Power BI guide</a></li>
+            <li><a href="data-analyst-interview-preparation-guide.html">Interview guide</a></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Files</h3>
+          <ul>
+            <li><a href="python-data-analysis-guide.ipynb">python-data-analysis-guide.ipynb</a></li>
+            <li><a href="python-sales.csv">python-sales.csv</a></li>
+            <li><a href="python-users.csv">python-users.csv</a></li>
+            <li><a href="python-transactions.csv">python-transactions.csv</a></li>
+            <li><a href="python-products.csv">python-products.csv</a></li>
+            <li><a href="sales_project_summary.csv">sales_project_summary.csv</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-to-use">
+      <span class="tag">Intro</span>
+      <h2>How to Use This Guide</h2>
+      <p class="muted">Read it in order and run every code block in a notebook or Python script. The fastest way to learn Python for analysis is to connect code to a dataset and inspect the output.</p>
+      <ul>
+        <li>Each concept includes code, explanation, and a real-world use case.</li>
+        <li>Use the sample CSV files in this workspace for practice.</li>
+        <li>Prefer pandas notebooks when learning, then move to scripts for repeatable workflows.</li>
+        <li>Build one small project per section to lock in the skill.</li>
+      </ul>
+      <div class="tip"><strong>Goal:</strong> Become fluent enough to clean data, analyze trends, build dashboards-ready datasets, and support junior data science tasks.</div>
+      <div class="note"><strong>Notebook alternative:</strong> A runnable Jupyter notebook version is included as <code>python-data-analysis-guide.ipynb</code> for hands-on practice cell by cell.</div>
+    </section>
+
+    <section id="datasets">
+      <span class="tag">Schema</span>
+      <h2>Practice Datasets Used Throughout This Guide</h2>
+      <p>Use these realistic CSV files with the examples below.</p>
+      <ul>
+        <li><code>python-sales.csv</code></li>
+        <li><code>python-users.csv</code></li>
+        <li><code>python-transactions.csv</code></li>
+        <li><code>python-products.csv</code></li>
+      </ul>
+      <div class="dataset-grid">
+        <div class="card">
+          <h4>sales</h4>
+          <p>order_id, order_date, user_id, product_id, quantity, unit_price, discount, region</p>
+        </div>
+        <div class="card">
+          <h4>users</h4>
+          <p>user_id, signup_date, country, acquisition_channel, age, plan_type</p>
+        </div>
+        <div class="card">
+          <h4>transactions</h4>
+          <p>transaction_id, order_id, payment_date, payment_method, amount, status</p>
+        </div>
+        <div class="card">
+          <h4>products</h4>
+          <p>product_id, product_name, category, list_price, launch_date</p>
+        </div>
+      </div>
+      <div class="note"><strong>Business context:</strong> These tables are enough to analyze sales trends, customer behavior, product performance, and financial reporting workflows.</div>
+    </section>
+
+    <section id="beginner">
+      <span class="tag">Beginner</span>
+      <h2>Beginner Level: Python Fundamentals</h2>
+      <p>Start with the language itself: what Python is, how to store data, and how to write simple logic.</p>
+    </section>
+
+    <section id="fundamentals">
+      <h2>Python Fundamentals</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>What is Python and Why Analysts Use It</h3>
+          <p>Python is a readable, general-purpose programming language used for data cleaning, analysis, automation, visualization, and machine learning. Analysts use it because it is flexible, fast to prototype, and supported by a deep data ecosystem.</p>
+          <div class="tip"><strong>Real-world use case:</strong> Pull data from SQL, clean it in pandas, create charts, and export a dashboard-ready dataset.</div>
+        </div>
+        <div class="card">
+          <h3>Variables and Basic Data Types</h3>
+          <table>
+            <thead><tr><th>Type</th><th>Example</th><th>Use Case</th></tr></thead>
+            <tbody>
+              <tr><td>int</td><td><code>orders = 120</code></td><td>Counts, IDs, row totals</td></tr>
+              <tr><td>float</td><td><code>avg_value = 25.75</code></td><td>Revenue, percentages, metrics</td></tr>
+              <tr><td>string</td><td><code>country = "India"</code></td><td>Labels, categories, names</td></tr>
+              <tr><td>list</td><td><code>regions = ["North", "South"]</code></td><td>Ordered collections</td></tr>
+              <tr><td>tuple</td><td><code>point = (10, 20)</code></td><td>Fixed records, coordinates</td></tr>
+              <tr><td>dict</td><td><code>user = {"id": 1, "country": "US"}</code></td><td>Key-value metadata</td></tr>
+              <tr><td>set</td><td><code>unique_regions = {"US", "CA"}</code></td><td>Unique values, deduping</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h3>Operators</h3>
+      <table>
+        <thead><tr><th>Operator Type</th><th>Example</th><th>Explanation</th><th>Use Case</th></tr></thead>
+        <tbody>
+          <tr><td>Arithmetic</td><td><code>revenue = units * price</code></td><td>Math operations</td><td>Compute order totals</td></tr>
+          <tr><td>Comparison</td><td><code>revenue &gt; 1000</code></td><td>True/false checks</td><td>Flag high-value orders</td></tr>
+          <tr><td>Logical</td><td><code>(country == "US") and active</code></td><td>Combine conditions</td><td>Filter target customers</td></tr>
+          <tr><td>Membership</td><td><code>country in countries</code></td><td>Check inclusion</td><td>Segment users by market</td></tr>
+        </tbody>
+      </table>
+      <pre><code>units = 4
+price = 19.99
+revenue = units * price
+print(revenue)
+print(revenue &gt; 50)</code></pre>
+
+      <h3>Conditional Statements</h3>
+      <pre><code>score = 82
+
+if score &gt;= 90:
+    grade = "A"
+elif score &gt;= 80:
+    grade = "B"
+else:
+    grade = "C"
+
+print(grade)</code></pre>
+      <p><strong>Explanation:</strong> Conditional logic lets analysts categorize records, create flags, and build business rules.</p>
+
+      <h3>Loops</h3>
+      <pre><code>for region in ["North", "South", "East"]:
+    print(region)
+
+count = 0
+while count &lt; 3:
+    print(count)
+    count += 1</code></pre>
+      <p><strong>Use case:</strong> Iterate over files, rows, regions, or processing steps in an automation workflow.</p>
+
+      <h3>Functions</h3>
+      <pre><code>def net_revenue(quantity, unit_price, discount=0):
+    """Return revenue after discount."""
+    return quantity * unit_price * (1 - discount)
+
+print(net_revenue(10, 25.0, 0.1))</code></pre>
+      <p><strong>Use case:</strong> Encapsulate reusable calculations so your analysis stays consistent and easier to test.</p>
+    </section>
+
+    <section id="intermediate">
+      <span class="tag">Intermediate</span>
+      <h2>Intermediate Level: Core Python for Data Analysis</h2>
+      <p>Now move into the tools analysts use every day: NumPy, pandas, cleaning, grouping, and visualization.</p>
+    </section>
+
+    <section id="numpy">
+      <h2>NumPy: Numerical Computing</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Arrays vs Lists</h3>
+          <p>Lists are flexible Python containers. NumPy arrays are optimized for numerical computation and vectorized operations.</p>
+          <pre><code>import numpy as np
+
+lst = [1, 2, 3]
+arr = np.array([1, 2, 3])
+
+print(lst * 2)   # list repetition
+print(arr * 2)   # element-wise multiplication</code></pre>
+        </div>
+        <div class="card">
+          <h3>Array Operations and Broadcasting</h3>
+          <pre><code>prices = np.array([10, 20, 30])
+discount = 0.1
+
+net_prices = prices * (1 - discount)
+print(net_prices)</code></pre>
+          <p><strong>Explanation:</strong> Broadcasting lets NumPy apply a scalar or smaller array across a larger one without loops.</p>
+        </div>
+      </div>
+
+      <h3>Useful NumPy Functions</h3>
+      <table>
+        <thead><tr><th>Function</th><th>Syntax</th><th>Explanation</th><th>Use Case</th></tr></thead>
+        <tbody>
+          <tr><td>np.mean()</td><td><code>np.mean(arr)</code></td><td>Average</td><td>Average order value</td></tr>
+          <tr><td>np.sum()</td><td><code>np.sum(arr)</code></td><td>Total</td><td>Total sales</td></tr>
+          <tr><td>np.min()</td><td><code>np.min(arr)</code></td><td>Smallest value</td><td>Minimum price</td></tr>
+          <tr><td>np.max()</td><td><code>np.max(arr)</code></td><td>Largest value</td><td>Maximum revenue</td></tr>
+          <tr><td>np.where()</td><td><code>np.where(cond, a, b)</code></td><td>Vectorized conditional</td><td>Flag high-value orders</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="pandas">
+      <h2>Pandas: The Most Important Library</h2>
+      <p>Pandas is the primary tool for structured analysis in Python. It handles tabular data, cleaning, grouping, reshaping, and exports.</p>
+
+      <h3>Series and DataFrame</h3>
+      <pre><code>import pandas as pd
+
+s = pd.Series([10, 20, 30])
+df = pd.DataFrame({
+    "user_id": [1, 2, 3],
+    "country": ["US", "CA", "IN"]
+})
+
+print(s)
+print(df)</code></pre>
+      <p><strong>Series:</strong> one-dimensional labeled data. <strong>DataFrame:</strong> two-dimensional table structure.</p>
+
+      <h3>Reading Data</h3>
+      <pre><code>sales = pd.read_csv("python-sales.csv")
+users = pd.read_excel("python-users.xlsx")
+transactions = pd.read_json("python-transactions.json")</code></pre>
+      <p><strong>Real-world use case:</strong> Analysts commonly start with CSV files exported from SQL, CRM, ERP, or a BI tool.</p>
+
+      <h3>Data Inspection</h3>
+      <pre><code>sales.head()
+sales.info()
+sales.describe()</code></pre>
+      <table>
+        <thead><tr><th>Method</th><th>What It Shows</th><th>Why It Matters</th></tr></thead>
+        <tbody>
+          <tr><td>head()</td><td>First rows</td><td>Quick preview of shape</td></tr>
+          <tr><td>info()</td><td>Columns, types, non-null counts</td><td>Find missing data and type issues</td></tr>
+          <tr><td>describe()</td><td>Summary stats</td><td>Understand distributions</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Data Selection</h3>
+      <pre><code>sales.loc[:, ["order_id", "region", "amount"]]
+sales.iloc[:5, :3]</code></pre>
+      <p><strong>loc[]</strong> uses labels. <strong>iloc[]</strong> uses integer positions.</p>
+
+      <h3>Filtering Rows</h3>
+      <pre><code>high_value = sales[(sales["amount"] &gt; 1000) &amp; (sales["region"] == "North")]</code></pre>
+
+      <h3>Adding and Removing Columns</h3>
+      <pre><code>sales["net_amount"] = sales["amount"] - sales["discount"]
+sales = sales.drop(columns=["old_column"])</code></pre>
+    </section>
+
+    <section id="cleaning">
+      <h2>Data Cleaning: Critical Skill</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Missing Values</h3>
+          <pre><code>sales = sales.dropna()
+sales["amount"] = sales["amount"].fillna(0)</code></pre>
+          <p><strong>Use case:</strong> Replace missing values in revenue, dates, or categorical columns depending on the business rule.</p>
+        </div>
+        <div class="card">
+          <h3>Duplicates and Data Types</h3>
+          <pre><code>sales = sales.drop_duplicates()
+        sales["order_date"] = pd.to_datetime(sales["order_date"])</code></pre>
+          <p><strong>Use case:</strong> Prevent double-counting and ensure date logic works correctly.</p>
+        </div>
+      </div>
+
+      <h3>String Cleaning</h3>
+      <pre><code>sales["region"] = sales["region"].str.strip().str.title()
+sales["email"] = sales["email"].str.lower()
+sales["product"] = sales["product"].str.replace(" ", "_", regex=False)</code></pre>
+      <p><strong>Explanation:</strong> Clean text before merging, grouping, or comparing values.</p>
+    </section>
+
+    <section id="grouping">
+      <h2>Aggregation and Grouping</h2>
+      <h3>groupby() and Aggregate Functions</h3>
+      <pre><code>region_summary = (
+    sales.groupby("region")
+         .agg(total_orders=("order_id", "count"),
+              total_revenue=("net_amount", "sum"),
+              avg_revenue=("net_amount", "mean"))
+         .reset_index()
+)
+print(region_summary)</code></pre>
+
+      <h3>Pivot Tables in Pandas</h3>
+      <pre><code>pivot = pd.pivot_table(
+    sales,
+    index="region",
+    columns="product",
+    values="net_amount",
+    aggfunc="sum",
+    fill_value=0
+)</code></pre>
+      <p><strong>Use case:</strong> Quickly reshape transactional data into a cross-tab for analysis.</p>
+    </section>
+
+    <section id="visualization">
+      <h2>Data Visualization</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Matplotlib</h3>
+          <p>Best for full control and standard chart types.</p>
+          <pre><code>import matplotlib.pyplot as plt
+
+plt.plot(sales_by_month["month"], sales_by_month["revenue"])
+plt.title("Monthly Revenue Trend")
+plt.show()</code></pre>
+          <table>
+            <thead><tr><th>Chart</th><th>When to Use</th></tr></thead>
+            <tbody>
+              <tr><td>Line</td><td>Trends over time</td></tr>
+              <tr><td>Bar</td><td>Category comparison</td></tr>
+              <tr><td>Scatter</td><td>Relationship between two variables</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Seaborn</h3>
+          <p>Best for quick statistical visualizations and polished defaults.</p>
+          <pre><code>import seaborn as sns
+
+sns.heatmap(correlation_matrix, annot=True, cmap="Blues")
+sns.histplot(sales["amount"], kde=True)
+sns.boxplot(data=sales, x="region", y="net_amount")</code></pre>
+          <table>
+            <thead><tr><th>Chart</th><th>When to Use</th></tr></thead>
+            <tbody>
+              <tr><td>Heatmap</td><td>Correlation or matrix patterns</td></tr>
+              <tr><td>Distribution plot</td><td>Understand spread and skew</td></tr>
+              <tr><td>Box plot</td><td>Compare distributions and outliers</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="note"><strong>Rule of thumb:</strong> Use line charts for trends, bars for comparisons, scatter for relationships, heatmaps for matrices, and box plots for spread/outliers.</div>
+    </section>
+
+    <section id="advanced">
+      <span class="tag adv">Advanced</span>
+      <h2>Advanced Python for Data Analysis</h2>
+      <p>At this level, you should be able to combine datasets, model time series, and handle larger data volumes efficiently.</p>
+    </section>
+
+    <section id="advanced-pandas">
+      <h2>Advanced Pandas</h2>
+      <h3>Merge, Join, and Concat</h3>
+      <pre><code>merged = sales.merge(users, on="user_id", how="left")
+joined = users.join(profile_table, how="left")
+combined = pd.concat([q1_sales, q2_sales], axis=0)</code></pre>
+      <p><strong>Explanation:</strong> Merge combines tables on keys, join aligns on index, concat stacks data vertically or horizontally.</p>
+
+      <h3>Multi-indexing</h3>
+      <pre><code>multi = sales.set_index(["region", "product"])
+print(multi.loc[("North", "Laptop"), :])</code></pre>
+
+      <h3>Window Functions</h3>
+      <pre><code>sales = sales.sort_values("order_date")
+sales["rolling_7"] = sales["net_amount"].rolling(window=7).mean()
+sales["expanding_total"] = sales["net_amount"].expanding().sum()</code></pre>
+      <p><strong>Use case:</strong> Rolling averages, cumulative totals, smoothing trends, and sequential analysis.</p>
+    </section>
+
+    <section id="timeseries">
+      <h2>Time Series Analysis</h2>
+      <h3>DateTime Handling</h3>
+      <pre><code>sales["order_date"] = pd.to_datetime(sales["order_date"])
+sales["month"] = sales["order_date"].dt.to_period("M")
+sales["weekday"] = sales["order_date"].dt.day_name()</code></pre>
+
+      <h3>Resampling</h3>
+      <pre><code>daily = sales.set_index("order_date")
+monthly_revenue = daily["net_amount"].resample("M").sum()</code></pre>
+
+      <h3>Moving Averages</h3>
+      <pre><code>sales["ma_7"] = sales["net_amount"].rolling(7).mean()</code></pre>
+    </section>
+
+    <section id="large-data">
+      <h2>Working with Large Data</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Chunking</h3>
+          <pre><code>for chunk in pd.read_csv("large_sales.csv", chunksize=50000):
+    process(chunk)</code></pre>
+          <p><strong>Use case:</strong> Process very large CSV files without loading them all into memory.</p>
+        </div>
+        <div class="card">
+          <h3>Memory Optimization</h3>
+          <pre><code>sales["region"] = sales["region"].astype("category")
+sales["quantity"] = pd.to_numeric(sales["quantity"], downcast="integer")</code></pre>
+          <p><strong>Use case:</strong> Reduce memory footprint when working with large analyst datasets.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="expert">
+      <span class="tag exp">Expert</span>
+      <h2>Expert Level: Real Industry Work</h2>
+      <p>At this level, Python becomes a full analytical workflow engine for cohort analysis, retention, feature engineering, and introductory machine learning.</p>
+    </section>
+
+    <section id="techniques">
+      <h2>Analytical Techniques</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Cohort Analysis</h3>
+          <pre><code>sales["cohort_month"] = sales.groupby("user_id")["order_date"].transform("min").dt.to_period("M")</code></pre>
+          <p><strong>Explanation:</strong> Group users by first activity month and compare later behavior.</p>
+        </div>
+        <div class="card">
+          <h3>Retention Analysis</h3>
+          <pre><code>retention = pd.crosstab(sales["cohort_month"], sales["month"])</code></pre>
+          <p><strong>Explanation:</strong> Measure how many users come back in later periods.</p>
+        </div>
+        <div class="card">
+          <h3>Funnel Analysis</h3>
+          <pre><code>funnel = events.groupby("event_name")["user_id"].nunique()</code></pre>
+          <p><strong>Explanation:</strong> Count unique users at each stage of a conversion flow.</p>
+        </div>
+        <div class="card">
+          <h3>Feature Engineering</h3>
+          <pre><code>sales["basket_size"] = sales["quantity"] * sales["unit_price"]
+sales["is_high_value"] = (sales["basket_size"] &gt; 1000).astype(int)</code></pre>
+          <p><strong>Explanation:</strong> Create model-ready features from raw business data.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="ml">
+      <h2>Intro to Machine Learning for Analysts</h2>
+      <p>Analysts do not need to become full ML engineers, but they should understand the basics of building simple predictive models.</p>
+      <h3>Scikit-learn Basics</h3>
+      <pre><code>from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression, LogisticRegression
+from sklearn.metrics import mean_squared_error, accuracy_score</code></pre>
+
+      <h3>Linear Regression</h3>
+      <pre><code>X = sales[["quantity", "discount"]]
+y = sales["net_amount"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+model = LinearRegression()
+model.fit(X_train, y_train)
+print(model.score(X_test, y_test))</code></pre>
+      <p><strong>Use case:</strong> Estimate revenue, cost, or other continuous metrics.</p>
+
+      <h3>Classification</h3>
+      <pre><code>y = sales["is_high_value"]
+model = LogisticRegression(max_iter=1000)
+model.fit(X_train, y_train)</code></pre>
+      <p><strong>Use case:</strong> Predict binary outcomes such as churn, fraud, or conversion.</p>
+    </section>
+
+    <section id="projects">
+      <h2>Real-World Projects</h2>
+      <div class="project-box">
+        <h3>1) Sales Data Analysis</h3>
+        <p><strong>Problem:</strong> Identify monthly revenue, average order value, and top regions.</p>
+        <p><strong>Dataset structure:</strong> sales, users, products</p>
+        <pre><code>sales = pd.read_csv("python-sales.csv")
+users = pd.read_csv("python-users.csv")
+merged = sales.merge(users, on="user_id", how="left")
+merged["net_amount"] = merged["quantity"] * merged["unit_price"] * (1 - merged["discount"])
+summary = merged.groupby("region")["net_amount"].sum().reset_index()</code></pre>
+        <p><strong>Explanation:</strong> This is the standard shape of an analyst reporting workflow.</p>
+      </div>
+
+      <div class="project-box">
+        <h3>2) Customer Segmentation</h3>
+        <p><strong>Problem:</strong> Split customers into high, medium, and low value groups.</p>
+        <p><strong>Dataset structure:</strong> users, sales</p>
+        <pre><code>customer_value = merged.groupby("user_id")["net_amount"].sum().reset_index()
+customer_value["segment"] = pd.qcut(customer_value["net_amount"], 3, labels=["Low", "Medium", "High"])</code></pre>
+        <p><strong>Explanation:</strong> Useful for CRM, lifecycle marketing, and account prioritization.</p>
+      </div>
+
+      <div class="project-box">
+        <h3>3) Financial Analysis</h3>
+        <p><strong>Problem:</strong> Track invoice collections, overdue payments, and target variance.</p>
+        <p><strong>Dataset structure:</strong> customers, invoices, payments</p>
+        <pre><code>invoices = pd.read_csv("sql-finance-invoices.csv")
+payments = pd.read_csv("sql-finance-payments.csv")
+invoice_summary = invoices.groupby("status")["invoice_amount"].sum()</code></pre>
+        <p><strong>Explanation:</strong> Analysts use this for finance operations, collections, and performance tracking.</p>
+      </div>
+
+      <div class="project-box">
+        <h3>4) Data Cleaning Pipeline</h3>
+        <p><strong>Problem:</strong> Clean messy source data and export a final analysis table.</p>
+        <p><strong>Dataset structure:</strong> raw sales CSV with inconsistent values</p>
+        <pre><code>def clean_sales(df):
+    df = df.drop_duplicates()
+    df["order_date"] = pd.to_datetime(df["order_date"], errors="coerce")
+    df["region"] = df["region"].str.strip().str.title()
+    df["net_amount"] = df["quantity"] * df["unit_price"] * (1 - df["discount"])
+    return df</code></pre>
+        <p><strong>Explanation:</strong> This is a reusable pipeline pattern for analyst handoffs.</p>
+      </div>
+    </section>
+
+    <section id="memory">
+      <h2>Memory Tricks and Best Practices</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Remembering Pandas Operations</h3>
+          <ul>
+            <li><strong>loc</strong> = label-based selection</li>
+            <li><strong>iloc</strong> = integer-based selection</li>
+            <li><strong>groupby</strong> = split, apply, combine</li>
+            <li><strong>merge</strong> = SQL-style join</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Common Mistakes and Debugging Tips</h3>
+          <ul>
+            <li>Always inspect dtypes before aggregating.</li>
+            <li>Check shape after every merge.</li>
+            <li>Use <code>df.columns</code> to confirm names.</li>
+            <li>Print small samples before running full pipelines.</li>
+            <li>Use <code>assert</code> statements in reusable analysis code.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="productivity">
+      <h2>Python Shortcuts and Productivity</h2>
+      <table>
+        <thead><tr><th>Pattern</th><th>Syntax</th><th>Why It Helps</th><th>Use Case</th></tr></thead>
+        <tbody>
+          <tr><td>List comprehension</td><td><code>[x for x in items if x &gt; 0]</code></td><td>Compact iteration</td><td>Filter values quickly</td></tr>
+          <tr><td>Lambda function</td><td><code>lambda x: x * 2</code></td><td>Small inline functions</td><td>Sort keys, transforms</td></tr>
+          <tr><td>Built-ins</td><td><code>sum()</code>, <code>min()</code>, <code>max()</code>, <code>sorted()</code></td><td>Fast, readable operations</td><td>Daily analytical tasks</td></tr>
+        </tbody>
+      </table>
+      <pre><code>numbers = [1, 2, 3, 4]
+squared = [n**2 for n in numbers if n % 2 == 0]
+print(sorted(squared, reverse=True))</code></pre>
+    </section>
+
+    <section id="integration">
+      <h2>Integration with Tools</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Python with SQL</h3>
+          <p>Use SQL to extract clean tables and Python to explore, transform, and model them.</p>
+          <pre><code>import pandas as pd
+from sqlalchemy import create_engine
+
+engine = create_engine("sqlite:///analytics.db")
+df = pd.read_sql("SELECT * FROM sales", engine)</code></pre>
+        </div>
+        <div class="card">
+          <h3>Python with Excel</h3>
+          <p>Use Python to read Excel files, clean them, and export analysis-ready workbooks.</p>
+          <pre><code>df = pd.read_excel("report.xlsx", sheet_name="Sales")
+df.to_excel("cleaned_report.xlsx", index=False)</code></pre>
+        </div>
+        <div class="card">
+          <h3>Python in Jupyter Notebook</h3>
+          <p>Notebooks are ideal for storytelling, exploration, and analyst-friendly sharing.</p>
+          <ul>
+            <li>Run code cell by cell.</li>
+            <li>Mix markdown and charts.</li>
+            <li>Document assumptions next to analysis.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Workflow Pattern</h3>
+          <p>Typical analyst flow: pull data, inspect, clean, transform, visualize, summarize, and export.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="ai">
+      <h2>AI + Python</h2>
+      <p>AI tools can accelerate coding, debugging, and data cleaning, but you still need to verify the logic and output.</p>
+      <table>
+        <thead><tr><th>Use</th><th>Prompt Example</th><th>What to Validate</th></tr></thead>
+        <tbody>
+          <tr><td>Code generation</td><td>Write pandas code to clean dates, remove duplicates, and create a monthly revenue summary.</td><td>Column names, dtypes, and output shape</td></tr>
+          <tr><td>Debugging</td><td>This pandas merge duplicates rows. Explain why and fix it.</td><td>Join keys, multiplicity, and merge type</td></tr>
+          <tr><td>Automation</td><td>Generate a reusable Python function that cleans sales data and exports a summary file.</td><td>Edge cases and missing values</td></tr>
+        </tbody>
+      </table>
+      <h3>Prompt Templates</h3>
+      <pre><code>Prompt 1:
+I have sales, users, and products tables. Create a pandas pipeline that loads, cleans, merges, and summarizes revenue by region.
+
+Prompt 2:
+Explain why my rolling average calculation is wrong and rewrite it using pandas.
+
+Prompt 3:
+Generate Python code to detect duplicate customers and build a cleaned output table.</code></pre>
+    </section>
+
+    <section id="mastery">
+      <h2>Bonus: Mastery Thinking</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>How Analysts Think Using Python</h3>
+          <p>They think in dataframes, reusable functions, reproducible notebooks, and clean outputs that can be handed off to business partners or BI tools.</p>
+        </div>
+        <div class="card">
+          <h3>Common Industry Mistakes</h3>
+          <ul>
+            <li>Not checking data types before math operations.</li>
+            <li>Overwriting raw data instead of copying it first.</li>
+            <li>Using loops where vectorized pandas operations are better.</li>
+            <li>Ignoring outliers and missing values in business metrics.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Efficient Workflow Patterns</h3>
+          <ul>
+            <li>Load raw data once and save a cleaned version.</li>
+            <li>Write helper functions for repeated transformations.</li>
+            <li>Use notebooks for exploration, scripts for automation.</li>
+            <li>Check shapes and totals at every major step.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Senior-Analyst Habit</h3>
+          <p>Do not just answer the question. Produce a reliable dataset, explain the business implication, and make the work repeatable.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Built as practical training material for analysts and junior data scientists.
+    </footer>
+  </div>
+</body>
+</html>
