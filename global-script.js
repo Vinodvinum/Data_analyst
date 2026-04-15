@@ -251,78 +251,85 @@ function setupSearch() {
 
 // ========== THEME TOGGLE ==========
 function setupTheme() {
-  const savedTheme = localStorage.getItem('theme') || 'light';
+  const THEMES = ['light', 'dark', 'ocean', 'forest', 'sunset', 'purple'];
+  const savedTheme = localStorage.getItem('data-theme') || 'light';
   applyTheme(savedTheme);
 
-  // Create theme toggle button
+  // Create theme toggle button (main palette button)
   const themeToggle = document.createElement('button');
-  themeToggle.textContent = '🌙';
-  themeToggle.style.cssText = `
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    font-size: 1.5em;
-    z-index: 150;
-    box-shadow: var(--shadow);
-    transition: all 0.3s ease;
-  `;
+  themeToggle.className = 'theme-toggle';
+  themeToggle.textContent = '🎨';
+  themeToggle.setAttribute('aria-label', 'Open theme selector');
+  themeToggle.setAttribute('title', 'Click to select theme');
 
+  // Create theme selector panel
+  const themeSelector = document.createElement('div');
+  themeSelector.className = 'theme-selector';
+
+  const selectorTitle = document.createElement('h4');
+  selectorTitle.textContent = 'Select Theme';
+  selectorTitle.style.margin = '0 0 16px 0';
+  themeSelector.appendChild(selectorTitle);
+
+  const themeGrid = document.createElement('div');
+  themeGrid.className = 'theme-grid';
+
+  THEMES.forEach(theme => {
+    const themeBtn = document.createElement('button');
+    themeBtn.className = 'theme-btn';
+    themeBtn.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
+    themeBtn.setAttribute('data-theme', theme);
+    themeBtn.setAttribute('aria-pressed', theme === savedTheme);
+
+    if (theme === savedTheme) {
+      themeBtn.classList.add('active');
+    }
+
+    themeBtn.addEventListener('click', () => {
+      localStorage.setItem('data-theme', theme);
+      applyTheme(theme);
+
+      // Update active state
+      document.querySelectorAll('.theme-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', false);
+      });
+      themeBtn.classList.add('active');
+      themeBtn.setAttribute('aria-pressed', true);
+    });
+
+    themeGrid.appendChild(themeBtn);
+  });
+
+  themeSelector.appendChild(themeGrid);
+
+  // Toggle panel visibility
   themeToggle.addEventListener('click', () => {
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    localStorage.setItem('theme', newTheme);
-    applyTheme(newTheme);
-    themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
+    themeSelector.classList.toggle('active');
+    const isActive = themeSelector.classList.contains('active');
+    themeToggle.setAttribute('aria-expanded', isActive);
   });
 
-  themeToggle.addEventListener('mouseenter', () => {
-    themeToggle.style.transform = 'scale(1.1)';
-  });
-
-  themeToggle.addEventListener('mouseleave', () => {
-    themeToggle.style.transform = 'scale(1)';
+  // Close panel when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!themeToggle.contains(e.target) && !themeSelector.contains(e.target)) {
+      themeSelector.classList.remove('active');
+      themeToggle.setAttribute('aria-expanded', false);
+    }
   });
 
   document.body.appendChild(themeToggle);
+  document.body.appendChild(themeSelector);
 }
 
 // ========== APPLY THEME ==========
 function applyTheme(theme) {
-  if (theme === 'dark') {
-    document.body.style.cssText = `
-      background: #0f172a !important;
-      color: #e2e8f0 !important;
-    `;
+  // Set data-theme attribute on html element for CSS to react
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('data-theme', theme);
 
-    document.querySelectorAll('section, .card, nav').forEach(el => {
-      el.style.background = '#1e293b';
-      el.style.borderColor = '#334155';
-      el.style.color = '#e2e8f0';
-    });
-
-    document.querySelectorAll('th').forEach(el => {
-      el.style.background = '#334155';
-      el.style.color = '#e2e8f0';
-    });
-
-    document.querySelectorAll('table tr:nth-child(even)').forEach(el => {
-      el.style.background = '#0f172a';
-    });
-
-    document.querySelectorAll('a').forEach(el => {
-      el.style.color = '#60a5fa';
-    });
-  } else {
-    document.body.style.backgroundColor = '';
-    document.body.style.color = '';
-    location.reload(); // Reload to reset to CSS defaults
-  }
+  // Optional: Add animation class on theme change
+  document.documentElement.style.transition = 'background-color 0.3s ease, color 0.3s ease';
 }
 
 // ========== ANALYTICS & LOGGING ==========
